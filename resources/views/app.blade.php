@@ -20,13 +20,19 @@
 
     <div class="container-fluid">
         <div class="row">
+            <div class="col-2">
+                @section('sidebar')
+                    @include('sidebar')
 
-            @section('sidebar')
-                @include('sidebar')
+            </div>
 
-            @show
+            <div class="col-10">
+                @show
 
-            @yield('content')
+                @yield('content')
+
+            </div>
+
         </div>
 
     </div>

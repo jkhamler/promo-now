@@ -22,7 +22,7 @@
                 <li class="nav-item"><a href="campaigns" class="nav-link">Campaigns</a></li>
                 <li class="nav-item"><a href="forms" class="nav-link">Forms</a></li>
                 <li class="nav-item"><a href="automation" class="nav-link">Automation</a></li>
-                <li class="nav-item"><a href="competition" class="nav-link">Competition</a></li>
+                <li class="nav-item"><a href="competitions" class="nav-link">Competitions</a></li>
                 <li class="nav-item"><a href="reports" class="nav-link">Reports</a></li>
             </ul>
 

@@ -2,8 +2,8 @@
 
 @extends('app')
 
-@section('title', 'Promo Now')
+@section('title', 'PromoNow')
 
 @section('content')
-    <p>This is my body content.</p>
+
 @endsection
