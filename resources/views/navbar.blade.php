@@ -17,7 +17,7 @@
         <div class="collapse navbar-collapse" id="exCollapsingNavbar">
 
             <ul class="nav navbar-nav">
-                <li class="nav-item"><a href="#" class="nav-link">Dashboard</a></li>
+                <li class="nav-item"><a href="/" class="nav-link">Dashboard</a></li>
                 <li class="nav-item"><a href="contacts" class="nav-link">Contacts</a></li>
                 <li class="nav-item"><a href="campaigns" class="nav-link">Campaigns</a></li>
                 <li class="nav-item"><a href="forms" class="nav-link">Forms</a></li>
