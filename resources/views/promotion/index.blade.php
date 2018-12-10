@@ -1,17 +1,17 @@
-<!-- Stored in resources/views/competition/index.blade.php -->
+<!-- Stored in resources/views/promotion/index.blade.php -->
 
 @extends('app')
 
-@section('title', 'Competitions')
+@section('title', 'Promotions')
 
 @section('content')
 
     <div class="row">
-        <div class="col-9"><h1>Competitions</h1></div>
+        <div class="col-9"><h1>Promotions</h1></div>
         <div class="col-3">
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Create
-                Competition
+                Promotion
             </button>
         </div>
     </div>
@@ -33,19 +33,19 @@
         <tbody>
 
         @php
-            /** @var $competitions \App\Models\Competition[] */
+            /** @var $promotions \App\Models\Promotion[] */
         @endphp
 
-        @foreach ($competitions as $competition)
+        @foreach ($promotions as $promotion)
             <tr>
-                <td>{{ $competition->name }}</td>
-                <td>{{ $competition->url }}</td>
-                <td>{{ $competition->description }}</td>
-                <td>{{ $competition->online_date->format('Y-m-d') }}</td>
-                <td>{{ $competition->promo_open_date->format('Y-m-d') }}</td>
-                <td>{{ $competition->promo_closed_date->format('Y-m-d') }}</td>
-                <td>{{ $competition->offline_date->format('Y-m-d') }}</td>
-                <td>{{ $competition->urns_issued }}</td>
+                <td>{{ $promotion->name }}</td>
+                <td>{{ $promotion->url }}</td>
+                <td>{{ $promotion->description }}</td>
+                <td>{{ $promotion->online_date->format('Y-m-d') }}</td>
+                <td>{{ $promotion->promo_open_date->format('Y-m-d') }}</td>
+                <td>{{ $promotion->promo_closed_date->format('Y-m-d') }}</td>
+                <td>{{ $promotion->offline_date->format('Y-m-d') }}</td>
+                <td>{{ $promotion->urns_issued }}</td>
             </tr>
         @endforeach
 
@@ -66,24 +66,24 @@
 
             <div class="container-fluid p-3">
 
-                <h2>Create Competition</h2>
+                <h2>Create Promotion</h2>
 
 
-                <form method="POST" action="{{ route('createCompetition') }}">
+                <form method="POST" action="{{ route('createPromotion') }}">
 
                     <div class="form-group">
                         @csrf
-                        <label for="competitionName">Name</label>
-                        <input type="text" class="form-control" id="competitionName" name="competitionName"
+                        <label for="promotionName">Name</label>
+                        <input type="text" class="form-control" id="promotionName" name="promotionName"
                                aria-describedby="nameHelp"
-                               placeholder="Enter competition name">
+                               placeholder="Enter promotion name">
                         <small id="nameHelp" class="form-text text-muted">E.g. 'Win a Ferrari'
                         </small>
                     </div>
 
                     <div class="form-group">
-                        <label for="competitionUrl">URL</label>
-                        <input type="text" class="form-control" id="competitionUrl" name="url"
+                        <label for="promotionUrl">URL</label>
+                        <input type="text" class="form-control" id="promotionUrl" name="url"
                                placeholder="URL">
                     </div>
 

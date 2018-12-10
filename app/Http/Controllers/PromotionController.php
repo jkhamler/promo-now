@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Competition;
+use App\Models\Promotion;
 use Illuminate\Http\Request;
 
-class CompetitionController extends Controller
+class PromotionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class CompetitionController extends Controller
      */
     public function indexAction()
     {
-        $competitions = Competition::all();
+        $promotions = Promotion::all();
 
-        return view('competition.index', ['competitions' => $competitions]);
+        return view('promotion.index', ['promotions' => $promotions]);
     }
 
     /**
@@ -26,22 +26,22 @@ class CompetitionController extends Controller
     public function createAction(Request $request)
     {
 
-        $competition = new Competition();
+        $promotion = new Promotion();
 
         $params = $request->all();
 
-        $competition->name = $params['competitionName'];
-        $competition->url = $params['url'];
-        $competition->description = $params['description'];
-        $competition->online_date = $params['onlineDate'];
-        $competition->promo_open_date = $params['promoOpenDate'];
-        $competition->promo_closed_date = $params['promoClosedDate'];
-        $competition->offline_date = $params['offlineDate'];
-        $competition->urns_issued = $params['urnsIssued'];
+        $promotion->name = $params['promotionName'];
+        $promotion->url = $params['url'];
+        $promotion->description = $params['description'];
+        $promotion->online_date = $params['onlineDate'];
+        $promotion->promo_open_date = $params['promoOpenDate'];
+        $promotion->promo_closed_date = $params['promoClosedDate'];
+        $promotion->offline_date = $params['offlineDate'];
+        $promotion->urns_issued = $params['urnsIssued'];
 
-        $competition->save();
+        $promotion->save();
 
-        return redirect()->to('/competitions');
+        return redirect()->to('/promotions');
 
     }
 

@@ -13,5 +13,5 @@
 
 Route::get('/', 'HomeController@homeAction')->name('home');
 
-Route::get('/competitions', 'CompetitionController@indexAction')->name('competitionIndex');
-Route::post('/competitions', 'CompetitionController@createAction')->name('createCompetition');
+Route::get('/promotions', 'PromotionController@indexAction')->name('promotionIndex');
+Route::post('/promotions', 'PromotionController@createAction')->name('createPromotion');

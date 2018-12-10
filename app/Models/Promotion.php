@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\Competition
+ * App\Models\Promotion
  *
  * @property integer $id
  * @property string $name
@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $offline_date
  * @property integer $urns_issued
  */
-class Competition extends Model
+class Promotion extends Model
 {
 
     protected $dates = [
