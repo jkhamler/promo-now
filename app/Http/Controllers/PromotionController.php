@@ -20,6 +20,18 @@ class PromotionController extends Controller
     }
 
     /**
+     * @param $promotionId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function detailsAction($promotionId)
+    {
+        $promotion = Promotion::find($promotionId);
+
+        return view('promotion.details', ['promotion' => $promotion]);
+
+    }
+
+    /**
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
@@ -42,6 +54,19 @@ class PromotionController extends Controller
         $promotion->save();
 
         return redirect()->to('/promotions');
+
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function createWizardAction()
+    {
+
+        $promotions = Promotion::all();
+
+
+        return view('promotion.create-wizard', ['promotions' => $promotions]);
 
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,5 +15,9 @@
 
 Route::get('/', 'HomeController@homeAction')->name('home');
 
-Route::get('/promotions', 'PromotionController@indexAction')->name('promotionIndex');
-Route::post('/promotions', 'PromotionController@createAction')->name('createPromotion');
+Route::prefix('promotions')->group(function () {
+    Route::get('/', 'PromotionController@indexAction')->name('promotionIndex');
+    Route::get('/create', 'PromotionController@createWizardAction')->name('createWizard');
+    Route::get('/{promotionId}', 'PromotionController@detailsAction')->name('promotionIndex');
+    Route::post('/', 'PromotionController@createAction')->name('createPromotion');
+});

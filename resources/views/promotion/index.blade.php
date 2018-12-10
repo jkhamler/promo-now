@@ -37,7 +37,7 @@
         @endphp
 
         @foreach ($promotions as $promotion)
-            <tr>
+            <tr class="clickable-row" data-href="/123">
                 <td>{{ $promotion->name }}</td>
                 <td>{{ $promotion->url }}</td>
                 <td>{{ $promotion->description }}</td>
@@ -46,6 +46,11 @@
                 <td>{{ $promotion->promo_closed_date->format('Y-m-d') }}</td>
                 <td>{{ $promotion->offline_date->format('Y-m-d') }}</td>
                 <td>{{ $promotion->urns_issued }}</td>
+                <td>
+                    <form action="/promotions/{{$promotion->id}}">
+                        <input type="submit" value="View/Edit"/>
+                    </form>
+                </td>
             </tr>
         @endforeach
 
