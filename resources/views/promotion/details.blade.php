@@ -6,21 +6,10 @@
 
 @section('content')
 
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab"
-               aria-controls="details"
-               aria-selected="true">Details</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users"
-               aria-selected="false">Users</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings"
-               aria-selected="false">Settings</a>
-        </li>
-    </ul>
+    @include('promotion.subnav')
+    @php /** @var $promotion \App\Models\Promotion **/
+    @endphp
+
     <div class="tab-content" id="myTabContent">
         <div class="row">
             <div class="col-5">
@@ -29,10 +18,11 @@
                     <div class="container-fluid p-3">
                         <h3>Details</h3>
 
-                        <form method="POST" action="{{ route('createPromotion') }}">
+                        <form method="POST" action="{{ route('updatePromotion') }}">
 
                             <div class="form-group">
                                 @csrf
+                                @method('PUT')
                                 <label for="promotionName">Name</label>
                                 <input type="text" class="form-control" id="promotionName" name="promotionName"
                                        aria-describedby="nameHelp"
@@ -44,43 +34,51 @@
                             <div class="form-group">
                                 <label for="promotionUrl">URL</label>
                                 <input type="text" class="form-control" id="promotionUrl" name="url"
-                                       placeholder="URL">
+                                       placeholder="URL" value="{{$promotion->url}}">
                             </div>
 
                             <div class="form-group">
                                 <label for="description">Description</label>
                                 <input type="text" class="form-control" id="description" name="description"
-                                       placeholder="URL">
+                                       placeholder="URL" value="{{$promotion->description}}">
                             </div>
 
                             <div class="form-group">
                                 <label for="onlineDate">Online Date</label>
-                                <input type="date" class="form-control" id="onlineDate" name="onlineDate"
-                                       value="@php echo date('Y-m-d') @endphp">
+                                <input type="datetime-local" class="form-control" id="onlineDate" name="onlineDate"
+                                       value="{{ \App\Models\Promotion::dateFieldFormat($promotion->online_date)}}">
                             </div>
 
                             <div class="form-group">
                                 <label for="promoOpenDate">Promo Open Date</label>
-                                <input type="date" class="form-control" id="promoOpenDate" name="promoOpenDate"
-                                       value="@php echo date('Y-m-d') @endphp">
+                                <input type="datetime-local" class="form-control" id="promoOpenDate"
+                                       name="promoOpenDate"
+                                       value="{{ \App\Models\Promotion::dateFieldFormat($promotion->promo_open_date) }}">
                             </div>
 
                             <div class="form-group">
                                 <label for="promoClosedDate">Promo Closed Date</label>
-                                <input type="date" class="form-control" id="promoClosedDate" name="promoClosedDate"
-                                       value="@php echo date('Y-m-d') @endphp">
+                                <input type="datetime-local" class="form-control" id="promoClosedDate"
+                                       name="promoClosedDate"
+                                       value="{{ \App\Models\Promotion::dateFieldFormat($promotion->promo_closed_date) }}">
                             </div>
 
                             <div class="form-group">
                                 <label for="offlineDate">Offline Date</label>
-                                <input type="date" class="form-control" id="offlineDate" name="offlineDate"
-                                       value="@php echo date('Y-m-d') @endphp">
+                                <input type="datetime-local" class="form-control" id="offlineDate" name="offlineDate"
+                                       value="{{ \App\Models\Promotion::dateFieldFormat($promotion->offline_date) }}">
                             </div>
 
                             <div class="form-group">
-                                <label for="urnsIssued">URNs Issued</label>
-                                <input type="number" class="form-control" id="urnsIssued" name="urnsIssued"
-                                       placeholder="URNs Issued" value="1000">
+                                <label for="urnsRequired" class="checkbox-inline">
+                                    <input type="checkbox" id="urnsRequired" name="urnsRequired"
+                                           value="{{ $promotion->urns_required }}">&nbsp;URNs Required</label>
+                            </div>
+
+                            <div class="form-group" id="urnsIssued" style="display: none;">
+                                <label for="urnsIssued">URN Live Universe (aka Pack Universe)</label>
+                                <input type="number" min="0" class="form-control" id="urnsIssued" name="urnsIssued"
+                                       placeholder="URNs Issued" value="{{ $promotion->urns_required }}">
                             </div>
 
                             <button type="submit" class="btn btn-primary">Update</button>
@@ -101,5 +99,19 @@
             <p>Manage Users</p>
         </div>
     </div>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#urnsRequired').change(function () {
+                if (this.checked)
+                    $('#urnsIssued').show();
+                else
+                    $('#urnsIssued').hide();
+            });
+        });
+    </script>
+
 @endsection
 

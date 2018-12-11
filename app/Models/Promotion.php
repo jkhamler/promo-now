@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $promo_open_date
  * @property \Carbon\Carbon $promo_closed_date
  * @property \Carbon\Carbon $offline_date
+ * @property boolean $urns_required
  * @property integer $urns_issued
  */
 class Promotion extends Model
@@ -42,8 +44,18 @@ class Promotion extends Model
         'promo_open_date',
         'promo_closed_date',
         'offline_date',
+        'urns_required',
         'urns_issued',
     ];
+
+    /**
+     * @param Carbon $date
+     * @return string
+     */
+    public static function dateFieldFormat(Carbon $date)
+    {
+        return $date->format('Y-m-d') . 'T' . $date->format('H:i');
+    }
 
 
 }

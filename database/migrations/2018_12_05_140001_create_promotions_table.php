@@ -22,6 +22,7 @@ class CreatePromotionsTable extends Migration
             $table->dateTime('promo_open_date');
             $table->dateTime('promo_closed_date');
             $table->dateTime('offline_date');
+            $table->boolean('urns_required');
             $table->integer('urns_issued');
             $table->timestamps();
         });

@@ -20,4 +20,5 @@ Route::prefix('promotions')->group(function () {
     Route::get('/create', 'PromotionController@createWizardAction')->name('createWizard');
     Route::get('/{promotionId}', 'PromotionController@detailsAction')->name('promotionIndex');
     Route::post('/', 'PromotionController@createAction')->name('createPromotion');
+    Route::put('/', 'PromotionController@updateAction')->name('updatePromotion');
 });
