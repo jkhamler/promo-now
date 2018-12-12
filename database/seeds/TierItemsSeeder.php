@@ -17,37 +17,50 @@ class TierItemsSeeder extends Seeder
 
         $partner1Id = $partner1->id;
 
-        $partner2 = new \App\Models\Partner();
-        $partner2->name = 'Sunday Times';
-        $partner2->save();
+        $tier1 = new \App\Models\Tier();
 
-        $partner2Id = $partner2->id;
+        $tier1->level = 1;
+        $tier1->short_description = 'Tier 1';
+        $tier1->long_description = 'Tier 1 Prizes';
+        $tier1->quantity = 1000;
 
-        $tier = new \App\Models\Tier();
+        $tier1->save();
 
-        $tier->level = 1;
-        $tier->short_description = 'Tier 1';
-        $tier->long_description = 'Tier 1 Prizes';
-        $tier->quantity = 1000;
-        $tier->partner_id = $partner1Id;
+        $tier1Id = $tier1->id;
 
-        $tier->save;
+        $tier2 = new \App\Models\Tier();
 
+        $tier2->level = 2;
+        $tier2->short_description = 'Tier 2';
+        $tier2->long_description = 'Tier 2 Prizes';
+        $tier2->quantity = 1000;
 
+        $tier2->save();
 
-        $item = new \App\Models\TierItem();
+        $tier2Id = $tier2->id;
 
-        $item->name = 'Test Item';
-        $item->url = 'testcomp.com';
-        $item->description = 'Description 123';
-        $item->online_date = new DateTime('2018-01-01');
-        $item->promo_open_date = new DateTime('2018-02-01');
-        $item->promo_closed_date = new DateTime('2018-03-01');
-        $item->offline_date = new DateTime('2018-04-01');
-        $item->urns_issued = 2500;
+        $item1 = new \App\Models\TierItem();
 
+        $item1->tier_id = $tier1Id;
+        $item1->partner_id = $partner1Id;
+        $item1->level = 1;
+        $item1->short_description = 'TV';
+        $item1->long_description = 'Television';
+        $item1->coupon_number = 'ABC12345';
+        $item1->quantity = 250;
 
-        $item->save();
-        //
+        $item1->save();
+
+        $item2 = new \App\Models\TierItem();
+
+        $item2->tier_id = $tier2Id;
+        $item2->partner_id = $partner1Id;
+        $item2->level = 2;
+        $item2->short_description = 'Car';
+        $item2->long_description = 'A Free Car';
+        $item2->coupon_number = 'ABC789';
+        $item2->quantity = 50;
+
+        $item2->save();
     }
 }

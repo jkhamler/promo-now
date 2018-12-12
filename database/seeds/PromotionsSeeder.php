@@ -21,6 +21,7 @@ class PromotionsSeeder extends Seeder
         $promotion->promo_open_date = new DateTime('2018-02-01');
         $promotion->promo_closed_date = new DateTime('2018-03-01');
         $promotion->offline_date = new DateTime('2018-04-01');
+        $promotion->urns_required = true;
         $promotion->urns_issued = 2500;
 
 
