@@ -123,20 +123,20 @@
                         <div class="form-group">
                             <label for="promoOpenDate">Promo Open Date</label>
                             <input type="datetime-local" class="form-control" id="promoOpenDate" name="promoOpenDate"
-                                   value="{{ $nowString }}" required>
+                                   value="{{ $nextMonthString }}" required>
                         </div>
 
                         <div class="form-group">
                             <label for="promoClosedDate">Promo Closed Date</label>
                             <input type="datetime-local" class="form-control" id="promoClosedDate"
                                    name="promoClosedDate"
-                                   value="{{ $nowString }}" required>
+                                   value="{{ $monthAfterNextString }}" required>
                         </div>
 
                         <div class="form-group">
                             <label for="offlineDate">Offline Date</label>
                             <input type="datetime-local" class="form-control" id="offlineDate" name="offlineDate"
-                                   value="{{ $nowString }}" required>
+                                   value="{{ $twoMonthsAfterNextString }}" required>
                         </div>
 
                         <div class="form-group">
