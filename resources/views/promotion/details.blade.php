@@ -23,25 +23,36 @@
         </div>
     @endif
 
-    <div class="tab-content" id="myTabContent">
+    <div class="row">
 
-        @include('promotion.campaign-basics')
-        @include('promotion.urns')
-        @include('promotion.prizes-items')
-        @include('promotion.mechanics')
-        @include('promotion.users')
+        <div class="col-8">
+            <div class="tab-content" id="myTabContent">
 
-        <script type="text/javascript">
-            $(document).ready(function () {
+                @include('promotion.campaign-basics')
+                @include('promotion.urns')
+                @include('promotion.prizes-items')
+                @include('promotion.mechanics')
+                @include('promotion.users')
 
-                $('#urnsRequired').change(function () {
-                    if (this.checked)
-                        $('#urnsIssued').show();
-                    else
-                        $('#urnsIssued').hide();
-                });
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#urnsRequired').change(function () {
+                if (this.checked)
+                    $('#urnsIssued').show();
+                else
+                    $('#urnsIssued').hide();
             });
-        </script>
+        });
+    </script>
 
 @endsection
 

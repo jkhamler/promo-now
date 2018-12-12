@@ -31,46 +31,72 @@
         </div>
     @endif
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">URL</th>
-            <th scope="col">Description</th>
-            <th scope="col">Online Date</th>
-            <th scope="col">Promo Open Date</th>
-            <th scope="col">Promo Closed Date</th>
-            <th scope="col">Offline Date</th>
-            <th scope="col">URNs Issued</th>
-        </tr>
-        </thead>
-        <tbody>
+    <div class="row">
+        <div class="col-12">
 
-        @php
-            /** @var $promotions \App\Models\Promotion[] */
-        $nowString = \App\Models\Promotion::dateFieldFormat(\Carbon\Carbon::now());
-        @endphp
 
-        @foreach ($promotions as $promotion)
-            <tr class="clickable-row" data-href="/123">
-                <td>{{ $promotion->name }}</td>
-                <td>{{ $promotion->url }}</td>
-                <td>{{ $promotion->description }}</td>
-                <td>{{ $promotion->online_date->format('Y-m-d') }}</td>
-                <td>{{ $promotion->promo_open_date->format('Y-m-d') }}</td>
-                <td>{{ $promotion->promo_closed_date->format('Y-m-d') }}</td>
-                <td>{{ $promotion->offline_date->format('Y-m-d') }}</td>
-                <td>{{ $promotion->urns_issued }}</td>
-                <td>
-                    <form action="/promotions/{{$promotion->id}}">
-                        <input type="submit" value="View/Edit"/>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">URL</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Online Date</th>
+                    <th scope="col">Promo Open Date</th>
+                    <th scope="col">Promo Closed Date</th>
+                    <th scope="col">Offline Date</th>
+                    <th scope="col">URNs Issued</th>
+                </tr>
+                </thead>
+                <tbody>
 
-        </tbody>
-    </table>
+                <?php
+                /** @var $promotions \App\Models\Promotion[] */
+                $now = \Carbon\Carbon::now();
+
+                $nowString = \App\Models\Promotion::dateFieldFormat($now);
+
+                $nextMonth = clone $now;
+                $nextMonth->addMonth(1);
+
+                $nextMonthString = \App\Models\Promotion::dateFieldFormat($nextMonth);
+
+                $monthAfterNext = clone $now;
+                $monthAfterNext->addMonth(2);
+
+                $monthAfterNextString = \App\Models\Promotion::dateFieldFormat($monthAfterNext);
+
+                $twoMonthsAfterNext = clone $now;
+                $twoMonthsAfterNext->addMonth(3);
+
+                $twoMonthsAfterNextString = \App\Models\Promotion::dateFieldFormat($twoMonthsAfterNext);
+
+                ?>
+
+                @foreach ($promotions as $promotion)
+                    <tr class="clickable-row">
+                        <td>{{ $promotion->name }}</td>
+                        <td>{{ $promotion->url }}</td>
+                        <td>{{ $promotion->description }}</td>
+                        <td>{{ $promotion->online_date->format('Y-m-d') }}</td>
+                        <td>{{ $promotion->promo_open_date->format('Y-m-d') }}</td>
+                        <td>{{ $promotion->promo_closed_date->format('Y-m-d') }}</td>
+                        <td>{{ $promotion->offline_date->format('Y-m-d') }}</td>
+                        <td>{{ $promotion->urns_issued }}</td>
+                        <td>
+                            <form action="/promotions/{{$promotion->id}}">
+                                <input type="submit" value="View/Edit"/>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
 
     <!-- Modal -->
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
@@ -83,7 +109,6 @@
                 <div class="container-fluid p-3">
 
                     <h2>Create Promotion</h2>
-
 
                     <form method="POST" action="{{ route('createPromotion') }}">
 

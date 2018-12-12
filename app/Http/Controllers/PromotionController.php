@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Promotion;
+use App\Models\Tier;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,12 @@ class PromotionController extends Controller
     {
         $promotion = Promotion::find($promotionId);
 
-        return view('promotion.details', ['promotion' => $promotion]);
+        $tiers = Tier::all();
+
+        return view('promotion.details', [
+            'tiers' => $tiers,
+            'promotion' => $promotion,
+        ]);
     }
 
     /**
