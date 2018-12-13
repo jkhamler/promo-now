@@ -1,3 +1,7 @@
+<?php
+/** @var $promotion \App\Models\Promotion */
+?>
+
 <div class="tab-pane fade" id="prizesItems" role="tabpanel"
      aria-labelledby="prizes-items-tab">
 
@@ -29,11 +33,9 @@
             </thead>
             <tbody>
 
-            <?php
-            /** @var $tiers \App\Models\Tier[] */
-            ?>
 
-            @foreach ($tiers as $tier)
+
+            @foreach ($promotion->getTiers() as $tier)
                 <tr class="clickable-row">
                     <td>{{ $tier->level }}</td>
                     <td>{{ $tier->short_description }}</td>
@@ -69,8 +71,10 @@
                 <h2>Create Tier</h2>
 
                 <form method="POST" action="{{ route('createTier') }}">
-
                     @csrf
+
+                    <input type="hidden" name="promotion_id" value="{{ $promotion->id }}"/>
+
                     <div class="form-group">
                         <label for="level">Level</label>
                         <input type="number" class="form-control" id="level" name="level"

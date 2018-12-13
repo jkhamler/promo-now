@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Promotion;
-use App\Models\Tier;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -30,12 +29,10 @@ class PromotionController extends Controller
      */
     public function detailsAction($promotionId)
     {
+        /** @var Promotion $promotion */
         $promotion = Promotion::find($promotionId);
 
-        $tiers = Tier::all();
-
         return view('promotion.details', [
-            'tiers' => $tiers,
             'promotion' => $promotion,
         ]);
     }
@@ -70,6 +67,8 @@ class PromotionController extends Controller
         $promotion->offline_date = Carbon::parse($data['offlineDate']);
         if (isset($data['urnsRequired'])) {
             $promotion->urns_required = ($data['urnsRequired'] == 'on');
+        } else {
+            $promotion->urns_required = false;
         }
         $promotion->urns_issued = $data['urnsIssued'] ?? 0;
 

@@ -18,6 +18,7 @@ class TierController extends Controller
         $data = $request->all();
 
         $request->validate([
+            'promotion_id' => 'required',
             'level' => 'required',
             'shortDescription' => 'required',
             'longDescription' => 'required',
@@ -26,6 +27,7 @@ class TierController extends Controller
 
         $tier = new Tier();
 
+        $tier->promotion_id = $data['promotion_id'];
         $tier->level = $data['level'];
         $tier->short_description = $data['shortDescription'];
         $tier->long_description = $data['longDescription'];

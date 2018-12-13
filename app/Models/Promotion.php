@@ -57,5 +57,12 @@ class Promotion extends Model
         return $date->format('Y-m-d') . 'T' . $date->format('H:i');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|Tier[]
+     */
+    public function getTiers(){
+        return $this->hasMany('App\Models\Tier')->get();
+    }
+
 
 }

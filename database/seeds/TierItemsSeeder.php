@@ -11,6 +11,10 @@ class TierItemsSeeder extends Seeder
      */
     public function run()
     {
+        /** @var \App\Models\Promotion $promotion */
+        $promotion = \App\Models\Promotion::where('name', 'Test Promotion')->first();
+
+
         $partner1 = new \App\Models\Partner();
         $partner1->name = 'Amazon';
         $partner1->save();
@@ -19,6 +23,7 @@ class TierItemsSeeder extends Seeder
 
         $tier1 = new \App\Models\Tier();
 
+        $tier1->promotion_id = $promotion->id;
         $tier1->level = 1;
         $tier1->short_description = 'Tier 1';
         $tier1->long_description = 'Tier 1 Prizes';
@@ -30,6 +35,7 @@ class TierItemsSeeder extends Seeder
 
         $tier2 = new \App\Models\Tier();
 
+        $tier2->promotion_id = $promotion->id;
         $tier2->level = 2;
         $tier2->short_description = 'Tier 2';
         $tier2->long_description = 'Tier 2 Prizes';
