@@ -33,8 +33,6 @@
             </thead>
             <tbody>
 
-
-
             @foreach ($promotion->getTiers() as $tier)
                 <tr class="clickable-row">
                     <td>{{ $tier->level }}</td>
@@ -68,7 +66,7 @@
 
             <div class="container-fluid p-3">
 
-                <h2>Create Tier</h2>
+                <h2>Create Tier for Promotion - {{ $promotion->name }}</h2>
 
                 <form method="POST" action="{{ route('createTier') }}">
                     @csrf
@@ -80,7 +78,7 @@
                         <input type="number" class="form-control" id="level" name="level"
                                aria-describedby="levelHelp" required min="1"
                                placeholder="Enter level">
-                        <small id="nameHelp" class="form-text text-muted">E.g. '1'
+                        <small id="nameHelp" class="form-text text-muted">E.g. '1'. Tier levels must be unique
                         </small>
                     </div>
 

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tier;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class TierController extends Controller
 {
@@ -19,11 +21,16 @@ class TierController extends Controller
 
         $request->validate([
             'promotion_id' => 'required',
-            'level' => 'required',
+            'level' => Rule::unique('tiers')->where(function (Builder $query) use ($data) {
+                return $query
+                    ->where('level', $data['level'])
+                    ->where('promotion_id', $data['promotion_id']);
+            }),
             'shortDescription' => 'required',
             'longDescription' => 'required',
             'quantity' => 'required',
         ]);
+
 
         $tier = new Tier();
 
