@@ -31,10 +31,19 @@ class Tier extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne|Promotion
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function getPromotion(){
+    public function promotion()
+    {
         return $this->hasOne('App\Models\Promotion');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function items()
+    {
+        return $this->hasMany('App\Models\TierItem');
     }
 
 }

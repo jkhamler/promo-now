@@ -60,4 +60,40 @@ class TierController extends Controller
         ]);
     }
 
+    /**
+     * @param $tierId
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateAction($tierId, Request $request)
+    {
+        $data = $request->all();
+
+        /** @var Tier $tier */
+        $tier = Tier::find($tierId);
+
+        $promotionId = $tier->promotion_id;
+
+        $request->validate([
+            'level' => Rule::unique('tiers')->where(function (Builder $query) use ($data, $promotionId) {
+                return $query
+                    ->where('level', $data['level'])
+                    ->where('promotion_id', $promotionId);
+            }),
+            'shortDescription' => 'required',
+            'longDescription' => 'required',
+            'quantity' => 'required',
+        ]);
+
+        $tier->level = $data['level'];
+        $tier->short_description = $data['shortDescription'];
+        $tier->long_description = $data['longDescription'];
+        $tier->quantity = $data['quantity'];
+
+        $tier->save();
+
+        return redirect()->to("/tiers/{$tier->id}");
+
+    }
+
 }

@@ -10,7 +10,8 @@
         <div class="col-9"><h1>Promotions</h1></div>
         <div class="col-3">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target=".bd-example-modal-lg">Create
+            <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+                    data-target=".bd-example-modal-lg">Create
                 Promotion
             </button>
         </div>
@@ -32,68 +33,66 @@
     @endif
 
     <div class="row">
-        <div class="col-12">
 
-            <table class="table">
+        <table class="table">
 
-                <tr>
-                    <td>Name</td>
-                    <td>URL</td>
-                    <td>Description</td>
-                    <td>Online Date</td>
-                    <td>Promo Open Date</td>
-                    <td>Promo Closed Date</td>
-                    <td>Offline Date</td>
-                    <td colspan="2">URNs Issued</td>
+            <tr>
+                <td>Name</td>
+                <td>URL</td>
+                <td>Description</td>
+                <td>Online Date</td>
+                <td>Promo Open Date</td>
+                <td>Promo Closed Date</td>
+                <td>Offline Date</td>
+                <td colspan="2">URNs Issued</td>
+            </tr>
+
+            <tbody>
+
+            <?php
+            /** @var $promotions \App\Models\Promotion[] */
+            $now = \Carbon\Carbon::now();
+
+            $nowString = \App\Models\Promotion::dateFieldFormat($now);
+
+            $nextMonth = clone $now;
+            $nextMonth->addMonth(1);
+
+            $nextMonthString = \App\Models\Promotion::dateFieldFormat($nextMonth);
+
+            $monthAfterNext = clone $now;
+            $monthAfterNext->addMonth(2);
+
+            $monthAfterNextString = \App\Models\Promotion::dateFieldFormat($monthAfterNext);
+
+            $twoMonthsAfterNext = clone $now;
+            $twoMonthsAfterNext->addMonth(3);
+
+            $twoMonthsAfterNextString = \App\Models\Promotion::dateFieldFormat($twoMonthsAfterNext);
+
+            ?>
+
+            @foreach ($promotions as $promotion)
+                <tr class="clickable-row">
+                    <td>{{ $promotion->name }}</td>
+                    <td>{{ $promotion->url }}</td>
+                    <td>{{ $promotion->description }}</td>
+                    <td>{{ $promotion->online_date->format('Y-m-d') }}</td>
+                    <td>{{ $promotion->promo_open_date->format('Y-m-d') }}</td>
+                    <td>{{ $promotion->promo_closed_date->format('Y-m-d') }}</td>
+                    <td>{{ $promotion->offline_date->format('Y-m-d') }}</td>
+                    <td>{{ $promotion->urns_issued }}</td>
+                    <td>
+                        <form action="/promotions/{{$promotion->id}}">
+                            <input type="submit" value="View/Edit"/>
+                        </form>
+                    </td>
                 </tr>
+            @endforeach
 
-                <tbody>
+            </tbody>
+        </table>
 
-                <?php
-                /** @var $promotions \App\Models\Promotion[] */
-                $now = \Carbon\Carbon::now();
-
-                $nowString = \App\Models\Promotion::dateFieldFormat($now);
-
-                $nextMonth = clone $now;
-                $nextMonth->addMonth(1);
-
-                $nextMonthString = \App\Models\Promotion::dateFieldFormat($nextMonth);
-
-                $monthAfterNext = clone $now;
-                $monthAfterNext->addMonth(2);
-
-                $monthAfterNextString = \App\Models\Promotion::dateFieldFormat($monthAfterNext);
-
-                $twoMonthsAfterNext = clone $now;
-                $twoMonthsAfterNext->addMonth(3);
-
-                $twoMonthsAfterNextString = \App\Models\Promotion::dateFieldFormat($twoMonthsAfterNext);
-
-                ?>
-
-                @foreach ($promotions as $promotion)
-                    <tr class="clickable-row">
-                        <td>{{ $promotion->name }}</td>
-                        <td>{{ $promotion->url }}</td>
-                        <td>{{ $promotion->description }}</td>
-                        <td>{{ $promotion->online_date->format('Y-m-d') }}</td>
-                        <td>{{ $promotion->promo_open_date->format('Y-m-d') }}</td>
-                        <td>{{ $promotion->promo_closed_date->format('Y-m-d') }}</td>
-                        <td>{{ $promotion->offline_date->format('Y-m-d') }}</td>
-                        <td>{{ $promotion->urns_issued }}</td>
-                        <td>
-                            <form action="/promotions/{{$promotion->id}}">
-                                <input type="submit" value="View/Edit"/>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-
-                </tbody>
-            </table>
-
-        </div>
     </div>
 
 

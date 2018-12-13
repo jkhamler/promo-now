@@ -21,4 +21,11 @@ class Partner extends Model
         'name',
     ];
 
+
+    public function tierItems()
+    {
+        return $this->hasMany('App\Models\TierItem');
+    }
+
+
 }

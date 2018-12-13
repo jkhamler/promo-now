@@ -31,4 +31,19 @@ class TierItem extends Model
         'quantity',
         'partner_id',
     ];
+
+
+    /**
+     * @return Tier
+     */
+    public function getTier()
+    {
+        return $this->belongsTo('App\Models\Tier');
+    }
+
+    public function partner()
+    {
+        return $this->belongsTo('App\Models\Partner');
+    }
+
 }

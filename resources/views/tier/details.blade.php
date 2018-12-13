@@ -22,16 +22,82 @@
         </div>
     @endif
 
+    <h2>Tier - {{$tier->short_description}} (Level {{ $tier->level }})</h2>
+
+    <div class="col-8">
+        <form method="POST" action="{{ route('updateTier', [$tier->id, 'id']) }}">
+
+
+            <div class="form-group">
+                @csrf
+                @method('PATCH')
+                <label for="level">Level</label>
+                <input type="text" class="form-control" id="level" name="level"
+                       aria-describedby="nameHelp" required
+                       placeholder="Enter level" value="{{$tier->level}}">
+            </div>
+
+            <div class="form-group">
+                <label for="shortDescription">Short Description</label>
+                <input type="text" class="form-control" id="shortDescription" name="shortDescription"
+                       placeholder="Short Description" required value="{{$tier->short_description}}">
+            </div>
+
+            <div class="form-group">
+                <label for="longDescription">Long Description</label>
+                <input type="text" class="form-control" id="longDescription" name="longDescription"
+                       placeholder="Long Description" required value="{{$tier->long_description}}">
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input type="number" class="form-control" id="quantity" name="quantity"
+                       placeholder="Quantity" min="1" required value="{{$tier->quantity}}">
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+
+    <br/>
+
+
+    <!-- Tier Items-->
+
+    <h3>Items</h3>
+
     <div class="row">
 
-        <div class="col-8">
-            <h1>Tier Details - {{ $tier->short_description }}</h1>
-            <p>Level: {{ $tier->level }}</p>
-            <p>Short Description: {{ $tier->short_description }}</p>
-            <p>Long Description: {{ $tier->long_description }}</p>
-            <p>Quantity: {{ $tier->quantity }}</p>
-        </div>
+        <table class="table">
 
+            <tr>
+                <td>Short Description</td>
+                <td>Long Description</td>
+                <td>Coupon Number</td>
+                <td>Quantity</td>
+                <td colspan="2">Partner</td>
+            </tr>
+
+            <tbody>
+
+            @foreach ($tier->items as $tierItem)
+                <tr class="clickable-row">
+                    <td>{{ $tierItem->short_description }}</td>
+                    <td>{{ $tierItem->long_description }}</td>
+                    <td>{{ $tierItem->coupon_number }}</td>
+                    <td>{{ $tierItem->quantity }}</td>
+                    <td>{{ $tierItem->partner->name }}</td>
+                    <td>
+                        <form action="/items/{{$tierItem->id}}">
+                            <input type="submit" value="View/Edit" disabled/>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+
+            </tbody>
+        </table>
 
     </div>
 
