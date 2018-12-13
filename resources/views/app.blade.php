@@ -9,7 +9,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
+    <!-- PromoNow CSS (Compiled with WebPack) -->
     <link rel="stylesheet" href="/css/app.css">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+          integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -31,24 +36,28 @@
 @section('navbar')
     @include('navbar')
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-2">
-                @section('sidebar')
-                    @include('sidebar')
-
-            </div>
-
-            <div class="col-10">
-                @show
-                @yield('content')
-
-            </div>
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <div class="col-2 border-right">
+            @section('sidebar-left')
+                @include('sidebar-left')
 
         </div>
 
+        <div class="col-8">
+            @show
+            @yield('content')
+        </div>
+
+        <div class="col-2 border-left">
+            @section('sidebar-right')
+                @include('sidebar-right')
+        </div>
+
+
     </div>
 
+</div>
 
 
 </body>

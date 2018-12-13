@@ -25,7 +25,7 @@
 
     <div class="row">
 
-        <div class="col-8">
+        <div class="col-12">
             <div class="tab-content" id="myTabContent">
 
                 @include('promotion.campaign-basics')

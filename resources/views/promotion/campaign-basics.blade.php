@@ -1,7 +1,7 @@
 <div class="tab-pane fade show active" id="campaignBasics" role="tabpanel"
      aria-labelledby="campaign-basics-tab">
 
-    <div class="container m-2"><h2>{{ $promotion->name }}</h2></div>
+    <div class="container"><h2>{{ $promotion->name }}</h2></div>
     <div class="container-fluid p-3">
 
         <h3>Details</h3>

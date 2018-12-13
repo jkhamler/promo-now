@@ -5,17 +5,13 @@
 <div class="tab-pane fade" id="prizesItems" role="tabpanel"
      aria-labelledby="prizes-items-tab">
 
-    <div class="row m-2">
-        <div class="col-8">
-            <h2>{{ $promotion->name }}</h2>
-        </div>
-        <div class="col-3">
-            <button type="button" class="btn btn-primary float-right" data-toggle="modal"
-                    data-target=".bd-example-modal-lg">
-                Create
-                Tier
-            </button>
-        </div>
+    <div class="container">
+        <h2>{{ $promotion->name }}</h2>
+        <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+                data-target=".bd-example-modal-lg">
+            Create
+            Tier
+        </button>
     </div>
 
     <div class="container-fluid p-3">
@@ -23,14 +19,12 @@
         <h4>Tiers</h4>
 
         <table class="table">
-            <thead>
             <tr>
-                <th scope="col">Level</th>
-                <th scope="col">Short Description</th>
-                <th scope="col">Long Description</th>
-                <th scope="col">Quantity</th>
+                <td>Level</td>
+                <td>Short Description</td>
+                <td>Long Description</td>
+                <td colspan="2">Quantity</td>
             </tr>
-            </thead>
             <tbody>
 
             @foreach ($promotion->getTiers() as $tier)

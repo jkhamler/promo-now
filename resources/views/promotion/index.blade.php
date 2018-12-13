@@ -10,7 +10,7 @@
         <div class="col-9"><h1>Promotions</h1></div>
         <div class="col-3">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Create
+            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target=".bd-example-modal-lg">Create
                 Promotion
             </button>
         </div>
@@ -35,18 +35,18 @@
         <div class="col-12">
 
             <table class="table">
-                <thead>
+
                 <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">URL</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Online Date 123</th>
-                    <th scope="col">Promo Open Date</th>
-                    <th scope="col">Promo Closed Date</th>
-                    <th scope="col">Offline Date</th>
-                    <th scope="col">URNs Issued</th>
+                    <td>Name</td>
+                    <td>URL</td>
+                    <td>Description</td>
+                    <td>Online Date</td>
+                    <td>Promo Open Date</td>
+                    <td>Promo Closed Date</td>
+                    <td>Offline Date</td>
+                    <td colspan="2">URNs Issued</td>
                 </tr>
-                </thead>
+
                 <tbody>
 
                 <?php
