@@ -31,33 +31,35 @@
 
     <title>@yield('title')</title>
 </head>
+
 <body>
 
 @section('navbar')
+
     @include('navbar')
 
-<div class="container-fluid h-100">
-    <div class="row h-100">
-        <div class="col-2 border-right">
-            @section('sidebar-left')
-                @include('sidebar-left')
+    <div class="container-fluid h-100">
+
+        <div class="row h-100">
+            <div class="col-2 border-right">
+                @section('sidebar-left')
+                    @include('sidebar-left')
+            </div>
+
+            <div class="col-8">
+                @show
+                @yield('content')
+            </div>
+
+            <div class="col-2 border-left">
+                @section('sidebar-right')
+                    @include('sidebar-right')
+            </div>
+
 
         </div>
-
-        <div class="col-8">
-            @show
-            @yield('content')
-        </div>
-
-        <div class="col-2 border-left">
-            @section('sidebar-right')
-                @include('sidebar-right')
-        </div>
-
 
     </div>
-
-</div>
 
 
 </body>
