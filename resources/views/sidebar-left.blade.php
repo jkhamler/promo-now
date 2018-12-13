@@ -46,13 +46,4 @@
         <img src="/images/brunette.jpg" width="100%"/>
     </div>
 
-    {{--<div class="col-md-6">--}}
-        {{--<h2>After</h2>--}}
-        {{--<div class="img-gradient">--}}
-            {{--<img src="https://bootstrapcreative.com/wp-bc/wp-content/uploads/2016/11/pablo.png" width="400" />--}}
-        {{--</div>--}}
-    {{--</div>--}}
-    {{----}}
-    {{----}}
-
 </div>
