@@ -15,6 +15,7 @@ class CreateTiersTable extends Migration
     {
         Schema::create('tiers', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('promotion_id');
             $table->integer('level');
             $table->string('short_description');
             $table->string('long_description')->nullable();

@@ -1,17 +1,17 @@
+<?php
+/** @var $promotion \App\Models\Promotion */
+?>
+
 <div class="tab-pane fade" id="prizesItems" role="tabpanel"
      aria-labelledby="prizes-items-tab">
 
-    <div class="row m-2">
-        <div class="col-8">
-            <h2>{{ $promotion->name }}</h2>
-        </div>
-        <div class="col-3">
-            <button type="button" class="btn btn-primary float-right" data-toggle="modal"
-                    data-target=".bd-example-modal-lg">
-                Create
-                Tier
-            </button>
-        </div>
+    <div class="container">
+        <h2>{{ $promotion->name }}</h2>
+        <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+                data-target=".bd-example-modal-lg">
+            Create
+            Tier
+        </button>
     </div>
 
     <div class="container-fluid p-3">
@@ -19,21 +19,15 @@
         <h4>Tiers</h4>
 
         <table class="table">
-            <thead>
             <tr>
-                <th scope="col">Level</th>
-                <th scope="col">Short Description</th>
-                <th scope="col">Long Description</th>
-                <th scope="col">Quantity</th>
+                <td>Level</td>
+                <td>Short Description</td>
+                <td>Long Description</td>
+                <td colspan="2">Quantity</td>
             </tr>
-            </thead>
             <tbody>
 
-            <?php
-            /** @var $tiers \App\Models\Tier[] */
-            ?>
-
-            @foreach ($tiers as $tier)
+            @foreach ($promotion->getTiers() as $tier)
                 <tr class="clickable-row">
                     <td>{{ $tier->level }}</td>
                     <td>{{ $tier->short_description }}</td>
@@ -66,17 +60,19 @@
 
             <div class="container-fluid p-3">
 
-                <h2>Create Tier</h2>
+                <h2>Create Tier for Promotion - {{ $promotion->name }}</h2>
 
                 <form method="POST" action="{{ route('createTier') }}">
-
                     @csrf
+
+                    <input type="hidden" name="promotion_id" value="{{ $promotion->id }}"/>
+
                     <div class="form-group">
                         <label for="level">Level</label>
                         <input type="number" class="form-control" id="level" name="level"
                                aria-describedby="levelHelp" required min="1"
                                placeholder="Enter level">
-                        <small id="nameHelp" class="form-text text-muted">E.g. '1'
+                        <small id="nameHelp" class="form-text text-muted">E.g. '1'. Tier levels must be unique
                         </small>
                     </div>
 

@@ -26,7 +26,6 @@
 
         <div class="col-8">
             <h1>Tier Details - {{ $tier->short_description }}</h1>
-
             <p>Level: {{ $tier->level }}</p>
             <p>Short Description: {{ $tier->short_description }}</p>
             <p>Long Description: {{ $tier->long_description }}</p>
