@@ -41,7 +41,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">URL</th>
                     <th scope="col">Description</th>
-                    <th scope="col">Online Date</th>
+                    <th scope="col">Online Date 123</th>
                     <th scope="col">Promo Open Date</th>
                     <th scope="col">Promo Closed Date</th>
                     <th scope="col">Offline Date</th>
