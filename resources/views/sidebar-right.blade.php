@@ -3,8 +3,8 @@
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link active" href="#">
-                    <i class="fas fa-lightbulb"></i>
-                    &nbsp;Useful Info <span class="sr-only">(current)</span>
+                    <i class="fas fa-users"></i>
+                    &nbsp;Think GDPR!<span class="sr-only">(current)</span>
                 </a>
                 <div class="border p-2 m-2">
                     <p>
@@ -15,7 +15,7 @@
                 </div>
                 <a class="nav-link active" href="#">
                     <i class="fas fa-lightbulb"></i>
-                    &nbsp;More Useful Info <span class="sr-only">(current)</span>
+                    &nbsp;Useful Info <span class="sr-only">(current)</span>
                 </a>
 
                 <div class="border p-2 m-2">

@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property integer $id
  * @property integer $tier_id
- * @property integer $level
  * @property string $short_description
  * @property string $long_description
  * @property string $coupon_number
@@ -24,7 +23,6 @@ class TierItem extends Model
      */
     protected $fillable = [
         'tier_id',
-        'level',
         'short_description',
         'long_description',
         'coupon_number',
@@ -36,7 +34,7 @@ class TierItem extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getTier()
+    public function tier()
     {
         return $this->belongsTo('App\Models\Tier');
     }

@@ -16,7 +16,6 @@ class CreateTierItemsTable extends Migration
         Schema::create('tier_items', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('tier_id');
-            $table->integer('level');
             $table->string('short_description');
             $table->string('long_description')->nullable();
             $table->string('coupon_number')->nullable();

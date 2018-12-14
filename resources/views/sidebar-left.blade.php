@@ -49,8 +49,11 @@
 
         <div style="background-color: rgb(43,43,43); color: white;">
             <div class="m-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris quis tortor posuere, aliquam ex
-                sed.
+                <h3>We've got you covered</h3>
+                PromoNow™<br/>
+                <p class="small"><b>Secure, fast and agile</b> solutions for promotional deployments and consumer data
+                    safeguarding</p>
+
             </div>
         </div>
     </div>

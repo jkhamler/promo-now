@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Partner;
 use App\Models\Tier;
+use App\Models\TierItem;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -57,6 +59,7 @@ class TierController extends Controller
 
         return view('tier.details', [
             'tier' => $tier,
+            'partners' => Partner::all(),
         ]);
     }
 
@@ -99,6 +102,88 @@ class TierController extends Controller
 
         return redirect()->to("/tiers/{$tier->id}");
 
+    }
+
+    /**
+     * Tier Item Details
+     *
+     * @param $tierItemId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function tierItemDetailsAction($tierItemId)
+    {
+        $tierItem = TierItem::find($tierItemId);
+
+        return view('tier.item.details', [
+            'tierItem' => $tierItem,
+            'partners' => Partner::all(),
+        ]);
+    }
+
+    /**
+     * Update a tier item
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
+    public function createTierItemAction(Request $request)
+    {
+        $data = $request->all();
+
+        $request->validate([
+            'tier_id' => 'required',
+            'shortDescription' => 'required',
+            'longDescription' => 'required',
+            'quantity' => 'required',
+            'couponNumber' => 'required',
+            'partnerId' => 'required',
+        ]);
+
+        $tierItem = new TierItem();
+
+        $tierItem->tier_id = $data['tier_id'];
+        $tierItem->short_description = $data['shortDescription'];
+        $tierItem->long_description = $data['longDescription'];
+        $tierItem->quantity = $data['quantity'];
+        $tierItem->coupon_number = $data['couponNumber'];
+        $tierItem->partner_id = $data['partnerId'];
+
+        $tierItem->save();
+
+        return redirect()->to("/tiers/{$tierItem->tier_id}");
+    }
+
+    /**
+     * Update a tier item
+     *
+     * @param integer $tierItemId
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
+    public function updateTierItemAction($tierItemId, Request $request)
+    {
+        $data = $request->all();
+
+        $request->validate([
+            'shortDescription' => 'required',
+            'longDescription' => 'required',
+            'quantity' => 'required',
+            'couponNumber' => 'required',
+            'partnerId' => 'required',
+        ]);
+
+        /** @var TierItem $tierItem */
+        $tierItem = TierItem::find($tierItemId);
+
+        $tierItem->short_description = $data['shortDescription'];
+        $tierItem->long_description = $data['longDescription'];
+        $tierItem->quantity = $data['quantity'];
+        $tierItem->coupon_number = $data['couponNumber'];
+        $tierItem->partner_id = $data['partnerId'];
+
+        $tierItem->save();
+
+        return redirect()->to("/tiers/items/{$tierItem->id}");
     }
 
 }

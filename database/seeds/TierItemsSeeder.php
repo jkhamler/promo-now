@@ -21,6 +21,18 @@ class TierItemsSeeder extends Seeder
 
         $partner1Id = $partner1->id;
 
+        $partner2 = new \App\Models\Partner();
+        $partner2->name = 'Tesco';
+        $partner2->save();
+
+        $partner2Id = $partner2->id;
+
+        $partner3 = new \App\Models\Partner();
+        $partner3->name = 'Waitrose';
+        $partner3->save();
+
+        $partner3Id = $partner3->id;
+
         $tier1 = new \App\Models\Tier();
 
         $tier1->promotion_id = $promotion->id;
@@ -49,7 +61,6 @@ class TierItemsSeeder extends Seeder
 
         $item1->tier_id = $tier1Id;
         $item1->partner_id = $partner1Id;
-        $item1->level = 1;
         $item1->short_description = 'TV';
         $item1->long_description = 'Television';
         $item1->coupon_number = 'ABC12345';
@@ -57,11 +68,21 @@ class TierItemsSeeder extends Seeder
 
         $item1->save();
 
+        $item1b = new \App\Models\TierItem();
+
+        $item1b->tier_id = $tier1Id;
+        $item1b->partner_id = $partner1Id;
+        $item1b->short_description = 'iPhone';
+        $item1b->long_description = 'iPhone 8';
+        $item1b->coupon_number = 'XYZ789';
+        $item1b->quantity = 250;
+
+        $item1b->save();
+
         $item2 = new \App\Models\TierItem();
 
         $item2->tier_id = $tier2Id;
         $item2->partner_id = $partner1Id;
-        $item2->level = 2;
         $item2->short_description = 'Car';
         $item2->long_description = 'A Free Car';
         $item2->coupon_number = 'ABC789';

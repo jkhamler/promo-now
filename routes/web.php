@@ -28,5 +28,15 @@ Route::prefix('tiers')->group(function () {
 //    Route::get('/create', 'PromotionController@createWizardAction')->name('createWizard');
     Route::get('/{tierId}', 'TierController@detailsAction')->name('tierDetails');
     Route::post('/', 'TierController@createAction')->name('createTier');
-    Route::patch('/{promotionId}', 'TierController@updateAction')->name('updateTier');
+    Route::patch('/{tierId}', 'TierController@updateAction')->name('updateTier');
+
+
+    Route::prefix('items')->group(function () {
+        Route::get('/{tierItemId}', 'TierController@tierItemDetailsAction')->name('tierItemDetails');
+        Route::patch('/{tierItemId}', 'TierController@updateItemAction')->name('updateTierItem');
+        Route::post('/', 'TierController@createTierItemAction')->name('createTierItem');
+        Route::patch('/{tierItemId}', 'TierController@updateTierItemAction')->name('updateTierItem');
+    });
+
+
 });
