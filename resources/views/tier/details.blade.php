@@ -4,6 +4,23 @@
 
 @section('content')
 
+    @php
+
+        /** @var \App\Models\Tier $tier */
+
+        $promotion = $tier->promotion;
+
+    @endphp
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/promotions">Promotions</a></li>
+            <li class="breadcrumb-item"><a href="/promotions/{{ $promotion->id }}">{{ $promotion->name }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{$tier->short_description}}</li>
+        </ol>
+    </nav>
+
     @php /** @var $tier \App\Models\Tier **/
     @endphp
 

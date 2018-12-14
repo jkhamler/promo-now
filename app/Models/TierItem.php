@@ -34,13 +34,16 @@ class TierItem extends Model
 
 
     /**
-     * @return Tier
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function getTier()
     {
         return $this->belongsTo('App\Models\Tier');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function partner()
     {
         return $this->belongsTo('App\Models\Partner');

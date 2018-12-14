@@ -74,16 +74,21 @@ class TierController extends Controller
 
         $promotionId = $tier->promotion_id;
 
+        $existingLevel = $tier->level;
+
         $request->validate([
-            'level' => Rule::unique('tiers')->where(function (Builder $query) use ($data, $promotionId) {
-                return $query
-                    ->where('level', $data['level'])
-                    ->where('promotion_id', $promotionId);
-            }),
             'shortDescription' => 'required',
             'longDescription' => 'required',
             'quantity' => 'required',
         ]);
+
+        if ($existingLevel != $request['level']) {
+            $request->validate(['level' => Rule::unique('tiers')->where(function (Builder $query) use ($data, $promotionId) {
+                return $query
+                    ->where('level', $data['level'])
+                    ->where('promotion_id', $promotionId);
+            })]);
+        }
 
         $tier->level = $data['level'];
         $tier->short_description = $data['shortDescription'];
