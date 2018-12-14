@@ -15,7 +15,6 @@
     </div>
 
     <div class="container-fluid p-3">
-
         <h4>Tiers</h4>
 
         <table class="table">
@@ -43,8 +42,6 @@
 
             </tbody>
         </table>
-
-
     </div>
 
 </div>

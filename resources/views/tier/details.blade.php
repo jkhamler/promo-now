@@ -209,7 +209,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>This action cannot be undone.</p>
+                    <p><b>TODO...</b></p>
                 </div>
                 <div class="modal-footer">
                     {{--<button type="button" class="btn btn-primary">Save changes</button>--}}
