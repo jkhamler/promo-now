@@ -42,8 +42,17 @@
 
     <br/>
 
-    <div class="container img-gradient">
-        <img src="/images/brunette.jpg" width="100%"/>
+    <div style="background-color: rgb(43,43,43); color: white; text-align: center;">
+        <div class="img-gradient" style="margin-bottom: 0;">
+            <img src="/images/brunette.jpg" width="100%"/>
+        </div>
+
+        <div style="background-color: rgb(43,43,43); color: white;">
+            <div class="m-3">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris quis tortor posuere, aliquam ex
+                sed.
+            </div>
+        </div>
     </div>
 
 </div>

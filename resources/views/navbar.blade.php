@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
 
     <div class="col-2">
-    <a class="navbar-brand p-2" href="#">PromoNow</a>
+    <a class="navbar-brand p-2" href="#">PromoNow™</a>
 
     </div>
 
