@@ -4,6 +4,15 @@
 
 @section('content')
 
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/promotions">Promotions</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $promotion->name }}</li>
+        </ol>
+    </nav>
+
+
     @include('promotion.subnav')
     @php /** @var $promotion \App\Models\Promotion **/
     @endphp

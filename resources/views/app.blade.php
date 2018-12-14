@@ -47,6 +47,7 @@
             </div>
 
             <div class="col-8">
+
                 @show
                 @yield('content')
             </div>
