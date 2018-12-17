@@ -49,12 +49,12 @@ class Promotion extends Model
     ];
 
     /**
-     * @param Carbon $date
-     * @return string
+     * @param Carbon|null $date
+     * @return null|string
      */
-    public static function dateFieldFormat(Carbon $date)
+    public static function dateFieldFormat(Carbon $date = null)
     {
-        return $date->format('Y-m-d') . 'T' . $date->format('H:i');
+        return $date ? $date->format('Y-m-d') . 'T' . $date->format('H:i') : null;
     }
 
     /**

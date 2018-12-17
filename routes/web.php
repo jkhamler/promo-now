@@ -20,11 +20,13 @@ Route::prefix('promotions')->group(function () {
     Route::get('/{promotionId}', 'PromotionController@detailsAction')->name('promotionDetails');
     Route::post('/', 'PromotionController@createAction')->name('createPromotion');
     Route::patch('/{promotionId}', 'PromotionController@updateAction')->name('updatePromotion');
+
+    Route::get('/{promotionId}/mechanics/{mechanicId}', 'MechanicController@detailsAction')->name('mechanicDetails');
+
 });
 
 Route::prefix('mechanics')->group(function () {
     Route::get('/', 'MechanicController@indexAction')->name('mechanicIndex');
-    Route::get('/{mechanicId}', 'MechanicController@detailsAction')->name('mechanicDetails');
     Route::post('/', 'MechanicController@createAction')->name('createMechanic');
     Route::patch('/{mechanicId}', 'MechanicController@updateAction')->name('updateMechanic');
 });

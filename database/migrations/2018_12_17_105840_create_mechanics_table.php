@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateMechanicsTable extends Migration
 {
@@ -24,6 +24,17 @@ class CreateMechanicsTable extends Migration
                 'ITEM_PRIZE_SEEDING',
             ]);
             $table->integer('promotion_id');
+            $table->dateTime('start_datetime')->nullable();
+            $table->dateTime('end_datetime')->nullable();
+            $table->boolean('is_open')->default(false);
+            $table->boolean('is_recyclable')->default(false);
+            $table->integer('claim_window_duration_seconds')->nullable();
+            $table->dateTime('claim_window_deadline')->nullable();
+            $table->dateTime('draw_datetime')->nullable();
+            $table->dateTime('draw_entrants_deadline')->nullable();
+            $table->boolean('pi_to_generate_moments')->default(false);
+            $table->integer('moment_duration_seconds')->nullable();
+            $table->integer('moment_distribution_interval_seconds')->nullable();
             $table->timestamps();
         });
     }

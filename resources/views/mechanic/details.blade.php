@@ -1,21 +1,27 @@
 @extends('app')
 
-@section('title', 'Promotions')
+@section('title', 'Promotion - Mechanics')
 
 @section('content')
+
+    @php
+        /** @var \App\Models\Mechanic $mechanic */
+        /** @var \App\Models\Promotion $promotion */
+        $promotion = $mechanic->promotion
+    @endphp
+
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item"><a href="/promotions">Promotions</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ $promotion->name }}</li>
+            <li class="breadcrumb-item"><a
+                        href="/promotions/{{ $promotion->id }}">{{ $promotion->name }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Mechanic Details</li>
         </ol>
     </nav>
 
-
-    @include('promotion.subnav')
-    @php /** @var $promotion \App\Models\Promotion **/
-    @endphp
+    @include('mechanic.subnav')
 
     @if ($errors->any())
         <div class="row">
@@ -37,28 +43,15 @@
         <div class="col-6">
             <div class="tab-content" id="myTabContent">
 
-                @include('promotion.campaign-basics')
-                @include('promotion.urns')
-                @include('promotion.prizes-items')
-                @include('promotion.mechanics')
-                @include('promotion.users')
+                @include('mechanic.mechanic-basics')
+                @include('mechanic.winning-moment')
 
             </div>
         </div>
 
     </div>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
 
-            $('#urnsRequired').change(function () {
-                if (this.checked)
-                    $('#urnsIssued').show();
-                else
-                    $('#urnsIssued').hide();
-            });
-        });
-    </script>
 
 @endsection
 

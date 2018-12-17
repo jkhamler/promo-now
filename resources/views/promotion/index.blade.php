@@ -18,7 +18,7 @@
         <div class="col-3">
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary float-right" data-toggle="modal"
-                    data-target=".bd-example-modal-lg">Create
+                    data-target=".create-promotion-modal">Create
                 Promotion
             </button>
         </div>
@@ -104,7 +104,7 @@
 
 
     <!-- Modal -->
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    <div class="modal fade create-promotion-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
          aria-hidden="true">
 
         <div class="modal-dialog modal-lg">
