@@ -26,7 +26,7 @@
             </tr>
             <tbody>
 
-            @foreach ($promotion->getTiers() as $tier)
+            @foreach ($promotion->tiers as $tier)
                 <tr class="clickable-row">
                     <td>{{ $tier->level }}</td>
                     <td>{{ $tier->short_description }}</td>

@@ -58,10 +58,17 @@ class Promotion extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Collection|Tier[]
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function getTiers(){
-        return $this->hasMany('App\Models\Tier')->get();
+    public function tiers(){
+        return $this->hasMany('App\Models\Tier');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function mechanics(){
+        return $this->hasMany('App\Models\Mechanic');
     }
 
 

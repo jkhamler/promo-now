@@ -17,10 +17,16 @@ Route::get('/', 'HomeController@homeAction')->name('home');
 
 Route::prefix('promotions')->group(function () {
     Route::get('/', 'PromotionController@indexAction')->name('promotionIndex');
-    Route::get('/create', 'PromotionController@createWizardAction')->name('createWizard');
     Route::get('/{promotionId}', 'PromotionController@detailsAction')->name('promotionDetails');
     Route::post('/', 'PromotionController@createAction')->name('createPromotion');
     Route::patch('/{promotionId}', 'PromotionController@updateAction')->name('updatePromotion');
+});
+
+Route::prefix('mechanics')->group(function () {
+    Route::get('/', 'MechanicController@indexAction')->name('mechanicIndex');
+    Route::get('/{mechanicId}', 'MechanicController@detailsAction')->name('mechanicDetails');
+    Route::post('/', 'MechanicController@createAction')->name('createMechanic');
+    Route::patch('/{mechanicId}', 'MechanicController@updateAction')->name('updateMechanic');
 });
 
 Route::prefix('tiers')->group(function () {
@@ -37,6 +43,4 @@ Route::prefix('tiers')->group(function () {
         Route::post('/', 'TierController@createTierItemAction')->name('createTierItem');
         Route::patch('/{tierItemId}', 'TierController@updateTierItemAction')->name('updateTierItem');
     });
-
-
 });
