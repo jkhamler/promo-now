@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mechanic;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class MechanicController extends Controller
@@ -78,22 +79,45 @@ class MechanicController extends Controller
         $data = $request->all();
 
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
+            'startDateTime' => 'required',
+            'endDateTime' => 'required',
+            'isOpen' => 'required',
+            'isRecyclable' => 'required',
+            'claimWindowDurationSeconds' => 'required',
+            'claimWindowDeadline' => 'required',
+            'piToGenerateMoments' => 'required',
+            'momentDurationSeconds' => 'integer',
+            'momentDistributionInterval' => 'required',
         ]);
 
         /** @var Mechanic $mechanic */
         $mechanic = Mechanic::find($mechanicId);
 
-        $mechanic->name = $data['name'];
-        $mechanic->description = $data['description'];
+        $mechanic->start_datetime = Carbon::parse($data['startDateTime']);
+        $mechanic->end_datetime = Carbon::parse($data['endDateTime']);
+        if (isset($data['isOpen'])) {
+            $mechanic->is_open = ($data['isOpen'] == 'on');
+        } else {
+            $mechanic->is_open = false;
+        }
+        if (isset($data['isRecyclable'])) {
+            $mechanic->is_recyclable = ($data['isRecyclable'] == 'on');
+        } else {
+            $mechanic->is_recyclable = false;
+        }
+        $mechanic->claim_window_duration_seconds = $data['claimWindowDurationSeconds'];
+        $mechanic->claim_window_deadline = Carbon::parse($data['claimWindowDeadline']);
+        if (isset($data['piToGenerateMoments'])) {
+            $mechanic->pi_to_generate_moments = ($data['piToGenerateMoments'] == 'on');
+        } else {
+            $mechanic->pi_to_generate_moments = false;
+        }
+        $mechanic->moment_duration_seconds = $data['momentDurationSeconds'];
+        $mechanic->moment_distribution_interval_seconds = $data['momentDistributionInterval'];
         $mechanic->save();
 
         return view('mechanic.details', [
             'mechanic' => $mechanic,
         ]);
-
     }
-
-
 }

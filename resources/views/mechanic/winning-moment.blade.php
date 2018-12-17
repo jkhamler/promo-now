@@ -34,18 +34,14 @@
                                value="{{ \App\Models\Promotion::dateFieldFormat($mechanic->end_datetime)}}">
                     </div>
 
-                    <div class="form-group">
-
-                        <label for="isOpen">Is Open</label>
-                        <input type="checkbox" class="form-control" id="isOpen" name="isOpen"
-                                @php if($mechanic->is_open){echo 'checked';} @endphp>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="isOpen"
+                                    @php if($mechanic->is_open){echo 'checked';} @endphp>Is Open</label>
                     </div>
 
-                    <div class="form-group">
-
-                        <label for="isRecyclable">Is Recyclable</label>
-                        <input type="checkbox" class="form-control" id="isRecyclable" name="isRecyclable"
-                                @php if($mechanic->is_recyclable){echo 'checked';} @endphp>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="isRecyclable"
+                                    @php if($mechanic->is_recyclable){echo 'checked';} @endphp>Is Recyclable</label>
                     </div>
 
                     <div class="form-group">
@@ -66,54 +62,50 @@
                                value="{{ \App\Models\Promotion::dateFieldFormat($mechanic->claim_window_deadline)}}">
                     </div>
 
-                    {{--<div class="form-group">--}}
-
-                        {{--<label for="drawDateTime">Draw Date/Time</label>--}}
-                        {{--<input type="datetime-local" class="form-control" id="drawDateTime" name="drawDateTime"--}}
-                               {{--required--}}
-                               {{--value="{{ \App\Models\Promotion::dateFieldFormat($mechanic->draw_datetime)}}">--}}
-                    {{--</div>--}}
-
-                    {{--<div class="form-group">--}}
-
-                        {{--<label for="drawEntrantsDeadline">Draw Entrants Deadline</label>--}}
-                        {{--<input type="datetime-local" class="form-control" id="drawEntrantsDeadline"--}}
-                               {{--name="drawEntrantsDeadline"--}}
-                               {{--required--}}
-                               {{--value="{{ \App\Models\Promotion::dateFieldFormat($mechanic->draw_entrants_deadline)}}">--}}
-                    {{--</div>--}}
-
-                    <div class="form-group">
-
-                        <label for="piToGenerateMoments">PI To Generated Moments</label>
-                        <input type="checkbox" class="form-control" id="piToGenerateMoments" name="piToGenerateMoments"
-                                @php if($mechanic->pi_to_generate_moments){echo 'checked';} @endphp>
+                    <div class="checkbox">
+                        <label><input type="checkbox" id="piToGenerateMoments" name="piToGenerateMoments"
+                                    @php if($mechanic->pi_to_generate_moments){echo 'checked';} @endphp>PI To Generate
+                            Moments</label>
                     </div>
 
-                    <div class="form-group">
+                    <div id='momentsProperties' @php if(!$promotion->urns_required == 1){echo "style='display: none;'";} @endphp>
 
-                        <label for="momentDurationSeconds">Moment Duration (Secs)</label>
-                        <input type="number" class="form-control" id="momentDurationSeconds"
-                               name="momentDurationSeconds"
-                               required
-                               value="{{ $mechanic->moment_duration_seconds }}">
+                        <div class="form-group">
+
+                            <label for="momentDurationSeconds">Moment Duration (Secs)</label>
+                            <input type="number" class="form-control" id="momentDurationSeconds"
+                                   name="momentDurationSeconds"
+                                   required
+                                   value="{{ $mechanic->moment_duration_seconds }}">
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="momentDistributionInterval">Moment Distribution Interval (Secs)</label>
+                            <input type="number" class="form-control" id="momentDistributionInterval"
+                                   name="momentDistributionInterval"
+                                   required
+                                   value="{{ $mechanic->moment_distribution_interval_seconds }}">
+                        </div>
+
                     </div>
 
-                    <div class="form-group">
-
-                        <label for="momentDistributionInterval">Moment Distribution Interval (Secs)</label>
-                        <input type="number" class="form-control" id="momentDistributionInterval"
-                               name="momentDistributionInterval"
-                               required
-                               value="{{ $mechanic->moment_distribution_interval_seconds }}">
-                    </div>
                     <button type="submit" class="btn btn-primary">Update</button>
                 </form>
-
-
             </div>
-
         </div>
 
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#piToGenerateMoments').change(function () {
+            if (this.checked)
+                $('#momentsProperties').show();
+            else
+                $('#momentsProperties').hide();
+        });
+    });
+</script>
