@@ -4,7 +4,7 @@
     <div class="container"><h2>{{ $promotion->name }}</h2></div>
     <div class="container-fluid p-3">
 
-        <h3>Details</h3>
+        <h4>Details</h4>
 
         <form method="POST" action="{{ route('updatePromotion', [$promotion->id, 'id']) }}">
 

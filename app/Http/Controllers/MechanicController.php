@@ -79,22 +79,35 @@ class MechanicController extends Controller
         $data = $request->all();
 
         $request->validate([
-            'startDateTime' => 'required',
-            'endDateTime' => 'required',
-            'isOpen' => 'required',
-            'isRecyclable' => 'required',
-            'claimWindowDurationSeconds' => 'required',
-            'claimWindowDeadline' => 'required',
-            'piToGenerateMoments' => 'required',
+            'name' => 'string',
+            'description' => 'string',
+            'startDateTime' => 'date',
+            'endDateTime' => 'date',
+//            'isOpen' => 'boolean',
+//            'isRecyclable' => 'boolean',
+            'claimWindowDurationSeconds' => 'numeric',
+            'claimWindowDeadline' => 'date',
+//            'piToGenerateMoments' => 'boolean',
             'momentDurationSeconds' => 'integer',
-            'momentDistributionInterval' => 'required',
+            'momentDistributionInterval' => 'integer',
         ]);
 
         /** @var Mechanic $mechanic */
         $mechanic = Mechanic::find($mechanicId);
 
-        $mechanic->start_datetime = Carbon::parse($data['startDateTime']);
-        $mechanic->end_datetime = Carbon::parse($data['endDateTime']);
+        if (isset($data['name'])) {
+            $mechanic->name = $data['name'];
+        }
+        if (isset($data['description'])) {
+            $mechanic->description = $data['description'];
+        }
+
+        if (isset($data['startDateTime'])) {
+            $mechanic->start_datetime = Carbon::parse($data['startDateTime']);
+        }
+        if (isset($data['endDateTime'])) {
+            $mechanic->end_datetime = Carbon::parse($data['endDateTime']);
+        }
         if (isset($data['isOpen'])) {
             $mechanic->is_open = ($data['isOpen'] == 'on');
         } else {
@@ -105,15 +118,23 @@ class MechanicController extends Controller
         } else {
             $mechanic->is_recyclable = false;
         }
-        $mechanic->claim_window_duration_seconds = $data['claimWindowDurationSeconds'];
-        $mechanic->claim_window_deadline = Carbon::parse($data['claimWindowDeadline']);
+        if (isset($data['claimWindowDurationSeconds'])) {
+            $mechanic->claim_window_duration_seconds = $data['claimWindowDurationSeconds'];
+        }
+        if (isset($data['claimWindowDeadline'])) {
+            $mechanic->claim_window_deadline = Carbon::parse($data['claimWindowDeadline']);
+        }
         if (isset($data['piToGenerateMoments'])) {
             $mechanic->pi_to_generate_moments = ($data['piToGenerateMoments'] == 'on');
         } else {
             $mechanic->pi_to_generate_moments = false;
         }
-        $mechanic->moment_duration_seconds = $data['momentDurationSeconds'];
-        $mechanic->moment_distribution_interval_seconds = $data['momentDistributionInterval'];
+        if (isset($data['momentDurationSeconds'])) {
+            $mechanic->moment_duration_seconds = $data['momentDurationSeconds'];
+        }
+        if (isset($data['momentDistributionInterval'])) {
+            $mechanic->moment_distribution_interval_seconds = $data['momentDistributionInterval'];
+        }
         $mechanic->save();
 
         return view('mechanic.details', [

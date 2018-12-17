@@ -1,63 +1,70 @@
+<?php
+/** @var $promotion \App\Models\Promotion */
+?>
+
 <div class="tab-pane fade" id="mechanics" role="tabpanel" aria-labelledby="mechanics-tab">
-    <div class="container"><h2>{{ $promotion->name }}</h2></div>
 
-    @if ($errors->any())
-        <div class="row">
-            <div class="col-6">
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+    <div class="container">
+
+        @if ($errors->any())
+            <div class="row">
+                <div class="col-6">
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+
                 </div>
-
             </div>
-        </div>
-    @endif
+        @endif
 
-    <div class="row">
-        <div class="col-9"><h1>Mechanics</h1></div>
-        <div class="col-3">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary float-right" data-toggle="modal"
-                    data-target=".create-mechanic-modal">Create
-                Mechanic
-            </button>
-        </div>
+
+        <h2>{{ $promotion->name }}</h2>
+        <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+                data-target=".create-mechanic-modal">Create
+            Mechanic
+        </button>
     </div>
 
-    <table class="table">
+    <div class="container-fluid p-3">
+        <h4>Mechanics</h4>
 
-        <tr>
-            <td>Name</td>
-            <td>Description</td>
-            <td>Type</td>
-        </tr>
 
-        <tbody>
+        <table class="table">
 
-        <?php
-
-        ?>
-
-        @foreach ($promotion->mechanics as $mechanic)
-            <tr class="clickable-row">
-                <td>{{ $mechanic->name }}</td>
-                <td>{{ $mechanic->description }}</td>
-                <td>{{ $mechanic->type }}</td>
-                <td>
-                    <form action="/promotions/{{ $promotion->id }}/mechanics/{{$mechanic->id}}">
-                        <input type="submit" value="View/Edit"/>
-                    </form>
-                </td>
+            <tr>
+                <td>Name</td>
+                <td>Description</td>
+                <td colspan="2">Type</td>
             </tr>
-        @endforeach
 
-        </tbody>
-    </table>
+            <tbody>
 
-</div>
+            <?php
+
+            ?>
+
+            @foreach ($promotion->mechanics as $mechanic)
+                @php /** @var $mechanic \App\Models\Mechanic */@endphp
+                <tr class="clickable-row">
+                    <td>{{ $mechanic->name }}</td>
+                    <td>{{ $mechanic->description }}</td>
+                    <td>{{ $mechanic->getTypeLabel() }}</td>
+                    <td>
+                        <form action="/promotions/{{ $promotion->id }}/mechanics/{{$mechanic->id}}">
+                            <input type="submit" value="View/Edit"/>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+
+            </tbody>
+        </table>
+
+    </div>
 
 </div>
 

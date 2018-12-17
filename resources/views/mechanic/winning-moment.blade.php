@@ -22,7 +22,6 @@
 
                         <label for="startDateTime">Start Date/Time</label>
                         <input type="datetime-local" class="form-control" id="startDateTime" name="startDateTime"
-                               required
                                value="{{ \App\Models\Promotion::dateFieldFormat($mechanic->start_datetime)}}">
                     </div>
 
@@ -30,7 +29,6 @@
 
                         <label for="endDateTime">End Date/Time</label>
                         <input type="datetime-local" class="form-control" id="endDateTime" name="endDateTime"
-                               required
                                value="{{ \App\Models\Promotion::dateFieldFormat($mechanic->end_datetime)}}">
                     </div>
 
@@ -49,7 +47,6 @@
                         <label for="claimWindowDurationSeconds">Claim Window Duration (Secs)</label>
                         <input type="number" class="form-control" id="claimWindowDurationSeconds"
                                name="claimWindowDurationSeconds"
-                               required
                                value="{{ $mechanic->claim_window_duration_seconds }}">
                     </div>
 
@@ -58,7 +55,6 @@
                         <label for="claimWindowDeadline">Claim Window Date/Time</label>
                         <input type="datetime-local" class="form-control" id="claimWindowDeadline"
                                name="claimWindowDeadline"
-                               required
                                value="{{ \App\Models\Promotion::dateFieldFormat($mechanic->claim_window_deadline)}}">
                     </div>
 
@@ -68,14 +64,13 @@
                             Moments</label>
                     </div>
 
-                    <div id='momentsProperties' @php if(!$promotion->urns_required == 1){echo "style='display: none;'";} @endphp>
+                    <div id='momentsProperties' @php if(!$mechanic->pi_to_generate_moments){echo "style='display: none;'";} @endphp>
 
                         <div class="form-group">
 
                             <label for="momentDurationSeconds">Moment Duration (Secs)</label>
                             <input type="number" class="form-control" id="momentDurationSeconds"
                                    name="momentDurationSeconds"
-                                   required
                                    value="{{ $mechanic->moment_duration_seconds }}">
                         </div>
 
@@ -84,7 +79,6 @@
                             <label for="momentDistributionInterval">Moment Distribution Interval (Secs)</label>
                             <input type="number" class="form-control" id="momentDistributionInterval"
                                    name="momentDistributionInterval"
-                                   required
                                    value="{{ $mechanic->moment_distribution_interval_seconds }}">
                         </div>
 
