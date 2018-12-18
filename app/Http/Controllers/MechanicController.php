@@ -54,10 +54,11 @@ class MechanicController extends Controller
     /**
      * Mechanic Details
      *
+     * @param $promotionId
      * @param $mechanicId
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function detailsAction($mechanicId)
+    public function detailsAction($promotionId, $mechanicId)
     {
         /** @var Mechanic $mechanic */
         $mechanic = Mechanic::find($mechanicId);

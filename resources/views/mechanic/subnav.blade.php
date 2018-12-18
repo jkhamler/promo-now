@@ -1,4 +1,5 @@
 <ul class="nav nav-tabs" id="myTab" role="tablist">
+
     <li class="nav-item">
         <a class="nav-link active" id="mechanic-basics-tab" data-toggle="tab" href="#mechanicBasics" role="tab"
            aria-controls="home" aria-selected="true">Mechanic Basics</a>
@@ -32,8 +33,13 @@
         </li>
         @break
 
-
     @endswitch
+
+    <li class="nav-item">
+        <a class="nav-link" id="" data-toggle="tab" href="#mechanicItems" role="tab"
+           aria-controls="home" aria-selected="true">Prize Items</a>
+    </li>
+
 
 
 </ul>

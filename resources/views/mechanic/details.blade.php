@@ -40,13 +40,15 @@
 
     <div class="row">
 
-        <div class="col-6">
-            <div class="tab-content" id="myTabContent">
+        <div class="tab-content" id="myTabContent">
 
-                @include('mechanic.mechanic-basics')
-                @include('mechanic.winning-moment')
+            @include('mechanic.mechanic-basics')
+            @include('mechanic.winning-moment')
+            @include('mechanic.timed-draw')
+            @include('mechanic.everybody-gets')
+            @include('mechanic.item-prize-seeding')
+            @include('mechanic.mechanic-items')
 
-            </div>
         </div>
 
     </div>
