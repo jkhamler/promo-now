@@ -70,7 +70,6 @@ class MechanicController extends Controller
 
         $mechanic = Mechanic::find($mechanicId);
 
-
         return view('mechanic.details', [
             'mechanic' => $mechanic,
             'tierItems' => $tierItems,
@@ -88,19 +87,19 @@ class MechanicController extends Controller
     {
         $data = $request->all();
 
-        $request->validate([
-            'name' => 'string',
-            'description' => 'string',
-            'startDateTime' => 'date',
-            'endDateTime' => 'date',
+        $request->validate([ // todo - clean this up.
+//            'name' => 'string',
+//            'description' => 'string',
+//            'startDateTime' => 'date',
+//            'endDateTime' => 'date',
 //            'isOpen' => 'boolean',
 //            'isRecyclable' => 'boolean',
-            'claimWindowDurationSeconds' => 'numeric',
-            'claimWindowDeadline' => 'date',
+//            'claimWindowDurationSeconds' => 'numeric',
+//            'claimWindowDeadline' => 'date',
 //            'piToGenerateMoments' => 'boolean',
-            'momentDurationSeconds' => 'integer',
-            'momentDistributionInterval' => 'integer',
-            'tierItemId' => 'integer',
+//            'momentDurationSeconds' => 'integer',
+//            'momentDistributionInterval' => 'integer',
+//            'tierItemId' => 'integer',
         ]);
 
         /** @var Mechanic $mechanic */
@@ -155,8 +154,7 @@ class MechanicController extends Controller
         }
         $mechanic->save();
 
-        return view('mechanic.details', [
-            'mechanic' => $mechanic,
-        ]);
+        return redirect()->to("/promotions/{$mechanic->promotion_id}/mechanics/{$mechanic->id}");
+
     }
 }
