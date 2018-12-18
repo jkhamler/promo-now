@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $short_description
  * @property string $long_description
  * @property string $coupon_number
- * @property integer $quantity
  * @property integer $partner_id
  */
 class TierItem extends Model
@@ -26,7 +25,6 @@ class TierItem extends Model
         'short_description',
         'long_description',
         'coupon_number',
-        'quantity',
         'partner_id',
     ];
 

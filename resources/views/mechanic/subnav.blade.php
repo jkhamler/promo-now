@@ -36,8 +36,8 @@
     @endswitch
 
     <li class="nav-item">
-        <a class="nav-link" id="" data-toggle="tab" href="#mechanicItems" role="tab"
-           aria-controls="home" aria-selected="true">Prize Items</a>
+        <a class="nav-link" id="" data-toggle="tab" href="#prizeItem" role="tab"
+           aria-controls="home" aria-selected="true">Prize Item</a>
     </li>
 
 

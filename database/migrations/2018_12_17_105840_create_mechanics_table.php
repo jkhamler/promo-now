@@ -24,6 +24,7 @@ class CreateMechanicsTable extends Migration
                 'ITEM_PRIZE_SEEDING',
             ]);
             $table->integer('promotion_id');
+            $table->integer('tier_item_id')->nullable();
             $table->dateTime('start_datetime')->nullable();
             $table->dateTime('end_datetime')->nullable();
             $table->boolean('is_open')->default(false);

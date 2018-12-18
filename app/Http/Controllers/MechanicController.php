@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mechanic;
+use App\Models\Promotion;
+use App\Models\TierItem;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -60,11 +62,18 @@ class MechanicController extends Controller
      */
     public function detailsAction($promotionId, $mechanicId)
     {
-        /** @var Mechanic $mechanic */
+        /** @var Promotion $promotion */
+        $promotion = Promotion::find($promotionId);
+
+        /** @var TierItem[] $tierItems */
+        $tierItems = $promotion->getAllPossibleTierItems();
+
         $mechanic = Mechanic::find($mechanicId);
+
 
         return view('mechanic.details', [
             'mechanic' => $mechanic,
+            'tierItems' => $tierItems,
         ]);
     }
 
@@ -91,6 +100,7 @@ class MechanicController extends Controller
 //            'piToGenerateMoments' => 'boolean',
             'momentDurationSeconds' => 'integer',
             'momentDistributionInterval' => 'integer',
+            'tierItemId' => 'integer',
         ]);
 
         /** @var Mechanic $mechanic */
@@ -135,6 +145,13 @@ class MechanicController extends Controller
         }
         if (isset($data['momentDistributionInterval'])) {
             $mechanic->moment_distribution_interval_seconds = $data['momentDistributionInterval'];
+        }
+        if (isset($data['tierItemId'])) {
+            if ($data['tierItemId'] == 0) {
+                $mechanic->tier_item_id = null;
+            } else {
+                $mechanic->tier_item_id = $data['tierItemId'];
+            }
         }
         $mechanic->save();
 

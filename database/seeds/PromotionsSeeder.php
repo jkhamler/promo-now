@@ -24,8 +24,17 @@ class PromotionsSeeder extends Seeder
         $promotion->urns_required = true;
         $promotion->urns_issued = 2500;
 
-
         $promotion->save();
         //
+
+        $mechanic1 = new \App\Models\Mechanic();
+        $mechanic1->type = \App\Models\Mechanic::MECHANIC_TYPE_TIMED_DRAW;
+
+        $mechanic1->name = 'Timed Draw 123';
+        $mechanic1->description = 'Timed Draw 123 Description';
+        $mechanic1->promotion_id = $promotion->id;
+
+        $mechanic1->save();
+
     }
 }

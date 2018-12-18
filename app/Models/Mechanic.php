@@ -13,7 +13,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property string $description
  * @property string $type
- * @property integer $$promotion_id
+ * @property integer $promotion_id
+ * @property integer $tier_item_id
  * @property Carbon $start_datetime
  * @property Carbon $end_datetime
  * @property boolean $is_open
@@ -60,6 +61,7 @@ class Mechanic extends Model
         'description',
         'type',
         'promotion_id',
+        'tier_item_id',
         'start_datetime',
         'end_datetime',
         'is_open',
@@ -85,9 +87,10 @@ class Mechanic extends Model
      * @param null $type
      * @return string|null
      */
-    public function getTypeLabel($type = null){
+    public function getTypeLabel($type = null)
+    {
 
-        if(is_null($type)){
+        if (is_null($type)) {
             $type = $this->type;
         }
         return self::MECHANIC_TYPES[$type] ?? null;

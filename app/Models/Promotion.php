@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 /**
  * App\Models\Promotion
@@ -69,6 +71,22 @@ class Promotion extends Model
      */
     public function mechanics(){
         return $this->hasMany('App\Models\Mechanic');
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getAllPossibleTierItems(){
+
+       $tierItems = new Collection();
+
+       /** @var Tier $tier */
+        foreach ($this->tiers as $tier) {
+
+            $tierItems = $tierItems->merge($tier->items);
+       }
+       return $tierItems;
+
     }
 
 

@@ -47,7 +47,7 @@
             @include('mechanic.timed-draw')
             @include('mechanic.everybody-gets')
             @include('mechanic.item-prize-seeding')
-            @include('mechanic.mechanic-items')
+            @include('mechanic.prize-item')
 
         </div>
 

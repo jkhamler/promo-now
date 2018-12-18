@@ -64,7 +64,6 @@ class TierItemsSeeder extends Seeder
         $item1->short_description = 'TV';
         $item1->long_description = 'Television';
         $item1->coupon_number = 'ABC12345';
-        $item1->quantity = 250;
 
         $item1->save();
 
@@ -75,7 +74,6 @@ class TierItemsSeeder extends Seeder
         $item1b->short_description = 'iPhone';
         $item1b->long_description = 'iPhone 8';
         $item1b->coupon_number = 'XYZ789';
-        $item1b->quantity = 250;
 
         $item1b->save();
 
@@ -86,7 +84,6 @@ class TierItemsSeeder extends Seeder
         $item2->short_description = 'Car';
         $item2->long_description = 'A Free Car';
         $item2->coupon_number = 'ABC789';
-        $item2->quantity = 50;
 
         $item2->save();
     }
