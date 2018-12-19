@@ -1,6 +1,105 @@
-<div class="tab-pane fade" id="urns" role="tabpanel" aria-labelledby="urns-tab">
-    <div class="container"><h2>{{ $promotion->name }}</h2></div>
-    <div class="container-fluid p-3">
-        <h4>URNS</h4>
+<div class="tab-pane fade" id="prizesItems" role="tabpanel"
+     aria-labelledby="prizes-items-tab">
+
+    <div class="container">
+        <h2>{{ $promotion->name }}</h2>
+        <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+                data-target=".bd-example-modal-lg">
+            Create
+            Tier
+        </button>
     </div>
+
+    <div class="container-fluid p-3">
+        <h4>URN Specifications</h4>
+
+        <table class="table">
+            <tr>
+                <td>Level</td>
+                <td>Short Description</td>
+                <td>Long Description</td>
+                <td colspan="2">Quantity</td>
+            </tr>
+            <tbody>
+
+            @foreach ($promotion->tiers as $tier)
+                <tr class="clickable-row">
+                    <td>{{ $tier->level }}</td>
+                    <td>{{ $tier->short_description }}</td>
+                    <td>{{ $tier->long_description }}</td>
+                    <td>{{ $tier->quantity }}</td>
+                    <td>
+                        <form action="/tiers/{{$tier->id}}">
+                            <input type="submit" value="View/Edit"/>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+            <div class="container-fluid p-3">
+
+                <h2>Create Tier for Promotion - {{ $promotion->name }}</h2>
+
+                <form method="POST" action="{{ route('createTier') }}">
+                    @csrf
+
+                    <input type="hidden" name="promotion_id" value="{{ $promotion->id }}"/>
+
+                    <div class="form-group">
+                        <label for="level">Level</label>
+                        <input type="number" class="form-control" id="level" name="level"
+                               aria-describedby="levelHelp" required min="1"
+                               placeholder="Enter level">
+                        <small id="nameHelp" class="form-text text-muted">E.g. '1'. Tier levels must be unique
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="promotionUrl">Short Description</label>
+                        <input type="text" class="form-control" id="shortDescription" name="shortDescription"
+                               placeholder="Enter short description" required>
+                        <small id="nameHelp" class="form-text text-muted">E.g. Level 1
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="promotionUrl">Long Description</label>
+                        <input type="text" class="form-control" id="longDescription" name="longDescription"
+                               placeholder="Enter long description" required>
+                        <small id="nameHelp" class="form-text text-muted">E.g. Level 1 (Longer Description)
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="level">Quantity</label>
+                        <input type="number" class="form-control" id="quantity" name="quantity"
+                               aria-describedby="quantityHelp" required min="1"
+                               placeholder="Enter quantity">
+                        <small id="quantityHelp" class="form-text text-muted">E.g. '5000'
+                        </small>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
 </div>
