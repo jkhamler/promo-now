@@ -22,14 +22,14 @@
             </tr>
             <tbody>
 
-            @foreach ($promotion->tiers as $tier)
+            @foreach ($promotion->urnSpecifications as $urnSpecification)
                 <tr class="clickable-row">
-                    <td>{{ $tier->level }}</td>
-                    <td>{{ $tier->short_description }}</td>
-                    <td>{{ $tier->long_description }}</td>
-                    <td>{{ $tier->quantity }}</td>
+                    <td>{{ $urnSpecification->level }}</td>
+                    <td>{{ $urnSpecification->short_description }}</td>
+                    <td>{{ $urnSpecification->long_description }}</td>
+                    <td>{{ $urnSpecification->quantity }}</td>
                     <td>
-                        <form action="/tiers/{{$tier->id}}">
+                        <form action="/tiers/{{$urnSpecification->id}}">
                             <input type="submit" value="View/Edit"/>
                         </form>
                     </td>

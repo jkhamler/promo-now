@@ -4,16 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-
 /**
- * Class Urn
+ * Class Profanity
  * @package App\Models
  *
- * @property integer $urn_specification_id
- * @property string $urn
- * @property
+ * @property integer $language_id
+ * @property string $profanity
  */
-class Urn extends Model
+class Profanity extends Model
 {
     protected $dates = [
         'created_at',
@@ -25,7 +23,7 @@ class Urn extends Model
      * @var array
      */
     protected $fillable = [
-        'urn_specification_id',
-        'urn',
+        'language_id',
+        'profanity',
     ];
 }

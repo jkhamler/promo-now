@@ -8,7 +8,7 @@
     <div class="container">
         <h2>{{ $promotion->name }}</h2>
         <button type="button" class="btn btn-primary float-right" data-toggle="modal"
-                data-target=".bd-example-modal-lg">
+                data-target=".create-tier-modal">
             Create
             Tier
         </button>
@@ -48,7 +48,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+<div class="modal fade create-tier-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
      aria-hidden="true">
 
     <div class="modal-dialog modal-lg">

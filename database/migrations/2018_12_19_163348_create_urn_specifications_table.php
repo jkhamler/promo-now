@@ -19,15 +19,15 @@ class CreateUrnSpecificationsTable extends Migration
             $table->integer('promotion_id')->nullable();
             $table->string('batch_name')->nullable();
             $table->enum('purpose', [
-                'URN_PURPOSE_PRINTERS',
-                'URN_PURPOSE_CUSTOMER_SERVICE',
-                'URN_PURPOSE_BRAND_TESTING',
-                'URN_PURPOSE_PI_TESTING',
+                \App\Models\UrnSpecification::URN_PURPOSE_PRINTERS,
+                \App\Models\UrnSpecification::URN_PURPOSE_CUSTOMER_SERVICE,
+                \App\Models\UrnSpecification::URN_PURPOSE_BRAND_TESTING,
+                \App\Models\UrnSpecification::URN_PURPOSE_PI_TESTING,
             ])->nullable();
             $table->integer('length');
             $table->string('included_characters')->nullable();
             $table->string('regex_exclude')->nullable();
-            $table->integer('profanity_check-language_id')->nullable();
+            $table->integer('profanity_check_language_id')->nullable();
             $table->integer('urn_quantity')->nullable();
             $table->integer('winning_urn_quantity')->nullable();
             $table->boolean('pi_to_generate')->nullable();

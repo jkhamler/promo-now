@@ -74,6 +74,13 @@ class Promotion extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function urnSpecifications(){
+        return $this->hasMany('App\Models\UrnSpecification');
+    }
+
+    /**
      * @return Collection
      */
     public function getAllPossibleTierItems(){

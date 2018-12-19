@@ -18,10 +18,10 @@ class CreateMechanicsTable extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->enum('type', [
-                'WINNING_MOMENT',
-                'TIMED_DRAW',
-                'EVERYBODY_GETS',
-                'ITEM_PRIZE_SEEDING',
+                \App\Models\Mechanic::MECHANIC_TYPE_WINNING_MOMENT,
+                \App\Models\Mechanic::MECHANIC_TYPE_TIMED_DRAW,
+                \App\Models\Mechanic::MECHANIC_TYPE_EVERYBODY_GETS,
+                \App\Models\Mechanic::MECHANIC_TYPE_ITEM_PRIZE_SEEDING,
             ]);
             $table->integer('promotion_id');
             $table->integer('tier_item_id')->nullable();

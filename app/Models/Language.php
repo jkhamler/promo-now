@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 
 /**
- * Class Urn
+ * Class Language
  * @package App\Models
  *
- * @property integer $urn_specification_id
- * @property string $urn
- * @property
+ * @property string $name
+ * @property string $iso_code
+ *
  */
-class Urn extends Model
+class Language extends Model
 {
     protected $dates = [
         'created_at',
@@ -25,7 +25,7 @@ class Urn extends Model
      * @var array
      */
     protected $fillable = [
-        'urn_specification_id',
-        'urn',
+        'name',
+        'iso_code',
     ];
 }
