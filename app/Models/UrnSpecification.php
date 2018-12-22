@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class UrnSpecification
  * @package App\Models
  *
+ * @property integer $id
  * @property string $reference_id
  * @property integer $promotion_id
  * @property integer $tier_item_id

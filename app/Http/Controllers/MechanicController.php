@@ -155,6 +155,5 @@ class MechanicController extends Controller
         $mechanic->save();
 
         return redirect()->to("/promotions/{$mechanic->promotion_id}/mechanics/{$mechanic->id}");
-
     }
 }

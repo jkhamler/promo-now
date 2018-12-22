@@ -51,7 +51,7 @@
             <div class="form-group">
                 <label for="batchName">Batch Name</label>
                 <input type="text" class="form-control" id="batchName" name="batchName"
-                       placeholder="Batch Name" required value="{{$urnSpecification->batch_name}}">
+                       placeholder="Batch Name" value="{{$urnSpecification->batch_name}}">
             </div>
 
             <div class="form-group">
@@ -67,7 +67,7 @@
             <div class="form-group">
                 <label for="length">Length</label>
                 <input type="number" class="form-control" id="length" name="length"
-                       aria-describedby="levelHelp" required min="1" value="{{ $urnSpecification->length }}"
+                       aria-describedby="levelHelp" min="1" value="{{ $urnSpecification->length }}"
                        placeholder="Enter length">
                 <small id="levelHelp" class="form-text text-muted">E.g. '5000'
                 </small>
@@ -76,7 +76,7 @@
             <div class="form-group">
                 <label for="includedChars">Included Characters</label>
                 <input type="text" class="form-control" id="includedChars" name="includedChars"
-                       aria-describedby="includedCharsHelp" required
+                       aria-describedby="includedCharsHelp"
                        placeholder="Enter included chars" value="{{ $urnSpecification->included_characters }}">
                 <small id="includedCharsHelp" class="form-text text-muted">E.g. 'ABCDEFGH12345
                 </small>
@@ -85,7 +85,7 @@
             <div class="form-group">
                 <label for="regexExclude">Regex Exclude</label>
                 <input type="text" class="form-control" id="regexExclude" name="regexExclude"
-                       aria-describedby="regexExcludeHelp" required
+                       aria-describedby="regexExcludeHelp"
                        placeholder="Enter regex exclude" value="{{ $urnSpecification->regexExclude }}">
                 <small id="regexExcludeHelp" class="form-text text-muted">E.g. '^A-Z*$'
                 </small>
@@ -105,7 +105,7 @@
             <div class="form-group">
                 <label for="urnQuantity">URN Quantity</label>
                 <input type="number" class="form-control" id="urnQuantity" name="urnQuantity"
-                       aria-describedby="urnQuantityHelp" required min="1"
+                       aria-describedby="urnQuantityHelp" min="1"
                        placeholder="Enter URN quantity" value="{{ $urnSpecification->urn_quantity }}">
                 <small id="urnQuantityHelp" class="form-text text-muted">E.g. '5000'
                 </small>
@@ -114,22 +114,22 @@
             <div class="form-group">
                 <label for="winningUrnQuantity">Winning URN Quantity</label>
                 <input type="number" class="form-control" id="winningUrnQuantity" name="winningUrnQuantity"
-                       aria-describedby="winningUrnQuantityHelp" required min="1"
+                       aria-describedby="winningUrnQuantityHelp" min="1"
                        placeholder="Enter Winning URN quantity" value="{{ $urnSpecification->winning_urn_quantity }}">
                 <small id="winningUrnQuantityHelp" class="form-text text-muted">E.g. '800'
                 </small>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="piToGenerate">PromotionsInteractive to Generate</label>
+                <label><input type="checkbox" name="piToGenerate"@php if($urnSpecification->pi_to_generate){echo 'checked';} @endphp>PromotionsInteractive to Generate</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="everyoneGets">Everyone Gets</label>
+                <label><input type="checkbox" name="everyoneGets"@php if($urnSpecification->everyone_gets){echo 'checked';} @endphp>Everyone Gets</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="allocatedByTier">Allocated by Tier</label>
+                <label><input type="checkbox" name="allocatedByTier"@php if($urnSpecification->allocated_by_tier){echo 'checked';} @endphp>Allocated by Tier</label>
             </div>
 
             <button type="submit" class="btn btn-primary">Update</button>
