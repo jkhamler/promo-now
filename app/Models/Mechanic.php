@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $type
  * @property integer $promotion_id
  * @property integer $tier_item_id
+ * @property integer $urn_specification_id
  * @property Carbon $start_datetime
  * @property Carbon $end_datetime
  * @property boolean $is_open
@@ -62,6 +63,7 @@ class Mechanic extends Model
         'type',
         'promotion_id',
         'tier_item_id',
+        'urn_specification_id',
         'start_datetime',
         'end_datetime',
         'is_open',

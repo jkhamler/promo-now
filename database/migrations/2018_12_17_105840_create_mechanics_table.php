@@ -25,6 +25,7 @@ class CreateMechanicsTable extends Migration
             ]);
             $table->integer('promotion_id');
             $table->integer('tier_item_id')->nullable();
+            $table->integer('urn_specification_id')->nullable();
             $table->dateTime('start_datetime')->nullable();
             $table->dateTime('end_datetime')->nullable();
             $table->boolean('is_open')->default(false);

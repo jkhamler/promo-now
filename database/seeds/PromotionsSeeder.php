@@ -36,5 +36,22 @@ class PromotionsSeeder extends Seeder
 
         $mechanic1->save();
 
+        $urnSpecification = new \App\Models\UrnSpecification();
+        $urnSpecification->reference_id = 'Test URN Reference ID';
+        $urnSpecification->promotion_id = $promotion->id;
+        $urnSpecification->batch_name = 'Test Batch';
+        $urnSpecification->purpose = \App\Models\UrnSpecification::URN_PURPOSE_PI_TESTING;
+        $urnSpecification->length = 350;
+        $urnSpecification->included_characters = 'ABCD1234';
+        $urnSpecification->regex_exclude = '^123ABC$';
+        $urnSpecification->profanity_check_language_id = 1;
+        $urnSpecification->urn_quantity = 10000;
+        $urnSpecification->winning_urn_quantity = 50;
+        $urnSpecification->pi_to_generate = true;
+        $urnSpecification->everyone_gets = false;
+        $urnSpecification->allocated_by_tier = true;
+
+        $urnSpecification->save();
+
     }
 }

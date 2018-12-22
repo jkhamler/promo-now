@@ -134,7 +134,6 @@ class TierController extends Controller
             'tier_id' => 'required',
             'shortDescription' => 'required',
             'longDescription' => 'required',
-            'quantity' => 'required',
             'couponNumber' => 'required',
             'partnerId' => 'required',
         ]);
@@ -144,7 +143,6 @@ class TierController extends Controller
         $tierItem->tier_id = $data['tier_id'];
         $tierItem->short_description = $data['shortDescription'];
         $tierItem->long_description = $data['longDescription'];
-        $tierItem->quantity = $data['quantity'];
         $tierItem->coupon_number = $data['couponNumber'];
         $tierItem->partner_id = $data['partnerId'];
 
@@ -165,11 +163,10 @@ class TierController extends Controller
         $data = $request->all();
 
         $request->validate([
+            'partnerId' => 'required',
             'shortDescription' => 'required',
             'longDescription' => 'required',
-            'quantity' => 'required',
             'couponNumber' => 'required',
-            'partnerId' => 'required',
         ]);
 
         /** @var TierItem $tierItem */
@@ -177,7 +174,6 @@ class TierController extends Controller
 
         $tierItem->short_description = $data['shortDescription'];
         $tierItem->long_description = $data['longDescription'];
-        $tierItem->quantity = $data['quantity'];
         $tierItem->coupon_number = $data['couponNumber'];
         $tierItem->partner_id = $data['partnerId'];
 

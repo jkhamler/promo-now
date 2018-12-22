@@ -70,13 +70,7 @@
             </div>
 
             <div class="form-group">
-                <label for="quantity">Quantity</label>
-                <input type="number" class="form-control" id="quantity" name="quantity"
-                       placeholder="Quantity" min="1" required value="{{$tierItem->quantity}}">
-            </div>
-
-            <div class="form-group">
-                <label for="sel1">Partner</label>
+                <label for="partner">Partner</label>
                 <select class="form-control" id="partnerId" name="partnerId">
                     @foreach ($partners as $partner)
                         <option value="{{ $partner->id }}" @php if($partner->id == $tierItem->partner_id){echo 'selected';} @endphp>{{ $partner->name }}</option>

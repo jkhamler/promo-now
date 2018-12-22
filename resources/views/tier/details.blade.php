@@ -69,7 +69,7 @@
             </div>
 
             <div class="form-group">
-                <label for="quantity">Quantity</label>
+                <label for="quantity">Item Quantity</label>
                 <input type="number" class="form-control" id="quantity" name="quantity"
                        placeholder="Quantity" min="1" required value="{{$tier->quantity}}">
             </div>
@@ -177,11 +177,6 @@
                             <small id="couponNumberHelp" class="form-text text-muted">E.g. ABC12345
                             </small>
 
-                        </div>
-                        <div class="form-group">
-                            <label for="description">Quantity</label>
-                            <input type="number" class="form-control" id="quantity" name="quantity"
-                                   required placeholder="Enter quantity">
                         </div>
 
                         <div class="form-group">

@@ -100,6 +100,7 @@ class MechanicController extends Controller
 //            'momentDurationSeconds' => 'integer',
 //            'momentDistributionInterval' => 'integer',
 //            'tierItemId' => 'integer',
+//            'urnSpecificationId' => 'integer',
         ]);
 
         /** @var Mechanic $mechanic */
@@ -150,6 +151,13 @@ class MechanicController extends Controller
                 $mechanic->tier_item_id = null;
             } else {
                 $mechanic->tier_item_id = $data['tierItemId'];
+            }
+        }
+        if (isset($data['urnSpecificationId'])) {
+            if ($data['urnSpecificationId'] == 0) {
+                $mechanic->urn_specification_id = null;
+            } else {
+                $mechanic->urn_specification_id = $data['urnSpecificationId'];
             }
         }
         $mechanic->save();

@@ -33,6 +33,16 @@
                        placeholder="URL" required value="{{$mechanic->description}}">
             </div>
 
+            <div class="form-group">
+                <label for="urnSpecificationId">Urn Specification</label>
+                <select class="form-control" id="urnSpecificationId" name="urnSpecificationId">
+                    <option value="0">None Selected</option>
+                    @foreach ($mechanic->promotion->urnSpecifications as $urnSpecification)
+                        <option value="{{ $urnSpecification->id }}" @php if($urnSpecification->id == $mechanic->urn_specification_id){echo 'selected';} @endphp>{{ $urnSpecification->reference_id }}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
 
