@@ -30,6 +30,13 @@ class UrnSpecification extends Model
     const URN_PURPOSE_BRAND_TESTING = 'URN_PURPOSE_BRAND_TESTING';
     const URN_PURPOSE_PI_TESTING = 'URN_PURPOSE_PI_TESTING';
 
+    const PURPOSES = [
+        self::URN_PURPOSE_PRINTERS => 'Printers',
+        self::URN_PURPOSE_CUSTOMER_SERVICE => 'Customer Service',
+        self::URN_PURPOSE_BRAND_TESTING => 'Brand Testing',
+        self::URN_PURPOSE_PI_TESTING => 'PI Testing',
+    ];
+
     protected $dates = [
         'created_at',
         'updated_at',
@@ -63,5 +70,18 @@ class UrnSpecification extends Model
     {
         return $this->belongsTo('App\Models\Promotion');
     }
+
+    /**
+     * @param null $purpose
+     * @return string|null
+     */
+    public function getPurposeLabel($purpose = null)
+    {
+        if (is_null($purpose)) {
+            $purpose = $this->purpose;
+        }
+        return self::PURPOSES[$purpose] ?? null;
+    }
+
 
 }

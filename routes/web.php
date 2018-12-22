@@ -22,6 +22,7 @@ Route::prefix('promotions')->group(function () {
     Route::patch('/{promotionId}', 'PromotionController@updateAction')->name('updatePromotion');
 
     Route::get('/{promotionId}/mechanics/{mechanicId}', 'MechanicController@detailsAction')->name('mechanicDetails');
+    Route::get('/{promotionId}/urn-specifications/{urnSpecificationId}', 'UrnController@urnSpecificationDetailsAction')->name('urnSpecificationDetailsAction');
 
 });
 
@@ -45,4 +46,10 @@ Route::prefix('tiers')->group(function () {
         Route::post('/', 'TierController@createTierItemAction')->name('createTierItem');
         Route::patch('/{tierItemId}', 'TierController@updateTierItemAction')->name('updateTierItem');
     });
+});
+
+Route::prefix('urnSpecifications')->group(function () {
+
+    Route::post('/', 'UrnController@createUrnSpecificationAction')->name('createUrnSpecification');
+    Route::patch('/', 'UrnController@updateUrnSpecificationAction')->name('updateUrnSpecification');
 });

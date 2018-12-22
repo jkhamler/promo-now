@@ -43,8 +43,6 @@
 
     <h2>Tier - {{$tier->short_description}} (Level {{ $tier->level }})</h2>
 
-
-
     <div class="col-8">
         <form method="POST" action="{{ route('updateTier', [$tier->id, 'id']) }}">
 

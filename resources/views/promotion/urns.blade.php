@@ -1,12 +1,14 @@
-<div class="tab-pane fade" id="prizesItems" role="tabpanel"
-     aria-labelledby="prizes-items-tab">
+<?php
+/** @var $promotion \App\Models\Promotion */
+?>
+
+<div class="tab-pane fade" id="urns" role="tabpanel"
+     aria-labelledby="urns-tab">
 
     <div class="container">
         <h2>{{ $promotion->name }}</h2>
         <button type="button" class="btn btn-primary float-right" data-toggle="modal"
-                data-target=".bd-example-modal-lg">
-            Create
-            Tier
+                data-target=".create-urn-specification-modal">Create URN Specification
         </button>
     </div>
 
@@ -15,21 +17,28 @@
 
         <table class="table">
             <tr>
-                <td>Level</td>
-                <td>Short Description</td>
-                <td>Long Description</td>
-                <td colspan="2">Quantity</td>
+                <td>Reference ID</td>
+                <td>Batch Name</td>
+                <td>Purpose</td>
+                <td>Length</td>
+                <td>Quantity</td>
+                <td>Winning Quantity</td>
             </tr>
             <tbody>
 
             @foreach ($promotion->urnSpecifications as $urnSpecification)
+                @php
+                    /** @var $urnSpecification \App\Models\UrnSpecification */
+                @endphp
                 <tr class="clickable-row">
-                    <td>{{ $urnSpecification->level }}</td>
-                    <td>{{ $urnSpecification->short_description }}</td>
-                    <td>{{ $urnSpecification->long_description }}</td>
-                    <td>{{ $urnSpecification->quantity }}</td>
+                    <td>{{ $urnSpecification->reference_id }}</td>
+                    <td>{{ $urnSpecification->batch_name }}</td>
+                    <td>{{ $urnSpecification->getPurposeLabel() }}</td>
+                    <td>{{ $urnSpecification->length }}</td>
+                    <td>{{ $urnSpecification->urn_quantity }}</td>
+                    <td>{{ $urnSpecification->winning_urn_quantity }}</td>
                     <td>
-                        <form action="/tiers/{{$urnSpecification->id}}">
+                        <form action="/promotions/{{$promotion->id}}/urn-specifications/{{$urnSpecification->id}}">
                             <input type="submit" value="View/Edit"/>
                         </form>
                     </td>
@@ -44,7 +53,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+<div class="modal fade create-urn-specification-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
      aria-hidden="true">
 
     <div class="modal-dialog modal-lg">
@@ -53,44 +62,74 @@
 
             <div class="container-fluid p-3">
 
-                <h2>Create Tier for Promotion - {{ $promotion->name }}</h2>
+                <h2>Create URN Specification for Promotion - {{ $promotion->name }}</h2>
 
-                <form method="POST" action="{{ route('createTier') }}">
+                <form method="POST" action="{{ route('createUrnSpecification') }}">
                     @csrf
 
-                    <input type="hidden" name="promotion_id" value="{{ $promotion->id }}"/>
+                    <input type="hidden" name="promotionId" value="{{ $promotion->id }}"/>
 
                     <div class="form-group">
-                        <label for="level">Level</label>
-                        <input type="number" class="form-control" id="level" name="level"
-                               aria-describedby="levelHelp" required min="1"
-                               placeholder="Enter level">
-                        <small id="nameHelp" class="form-text text-muted">E.g. '1'. Tier levels must be unique
+                        <label for="referenceId">Reference ID</label>
+                        <input type="text" class="form-control" id="referenceId" name="referenceId"
+                               aria-describedby="levelHelp" required
+                               placeholder="Enter URN Specification Reference ID">
+                        <small id="nameHelp" class="form-text text-muted">E.g. '123 ABC'
                         </small>
                     </div>
 
                     <div class="form-group">
-                        <label for="promotionUrl">Short Description</label>
-                        <input type="text" class="form-control" id="shortDescription" name="shortDescription"
-                               placeholder="Enter short description" required>
+                        <label for="purpose">Purpose</label>
+                        <select class="form-control" id="purpose" name="purpose">
+                            @foreach ($language as $language)
+                                <option value="{{ $purposeValue }}">{{ $purposeLabel }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="batchName">Batch Name</label>
+                        <input type="text" class="form-control" id="batchName" name="batchName"
+                               placeholder="Enter batch name" required>
                         <small id="nameHelp" class="form-text text-muted">E.g. Level 1
                         </small>
                     </div>
 
                     <div class="form-group">
-                        <label for="promotionUrl">Long Description</label>
-                        <input type="text" class="form-control" id="longDescription" name="longDescription"
-                               placeholder="Enter long description" required>
-                        <small id="nameHelp" class="form-text text-muted">E.g. Level 1 (Longer Description)
+                        <label for="purpose">Purpose</label>
+                        <select class="form-control" id="purpose" name="purpose">
+                            @foreach ($urnSpecificationPurposes as $purposeValue => $purposeLabel)
+                                <option value="{{ $purposeValue }}">{{ $purposeLabel }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="length">Length</label>
+                        <input type="number" class="form-control" id="length" name="length"
+                               aria-describedby="levelHelp" required min="1"
+                               placeholder="Enter level">
+                        <small id="levelHelp" class="form-text text-muted">E.g. '5000'
                         </small>
                     </div>
 
                     <div class="form-group">
-                        <label for="level">Quantity</label>
-                        <input type="number" class="form-control" id="quantity" name="quantity"
-                               aria-describedby="quantityHelp" required min="1"
-                               placeholder="Enter quantity">
-                        <small id="quantityHelp" class="form-text text-muted">E.g. '5000'
+                        <label for="includedChars">Included Characters</label>
+                        <input type="text" class="form-control" id="includedChars" name="includedChars"
+                               aria-describedby="includedCharsHelp" required
+                               placeholder="Enter included chars">
+                        <small id="includedCharsHelp" class="form-text text-muted">E.g. 'ABCDEFGH12345
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regexExclude">Regex Exclude</label>
+                        <input type="text" class="form-control" id="regexExclude" name="regexExclude"
+                               aria-describedby="regexExcludeHelp" required
+                               placeholder="Enter included chars">
+                        <small id="regexExcludeHelp" class="form-text text-muted">E.g. '^A-Z*$'
                         </small>
                     </div>
 

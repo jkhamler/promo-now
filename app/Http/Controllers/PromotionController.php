@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mechanic;
 use App\Models\Promotion;
+use App\Models\UrnSpecification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -36,6 +37,7 @@ class PromotionController extends Controller
         return view('promotion.details', [
             'promotion' => $promotion,
             'mechanicTypes' => Mechanic::MECHANIC_TYPES,
+            'urnSpecificationPurposes' => UrnSpecification::PURPOSES,
         ]);
     }
 

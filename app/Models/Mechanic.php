@@ -89,7 +89,6 @@ class Mechanic extends Model
      */
     public function getTypeLabel($type = null)
     {
-
         if (is_null($type)) {
             $type = $this->type;
         }

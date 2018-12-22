@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class Language
  * @package App\Models
  *
+ * @property integer $id
  * @property string $name
  * @property string $iso_code
  *
