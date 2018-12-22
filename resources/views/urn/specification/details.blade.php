@@ -121,15 +121,21 @@
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="piToGenerate"@php if($urnSpecification->pi_to_generate){echo 'checked';} @endphp>PromotionsInteractive to Generate</label>
+                <label><input type="checkbox"
+                              name="piToGenerate"@php if($urnSpecification->pi_to_generate){echo 'checked';} @endphp>PromotionsInteractive
+                    to Generate</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="everyoneGets"@php if($urnSpecification->everyone_gets){echo 'checked';} @endphp>Everyone Gets</label>
+                <label><input type="checkbox"
+                              name="everyoneGets"@php if($urnSpecification->everyone_gets){echo 'checked';} @endphp>Everyone
+                    Gets</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="allocatedByTier"@php if($urnSpecification->allocated_by_tier){echo 'checked';} @endphp>Allocated by Tier</label>
+                <label><input type="checkbox"
+                              name="allocatedByTier"@php if($urnSpecification->allocated_by_tier){echo 'checked';} @endphp>Allocated
+                    by Tier</label>
             </div>
 
             <button type="submit" class="btn btn-primary">Update</button>

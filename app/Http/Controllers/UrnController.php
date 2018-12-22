@@ -62,6 +62,8 @@ class UrnController extends Controller
 
 
     /**
+     * Update the URN Specification
+     *
      * @param $urnSpecificationId
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
@@ -107,7 +109,8 @@ class UrnController extends Controller
             $urnSpecification->regex_exclude = $data['regexExclude'];
         }
         if (isset($data['profanityCheckLanguageId'])) {
-            $urnSpecification->profanity_check_language_id = $data['profanityCheckLanguageId'];
+            $urnSpecification->profanity_check_language_id =
+                $data['profanityCheckLanguageId'] == '0' ? null : $data['profanityCheckLanguageId'];
         }
         if (isset($data['urnQuantity'])) {
             $urnSpecification->urn_quantity = $data['urnQuantity'];
@@ -116,13 +119,19 @@ class UrnController extends Controller
             $urnSpecification->winning_urn_quantity = $data['winningUrnQuantity'];
         }
         if (isset($data['piToGenerate'])) {
-            $urnSpecification->pi_to_generate = $data['piToGenerate'];
+            $urnSpecification->pi_to_generate = ($data['piToGenerate'] == 'on');
+        } else {
+            $urnSpecification->pi_to_generate = false;
         }
         if (isset($data['everyoneGets'])) {
-            $urnSpecification->everyone_gets = $data['everyoneGets'];
+            $urnSpecification->everyone_gets = ($data['everyoneGets'] == 'on');
+        } else {
+            $urnSpecification->everyone_gets = false;
         }
         if (isset($data['allocatedByTier'])) {
-            $urnSpecification->allocated_by_tier = $data['allocatedByTier'];
+            $urnSpecification->allocated_by_tier = ($data['allocatedByTier'] == 'on');
+        } else {
+            $urnSpecification->allocated_by_tier = false;
         }
         $urnSpecification->save();
 

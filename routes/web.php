@@ -48,8 +48,8 @@ Route::prefix('tiers')->group(function () {
     });
 });
 
-Route::prefix('urnSpecifications')->group(function () {
+Route::prefix('urn-specifications')->group(function () {
 
     Route::post('/', 'UrnController@createUrnSpecificationAction')->name('createUrnSpecification');
-    Route::patch('/', 'UrnController@updateUrnSpecificationAction')->name('updateUrnSpecification');
+    Route::patch('/{urnSpecificationId}', 'UrnController@updateUrnSpecificationAction')->name('updateUrnSpecification');
 });

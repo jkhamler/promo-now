@@ -8,6 +8,9 @@
 
         <form method="POST" action="{{ route('updateMechanic', [$mechanic->id, 'id']) }}">
 
+            @csrf
+            @method('PATCH')
+
             <div class="form-group">
                 <label for="description">Description</label>
                 <input type="text" class="form-control" id="description" name="description"
@@ -16,8 +19,6 @@
 
 
             <div class="form-group">
-                @csrf
-                @method('PATCH')
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" name="name"
                        aria-describedby="nameHelp" required
