@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Language;
 use App\Models\Mechanic;
 use App\Models\Promotion;
 use App\Models\UrnSpecification;
@@ -35,6 +36,7 @@ class PromotionController extends Controller
         $promotion = Promotion::find($promotionId);
 
         return view('promotion.details', [
+            'languages' => Language::all(),
             'promotion' => $promotion,
             'mechanicTypes' => Mechanic::MECHANIC_TYPES,
             'urnSpecificationPurposes' => UrnSpecification::PURPOSES,

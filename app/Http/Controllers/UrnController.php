@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Language;
 use App\Models\Promotion;
 use App\Models\UrnSpecification;
 use Illuminate\Http\Request;
@@ -54,6 +55,8 @@ class UrnController extends Controller
         return view('urn.specification.details', [
             'promotion' => $promotion,
             'urnSpecification' => $urnSpecification,
+            'urnSpecificationPurposes' => UrnSpecification::PURPOSES,
+            'languages' => Language::all(),
         ]);
     }
 

@@ -73,21 +73,10 @@
                         <label for="referenceId">Reference ID</label>
                         <input type="text" class="form-control" id="referenceId" name="referenceId"
                                aria-describedby="levelHelp" required
-                               placeholder="Enter URN Specification Reference ID">
-                        <small id="nameHelp" class="form-text text-muted">E.g. '123 ABC'
+                               placeholder="Enter Reference ID">
+                        <small id="nameHelp" class="form-text text-muted">E.g. '5000 Winning Codes'
                         </small>
                     </div>
-
-                    <div class="form-group">
-                        <label for="purpose">Purpose</label>
-                        <select class="form-control" id="purpose" name="purpose">
-                            @foreach ($language as $language)
-                                <option value="{{ $purposeValue }}">{{ $purposeLabel }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-
 
                     <div class="form-group">
                         <label for="batchName">Batch Name</label>
@@ -110,28 +99,11 @@
                         <label for="length">Length</label>
                         <input type="number" class="form-control" id="length" name="length"
                                aria-describedby="levelHelp" required min="1"
-                               placeholder="Enter level">
+                               placeholder="Enter length">
                         <small id="levelHelp" class="form-text text-muted">E.g. '5000'
                         </small>
                     </div>
 
-                    <div class="form-group">
-                        <label for="includedChars">Included Characters</label>
-                        <input type="text" class="form-control" id="includedChars" name="includedChars"
-                               aria-describedby="includedCharsHelp" required
-                               placeholder="Enter included chars">
-                        <small id="includedCharsHelp" class="form-text text-muted">E.g. 'ABCDEFGH12345
-                        </small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="regexExclude">Regex Exclude</label>
-                        <input type="text" class="form-control" id="regexExclude" name="regexExclude"
-                               aria-describedby="regexExcludeHelp" required
-                               placeholder="Enter included chars">
-                        <small id="regexExcludeHelp" class="form-text text-muted">E.g. '^A-Z*$'
-                        </small>
-                    </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
