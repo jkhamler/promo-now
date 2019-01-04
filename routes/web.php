@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@homeAction')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::prefix('promotions')->group(function () {
     Route::get('/', 'PromotionController@indexAction')->name('promotionIndex');
@@ -53,3 +53,7 @@ Route::prefix('urn-specifications')->group(function () {
     Route::post('/', 'UrnController@createUrnSpecificationAction')->name('createUrnSpecification');
     Route::patch('/{urnSpecificationId}', 'UrnController@updateUrnSpecificationAction')->name('updateUrnSpecification');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
