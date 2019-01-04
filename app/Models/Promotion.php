@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\DB;
  * @property string $name
  * @property string $url
  * @property string $description
+ * @property string $short_terms_conditions
+ * @property string $long_terms_conditions
  * @property \Carbon\Carbon $online_date
  * @property \Carbon\Carbon $promo_open_date
  * @property \Carbon\Carbon $promo_closed_date
@@ -42,6 +44,8 @@ class Promotion extends Model
         'name',
         'url',
         'description',
+        'short_terms_conditions',
+        'long_terms_conditions',
         'online_date',
         'promo_open_date',
         'promo_closed_date',

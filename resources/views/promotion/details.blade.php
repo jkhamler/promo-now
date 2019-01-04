@@ -34,13 +34,17 @@
 
     <div class="row">
 
-        <div class="tab-content" id="myTabContent">
+        <div class="container-fluid">
 
-            @include('promotion.campaign-basics')
-            @include('promotion.urns')
-            @include('promotion.prizes-items')
-            @include('promotion.mechanics')
-            @include('promotion.users')
+            <div class="tab-content" id="myTabContent">
+
+                @include('promotion.campaign-basics')
+                @include('promotion.urns')
+                @include('promotion.prizes-items')
+                @include('promotion.mechanics')
+                @include('promotion.users')
+
+            </div>
 
         </div>
 

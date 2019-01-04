@@ -141,7 +141,22 @@
                                    placeholder="Description" required>
                             <small id="nameHelp" class="form-text text-muted">E.g. Win some amazing prizes
                             </small>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="shortTermsConditions">Short Terms and Conditions</label>
+                            <input type="text" class="form-control" id="shortTermsConditions" name="shortTermsConditions"
+                                   placeholder="Short Terms and Conditions" required>
+                            <small id="shortTermsConditionsHelp" class="form-text text-muted">E.g. You agree to participate in....
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="longTermsConditions">Long Terms and Conditions</label>
+                            <input type="text" class="form-control" id="longTermsConditions" name="longTermsConditions"
+                                   placeholder="Long Terms and Conditions" required>
+                            <small id="longTermsConditionsHelp" class="form-text text-muted">E.g. You agree to participate in.... (more information)
+                            </small>
                         </div>
 
                         <div class="form-group">

@@ -17,6 +17,8 @@ class PromotionsSeeder extends Seeder
         $promotion->name = 'Test Promotion';
         $promotion->url = 'testcomp.com';
         $promotion->description = 'Description 123';
+        $promotion->short_terms_conditions = 'Short terms and conditions 123';
+        $promotion->long_terms_conditions = 'Long terms and conditions 456';
         $promotion->online_date = new DateTime('2018-01-01');
         $promotion->promo_open_date = new DateTime('2018-02-01');
         $promotion->promo_closed_date = new DateTime('2018-03-01');

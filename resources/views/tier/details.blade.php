@@ -183,7 +183,7 @@
                             <label for="partnerId">Partner</label>
                             <select class="form-control" id="partnerId" name="partnerId">
                                 @foreach ($partners as $partner)
-                                    <option value="{{ $partner->id }}" @php if($partner->id == $tierItem->partner_id){echo 'selected';} @endphp>{{ $partner->name }}</option>
+                                    <option value="{{ $partner->id }}">{{ $partner->name }}</option>
                                 @endforeach
                             </select>
                         </div>

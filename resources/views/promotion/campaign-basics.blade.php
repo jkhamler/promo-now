@@ -1,7 +1,11 @@
+@php
+    /** @var $promotion \App\Models\Promotion */
+@endphp
+
 <div class="tab-pane fade show active" id="campaignBasics" role="tabpanel"
      aria-labelledby="campaign-basics-tab">
 
-    <div class="container"><h2>{{ $promotion->name }}</h2></div>
+    <div class="container-fluid"><h2>{{ $promotion->name }}</h2></div>
     <div class="container-fluid p-3">
 
         <h4>Details</h4>
@@ -28,7 +32,19 @@
             <div class="form-group">
                 <label for="description">Description</label>
                 <input type="text" class="form-control" id="description" name="description"
-                       placeholder="URL" required value="{{$promotion->description}}">
+                       placeholder="Description" required value="{{$promotion->description}}">
+            </div>
+
+            <div class="form-group">
+                <label for="shortTermsConditions">Short Terms and Conditions</label>
+                <input type="text" class="form-control" id="shortTermsConditions" name="shortTermsConditions"
+                       placeholder="Short Terms and Conditions" required value="{{$promotion->short_terms_conditions}}">
+            </div>
+
+            <div class="form-group">
+                <label for="longTermsConditions">Long Terms and Conditions</label>
+                <input type="text" class="form-control" id="longTermsConditions" name="longTermsConditions"
+                       placeholder="Long Terms and Conditions" required value="{{$promotion->long_terms_conditions}}">
             </div>
 
             <div class="form-group">

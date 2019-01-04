@@ -18,6 +18,8 @@ class CreatePromotionsTable extends Migration
             $table->string('name');
             $table->string('url');
             $table->string('description')->nullable();
+            $table->string('short_terms_conditions')->nullable();
+            $table->string('long_terms_conditions')->nullable();
             $table->dateTime('online_date');
             $table->dateTime('promo_open_date');
             $table->dateTime('promo_closed_date');
