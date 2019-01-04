@@ -45,15 +45,6 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
-                        {{--<form class="form" role="form">--}}
-                        {{--<div class="form-group">--}}
-                        {{--<button type="submit" class="btn btn-primary btn-block">Log out</button>--}}
-                        {{--</div>--}}
-                        {{--<div class="form-group text-center">--}}
-                        {{--<small><a href="#" data-toggle="modal" data-target="#modalPassword">Forgot--}}
-                        {{--password?</a></small>--}}
-                        {{--</div>--}}
-                        {{--</form>--}}
                     </li>
                 </ul>
             </li>
