@@ -36,18 +36,6 @@
             </div>
 
             <div class="form-group">
-                <label for="shortTermsConditions">Short Terms and Conditions</label>
-                <input type="text" class="form-control" id="shortTermsConditions" name="shortTermsConditions"
-                       placeholder="Short Terms and Conditions" required value="{{$promotion->short_terms_conditions}}">
-            </div>
-
-            <div class="form-group">
-                <label for="longTermsConditions">Long Terms and Conditions</label>
-                <input type="text" class="form-control" id="longTermsConditions" name="longTermsConditions"
-                       placeholder="Long Terms and Conditions" required value="{{$promotion->long_terms_conditions}}">
-            </div>
-
-            <div class="form-group">
                 <label for="onlineDate">Online Date</label>
                 <input type="datetime-local" class="form-control" id="onlineDate" name="onlineDate"
                        required

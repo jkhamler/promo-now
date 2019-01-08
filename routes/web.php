@@ -37,12 +37,9 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::prefix('tiers')->group(function () {
-//    Route::get('/', 'PromotionController@indexAction')->name('promotionIndex');
-//    Route::get('/create', 'PromotionController@createWizardAction')->name('createWizard');
         Route::get('/{tierId}', 'TierController@detailsAction')->name('tierDetails');
         Route::post('/', 'TierController@createAction')->name('createTier');
         Route::patch('/{tierId}', 'TierController@updateAction')->name('updateTier');
-
 
         Route::prefix('items')->group(function () {
             Route::get('/{tierItemId}', 'TierController@tierItemDetailsAction')->name('tierItemDetails');
@@ -50,6 +47,12 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/', 'TierController@createTierItemAction')->name('createTierItem');
             Route::patch('/{tierItemId}', 'TierController@updateTierItemAction')->name('updateTierItem');
         });
+    });
+
+    Route::prefix('promo-terms')->group(function () {
+
+        Route::post('/', 'PromoTermsController@createAction')->name('createPromoTerms');
+        Route::patch('/{urnSpecificationId}', 'PromoTermsController@updateAction')->name('updatePromoTerms');
     });
 
     Route::prefix('urn-specifications')->group(function () {

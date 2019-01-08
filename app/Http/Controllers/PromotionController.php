@@ -67,8 +67,6 @@ class PromotionController extends Controller
         $promotion->name = $data['promotionName'];
         $promotion->url = $data['url'];
         $promotion->description = $data['description'];
-        $promotion->short_terms_conditions = $data['shortTermsConditions'];
-        $promotion->long_terms_conditions = $data['longTermsConditions'];
         $promotion->online_date = Carbon::parse($data['onlineDate']);
         $promotion->promo_open_date = Carbon::parse($data['promoOpenDate']);
         $promotion->promo_closed_date = Carbon::parse($data['promoClosedDate']);
@@ -112,8 +110,6 @@ class PromotionController extends Controller
         $promotion->name = $data['promotionName'];
         $promotion->url = $data['url'];
         $promotion->description = $data['description'];
-        $promotion->short_terms_conditions = $data['shortTermsConditions'];
-        $promotion->long_terms_conditions = $data['longTermsConditions'];
         $promotion->online_date = Carbon::parse($data['onlineDate']);
         $promotion->promo_open_date = Carbon::parse($data['promoOpenDate']);
         $promotion->promo_closed_date = Carbon::parse($data['promoClosedDate']);

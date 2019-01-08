@@ -42,6 +42,7 @@
                 @include('promotion.urns')
                 @include('promotion.prizes-items')
                 @include('promotion.mechanics')
+                @include('promotion.terms')
                 @include('promotion.users')
 
             </div>

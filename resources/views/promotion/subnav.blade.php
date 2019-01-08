@@ -12,7 +12,10 @@
         <a class="nav-link" id="mechanics-tab" data-toggle="tab" href="#mechanics" role="tab" aria-controls="contact" aria-selected="false">Mechanics</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="contact" aria-selected="false">Users</a>
+        <a class="nav-link" id="terms-tab" data-toggle="tab" href="#terms" role="tab" aria-controls="contact" aria-selected="false">Terms</a>
     </li>
+    {{--<li class="nav-item">--}}
+        {{--<a class="nav-link" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="contact" aria-selected="false">Users</a>--}}
+    {{--</li>--}}
 </ul>
 <br/>
