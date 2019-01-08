@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
  * Class User
  * @package App
  *
+ * @property string $first_name
+ * @property string $surname
  * @property string $name
  * @property string $email
  * @property string $password
@@ -23,7 +25,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name',
+        'surname',
+        'email',
+        'password',
     ];
 
     /**
@@ -32,6 +37,15 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->first_name . ' ' . $this->surname;
+    }
 }
