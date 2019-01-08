@@ -21,10 +21,20 @@ class Partner extends Model
         'name',
     ];
 
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function tierItems()
     {
         return $this->hasMany('App\Models\TierItem');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function promoTerms()
+    {
+        return $this->hasMany('App\Models\PromoTerm');
     }
 
 

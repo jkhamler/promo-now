@@ -115,5 +115,55 @@ class Promotion extends Model
 
     }
 
+    /**
+     * @return Collection|Partner[]
+     */
+    public function partners()
+    {
+        $partners = new Collection();
+
+        /** @var Tier $tier */
+        foreach ($this->tiers as $tier) {
+            /** @var TierItem $item */
+            foreach ($tier->items as $item) {
+                if (!$partners->contains($item->partner)) {
+                    $partners->add($item->partner);
+                }
+            }
+        }
+        return $partners;
+    }
+
+    /**
+     * Returns a list of partners for whom promo terms have not been set up
+     *
+     * @return Partner[]|Collection
+     */
+    public function outstandingPromoTermsPartners()
+    {
+        $allPartners = $this->partners();
+        /** @var Collection $existingPromoTerms */
+        $existingPromoTerms = $this->promoTerms;
+
+        if ($existingPromoTerms->isEmpty()) {
+            return $allPartners;
+        }
+
+        $outstandingPartners = new Collection();
+
+        /** @var PromoTerm $existingPromoTerm */
+        foreach ($existingPromoTerms as $existingPromoTerm) {
+            foreach ($allPartners as $allPartner) {
+                if ($existingPromoTerm->partner_id !== $allPartner->id &&
+                    (!$outstandingPartners->contains($allPartner))) {
+                    $outstandingPartners->add($allPartner);
+                }
+            }
+        }
+
+        return $outstandingPartners;
+
+    }
+
 
 }

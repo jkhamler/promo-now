@@ -11,6 +11,10 @@ class PromoTermsController extends Controller
      */
     public function createAction(Request $request)
     {
+        echo '<pre>';
+        echo print_r($request->all(), true);
+        echo '</pre>';
+        exit();
 
     }
 
