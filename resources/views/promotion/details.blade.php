@@ -43,6 +43,7 @@
                 @include('promotion.prizes-items')
                 @include('promotion.mechanics')
                 @include('promotion.promo-terms')
+                @include('promotion.privacy-terms')
                 @include('promotion.users')
 
             </div>

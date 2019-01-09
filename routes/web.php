@@ -28,6 +28,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/{promotionId}/mechanics/{mechanicId}', 'MechanicController@detailsAction')->name('mechanicDetails');
         Route::get('/{promotionId}/urn-specifications/{urnSpecificationId}', 'UrnController@urnSpecificationDetailsAction')->name('urnSpecificationDetailsAction');
 
+        Route::get('/{promotionId}/promo-terms/{promoTermId}', 'PromoTermsController@detailsAction')->name('promoTermsDetails');
+
     });
 
     Route::prefix('mechanics')->group(function () {
@@ -49,14 +51,17 @@ Route::group(['middleware' => ['auth']], function () {
         });
     });
 
-    Route::prefix('promo-terms')->group(function () {
+    Route::prefix('privacy-terms')->group(function () {
+        Route::post('/', 'PrivacyTermsController@createAction')->name('createPrivacyTerms');
+        Route::patch('/{urnSpecificationId}', 'PrivacyTermsController@updateAction')->name('updatePrivacyTerms');
+    });
 
+    Route::prefix('promo-terms')->group(function () {
         Route::post('/', 'PromoTermsController@createAction')->name('createPromoTerms');
-        Route::patch('/{urnSpecificationId}', 'PromoTermsController@updateAction')->name('updatePromoTerms');
+        Route::patch('/{promoTermsId}', 'PromoTermsController@updateAction')->name('updatePromoTerms');
     });
 
     Route::prefix('urn-specifications')->group(function () {
-
         Route::post('/', 'UrnController@createUrnSpecificationAction')->name('createUrnSpecification');
         Route::patch('/{urnSpecificationId}', 'UrnController@updateUrnSpecificationAction')->name('updateUrnSpecification');
     });

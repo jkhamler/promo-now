@@ -17,14 +17,13 @@ class CreatePromoTermsTable extends Migration
             $table->increments('id');
             $table->integer('version');
             $table->integer('promotion_id');
-            $table->integer('partner_id');
             $table->dateTime('valid_from');
             $table->dateTime('valid_until')->nullable();
             $table->integer('authorised_by_user_id')->nullable();
             $table->dateTime('authorised_at')->nullable();
             $table->string('title');
             $table->string('acceptance_text');
-            $table->string('short_description');
+            $table->string('short_terms');
             $table->longText('terms_body_text');
             $table->timestamps();
             $table->integer('created_by_user_id')->nullable();

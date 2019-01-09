@@ -2,7 +2,7 @@
 /** @var $promotion \App\Models\Promotion */
 ?>
 
-<div class="tab-pane fade" id="terms" role="tabpanel" aria-labelledby="terms-tab">
+<div class="tab-pane fade" id="promoTerms" role="tabpanel" aria-labelledby="promo-terms-tab">
 
     <div class="container">
 
@@ -29,15 +29,15 @@
     </div>
 
     <div class="container-fluid p-3">
-        <h4>Terms</h4>
+        <h4>Promo Terms</h4>
 
 
         <table class="table">
 
             <tr>
-                <td>Name</td>
-                <td>Description</td>
-                <td colspan="2">Type</td>
+                <td>Version</td>
+                <td>Valid From</td>
+                <td colspan="2">Valid Until</td>
             </tr>
 
             <tbody>
@@ -49,11 +49,11 @@
             @foreach ($promotion->promoTerms as $term)
                 @php /** @var $term \App\Models\PromoTerm */@endphp
                 <tr class="clickable-row">
-                    <td>{{ $term->name }}</td>
-                    <td>{{ $term->description }}</td>
-                    <td>{{ $term->getTypeLabel() }}</td>
+                    <td>{{ $term->version }}</td>
+                    <td>{{ $term->valid_from->format('Y-m-d') }}</td>
+                    <td>{{ $term->valid_until->format('Y-m-d') }}</td>
                     <td>
-                        <form action="/promotions/{{ $promotion->id }}/terms/{{$term->id}}">
+                        <form action="/promotions/{{ $promotion->id }}/promo-terms/{{$term->id}}">
                             <input type="submit" value="View/Edit"/>
                         </form>
                     </td>
@@ -82,16 +82,7 @@
                 <form method="POST" action="{{ route('createPromoTerms') }}" id="createPromoTermsForm">
 
                     @csrf
-                    <input type="hidden" name="promotion_id" value="{{ $promotion->id }}"/>
-
-                    <div class="form-group">
-                        <label for="partnerId">Partner</label>
-                        <select class="form-control" id="partner" name="partner">
-                            @foreach ($promotion->outstandingPromoTermsPartners() as $partner)
-                                <option value="{{ $partner->id }}">{{ $partner->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                    <input type="hidden" name="promotionId" value="{{ $promotion->id }}"/>
 
                     <div class="form-group">
                         <label for="validFrom">Valid From</label>
@@ -115,18 +106,18 @@
 
                     <div class="form-group">
                         <label for="acceptanceText">Acceptance Text</label>
-                        <textarea class="form-control" rows="2" id="acceptanceText" placeholder="E.g. 'I have read and accept the terms and conditions and confirm I am over 18 years old.'"></textarea>
+                        <textarea class="form-control" rows="2" id="acceptanceText" name="acceptanceText" placeholder="E.g. 'I have read and accept the terms and conditions and confirm I am over 18 years old.'"></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label for="shortDescription">Short Terms</label>
-                        <input type="text" class="form-control" id="shortDescription" name="shortDescription"
+                        <label for="shortTerms">Short Terms</label>
+                        <input type="text" class="form-control" id="shortTerms" name="shortTerms"
                                placeholder="Short Description" required>
                     </div>
 
                     <div class="form-group">
                         <label for="terms">Terms</label>
-                        <textarea class="form-control" id="termsSummerNote" name="terms" rows="3"></textarea>
+                        <textarea class="form-control" id="termsBodyText" name="termsBodyText" rows="3"></textarea>
                     </div>
 
 
@@ -144,7 +135,7 @@
 <script type="text/javascript">
 
     $(document).ready(function() {
-        $('#termsSummerNote').summernote({
+        $('#termsBodyText').summernote({
             // toolbar: [
             //     // [groupName, [list of button]]
             //     ['style', ['bold', 'italic', 'underline', 'clear']],
