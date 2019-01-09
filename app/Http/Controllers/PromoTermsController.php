@@ -44,7 +44,8 @@ class PromoTermsController extends Controller
 
         $promoTerm->save();
 
-        return redirect()->to("/promotions/{$promoTerm->promotion_id}");
+        return redirect()->to("/promotions/{$promoTerm->promotion_id}/promo-terms/{$promoTerm->id}");
+
     }
 
     /**
