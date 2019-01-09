@@ -7,6 +7,7 @@ use App\Models\PromoTerm;
 use App\Models\Promotion;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PromoTermsController extends Controller
 {
@@ -47,11 +48,40 @@ class PromoTermsController extends Controller
     }
 
     /**
-     * @param $promotionId
+     * @param $promoTermId
      * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateAction($promotionId, Request $request)
+    public function updateAction($promoTermId, Request $request)
     {
+
+        $data = $request->all();
+
+        $request->validate([
+            'validFrom' => 'required|date',
+            'validUntil' => 'required|date|after:validFrom',
+            'title' => 'required',
+            'acceptanceText' => 'required',
+            'shortTerms' => 'required',
+            'termsBodyText' => 'required',
+        ]);
+
+
+        /** @var PromoTerm $promoTerm */
+        $promoTerm = PromoTerm::find($promoTermId);
+
+        $promoTerm->version = $promoTerm->version + 1;
+        $promoTerm->valid_from = Carbon::parse($data['validFrom']);
+        $promoTerm->valid_until = Carbon::parse($data['validUntil']);
+        $promoTerm->title = $data['title'];
+        $promoTerm->acceptance_text = $data['acceptanceText'];
+        $promoTerm->short_terms = $data['shortTerms'];
+        $promoTerm->terms_body_text = $data['termsBodyText'];
+        $promoTerm->updated_by_user_id = Auth::id();
+
+        $promoTerm->save();
+
+        return redirect()->to("/promotions/{$promoTerm->promotion_id}/promo-terms/{$promoTermId}");
 
     }
 
@@ -65,7 +95,7 @@ class PromoTermsController extends Controller
     public function detailsAction($promotionId, $promoTermsId)
     {
         /** @var Promotion $promotion */
-        $promotion = PromoTerm::find($promotionId);
+        $promotion = Promotion::find($promotionId);
 
         /** @var PromoTerm $promoTerm */
         $promoTerm = PromoTerm::find($promoTermsId);

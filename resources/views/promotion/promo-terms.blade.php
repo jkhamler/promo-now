@@ -21,11 +21,21 @@
             </div>
         @endif
 
-
         <h2>{{ $promotion->name }}</h2>
-        <button type="button" class="btn btn-primary float-right" data-toggle="modal"
-                data-target=".create-promo-term-modal">Create Promo Terms
-        </button>
+
+        @php
+
+            if($promotion->promoTerms->count() == 0){
+
+            echo <<<EOT
+            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target=".create-promo-term-modal">Create Promo Terms
+            </button>
+EOT;
+
+            }
+
+        @endphp
+
     </div>
 
     <div class="container-fluid p-3">
@@ -106,7 +116,8 @@
 
                     <div class="form-group">
                         <label for="acceptanceText">Acceptance Text</label>
-                        <textarea class="form-control" rows="2" id="acceptanceText" name="acceptanceText" placeholder="E.g. 'I have read and accept the terms and conditions and confirm I am over 18 years old.'"></textarea>
+                        <textarea class="form-control" rows="2" id="acceptanceText" name="acceptanceText"
+                                  placeholder="E.g. 'I have read and accept the terms and conditions and confirm I am over 18 years old.'"></textarea>
                     </div>
 
                     <div class="form-group">
@@ -121,7 +132,6 @@
                     </div>
 
 
-
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
                 </form>
@@ -134,7 +144,7 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#termsBodyText').summernote({
             // toolbar: [
             //     // [groupName, [list of button]]
