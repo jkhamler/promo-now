@@ -7,8 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class FAQ
  * @package App\Models
+ *
+ * @property integer $faq_group_id
+ * @property string $title
+ * @property string $body_text
+ * @property integer $order
  */
 class FAQ extends Model
 {
-    //
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function faqGroup()
+    {
+        return $this->belongsTo('App\Models\FAQGroup');
+    }
 }
