@@ -138,5 +138,9 @@ class UrnController extends Controller
         return redirect()->to("/promotions/{$urnSpecification->promotion_id}/urn-specifications/{$urnSpecification->id}");
     }
 
+    public function generateURNsAction($urnSpecificationId){
+
+    }
+
 
 }
