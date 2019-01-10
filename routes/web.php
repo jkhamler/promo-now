@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/{promotionId}/urn-specifications/{urnSpecificationId}', 'UrnController@urnSpecificationDetailsAction')->name('urnSpecificationDetailsAction');
 
         Route::get('/{promotionId}/promo-terms/{promoTermId}', 'PromoTermsController@detailsAction')->name('promoTermsDetails');
+        Route::get('/{promotionId}/privacy-terms/{promoTermId}', 'PrivacyTermsController@detailsAction')->name('privacyTermsDetails');
 
     });
 

@@ -40,6 +40,7 @@ class PromoTermsController extends Controller
         $promoTerm->acceptance_text = $data['acceptanceText'];
         $promoTerm->short_terms = $data['shortTerms'];
         $promoTerm->terms_body_text = $data['termsBodyText'];
+        $promoTerm->created_by_user_id = Auth::id();
 
         $promoTerm->save();
 

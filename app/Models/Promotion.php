@@ -106,6 +106,19 @@ class Promotion extends Model
     }
 
     /**
+     * @return int|null
+     */
+    public function getMostRecentPrivacyTermVersion(){
+
+        /** @var Collection $privacyTerms */
+        $privacyTerms = $this->privacyTerms;
+
+        $mostRecentPrivacyTerm = $privacyTerms->first();
+
+        return ($mostRecentPrivacyTerm instanceof PrivacyTerm) ? $mostRecentPrivacyTerm->version : null;
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function privacyTerms()

@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class FAQGroup extends Model
 {
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

@@ -52,20 +52,16 @@ EOT;
 
             <tbody>
 
-            <?php
-
-            ?>
-
-            @foreach ($promotion->promoTerms as $term)
-                @php /** @var $term \App\Models\PromoTerm */@endphp
+            @foreach ($promotion->promoTerms as $promoTerm)
+                @php /** @var $promoTerm \App\Models\PromoTerm */@endphp
                 <tr class="clickable-row">
-                    <td>{{ $term->version }}@if($term->isLatestVersion()) (Active) @endif</td>
-                    <td>{{ $term->valid_from->format('Y-m-d') }}</td>
-                    <td>{{ $term->valid_until->format('Y-m-d') }}</td>
+                    <td>{{ $promoTerm->version }}@if($promoTerm->isLatestVersion()) (Active) @endif</td>
+                    <td>{{ $promoTerm->valid_from->format('Y-m-d') }}</td>
+                    <td>{{ $promoTerm->valid_until->format('Y-m-d') }}</td>
 
                     <td>
-                        <form action="/promotions/{{ $promotion->id }}/promo-terms/{{$term->id}}">
-                            <input type="submit" @if($term->version == $promotion->getMostRecentPromoTermVersion())value="View/Edit"@else value="View Archive"@endif/>
+                        <form action="/promotions/{{ $promotion->id }}/promo-terms/{{$promoTerm->id}}">
+                            <input type="submit" @if($promoTerm->version == $promotion->getMostRecentPromoTermVersion())value="View/Edit"@else value="View Archive"@endif/>
                         </form>
                     </td>
                 </tr>
@@ -142,21 +138,3 @@ EOT;
     </div>
 
 </div>
-
-<script type="text/javascript">
-
-    $(document).ready(function () {
-        $('#termsBodyText').summernote({
-            // toolbar: [
-            //     // [groupName, [list of button]]
-            //     ['style', ['bold', 'italic', 'underline', 'clear']],
-            //     ['font', ['strikethrough', 'superscript', 'subscript']],
-            //     ['fontsize', ['fontsize']],
-            //     ['color', ['color']],
-            //     ['para', ['ul', 'ol', 'paragraph']],
-            //     ['height', ['height']]
-            // ]
-        });
-    });
-
-</script>

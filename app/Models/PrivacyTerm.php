@@ -69,4 +69,12 @@ class PrivacyTerm extends Model
         return $this->belongsTo('App\Models\Partner');
     }
 
+    /**
+     * @return bool
+     */
+    public function isLatestVersion(){
+        return $this->version == $this->promotion->getMostRecentPrivacyTermVersion();
+    }
+
+
 }
