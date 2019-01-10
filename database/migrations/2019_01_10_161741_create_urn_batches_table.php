@@ -16,7 +16,6 @@ class CreateUrnBatchesTable extends Migration
         Schema::create('urn_batches', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('urn_specification_id');
-            $table->integer('urn_id');
             $table->string('batch_name');
             $table->timestamps();
         });

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @package App\Models
  *
  * @property integer $urn_specification_id
+ * @property integer $urn_batch_id
  * @property string $urn
  * @property
  */
@@ -26,6 +27,7 @@ class Urn extends Model
      */
     protected $fillable = [
         'urn_specification_id',
+        'urn_batch_id',
         'urn',
     ];
 

@@ -92,12 +92,28 @@ class UrnSpecification extends Model
             throw new \Exception('PI are not to generate the URNs');
         }
 
+        $this->_generateUrns($batchName);
+
 
     }
 
-
-    private function _generateUrns()
+    /**
+     * @param $batchName
+     * @return UrnBatch
+     */
+    private function _generateUrns($batchName)
     {
+        $urnBatch = new UrnBatch();
+        $urnBatch->batch_name = $batchName;
+        $urnBatch->urn_specification_id = $this->id;
+
+        for ($i = 0; $i < $this->urn_quantity; $i++) {
+
+
+        }
+
+        return $urnBatch;
+
     }
 
 
