@@ -87,7 +87,22 @@ class Promotion extends Model
      */
     public function promoTerms()
     {
-        return $this->hasMany('App\Models\PromoTerm');
+        $promoTerms = $this->hasMany('App\Models\PromoTerm')->orderBy('version', 'desc');
+
+        return $promoTerms;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getMostRecentPromoTermVersion(){
+
+        /** @var Collection $promoTerms */
+        $promoTerms = $this->promoTerms;
+
+        $mostRecentPromoTerm = $promoTerms->first();
+
+        return ($mostRecentPromoTerm instanceof PromoTerm) ? $mostRecentPromoTerm->version : null;
     }
 
     /**

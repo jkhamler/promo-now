@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Language;
 use App\Models\PromoTerm;
 use App\Models\Promotion;
 use Carbon\Carbon;
@@ -67,22 +66,24 @@ class PromoTermsController extends Controller
             'termsBodyText' => 'required',
         ]);
 
-
         /** @var PromoTerm $promoTerm */
         $promoTerm = PromoTerm::find($promoTermId);
 
-        $promoTerm->version = $promoTerm->version + 1;
-        $promoTerm->valid_from = Carbon::parse($data['validFrom']);
-        $promoTerm->valid_until = Carbon::parse($data['validUntil']);
-        $promoTerm->title = $data['title'];
-        $promoTerm->acceptance_text = $data['acceptanceText'];
-        $promoTerm->short_terms = $data['shortTerms'];
-        $promoTerm->terms_body_text = $data['termsBodyText'];
-        $promoTerm->updated_by_user_id = Auth::id();
+        $revisedPromoTerm = new PromoTerm();
 
-        $promoTerm->save();
+        $revisedPromoTerm->promotion_id = $promoTerm->promotion_id;
+        $revisedPromoTerm->version = $promoTerm->version + 1;
+        $revisedPromoTerm->valid_from = Carbon::parse($data['validFrom']);
+        $revisedPromoTerm->valid_until = Carbon::parse($data['validUntil']);
+        $revisedPromoTerm->title = $data['title'];
+        $revisedPromoTerm->acceptance_text = $data['acceptanceText'];
+        $revisedPromoTerm->short_terms = $data['shortTerms'];
+        $revisedPromoTerm->terms_body_text = $data['termsBodyText'];
+        $revisedPromoTerm->updated_by_user_id = Auth::id();
 
-        return redirect()->to("/promotions/{$promoTerm->promotion_id}/promo-terms/{$promoTermId}");
+        $revisedPromoTerm->save();
+
+        return redirect()->to("/promotions/{$promoTerm->promotion_id}/promo-terms/{$revisedPromoTerm->id}");
 
     }
 

@@ -36,6 +36,8 @@
 
     <h2>Promo Terms</h2>
 
+    @if(!$promoTerm->isLatestVersion())<h4>(Archived - last updated {{ $promoTerm->updated_at->format('d/m/Y H:i:s') }})</h4>@endif
+
     <div class="col-12">
 
         <form method="POST" action="{{ route('updatePromoTerms', [$promoTerm->id, 'id']) }}" id="createPromoTermsForm">
@@ -54,26 +56,28 @@
             <div class="form-group">
                 <label for="validFrom">Valid From</label>
                 <input type="datetime-local" class="form-control" id="validFrom" name="validFrom"
-                       required
+                       required @php if(!$promoTerm->isLatestVersion()) echo 'disabled'; @endphp
                        value="<?php echo e(\App\Models\Promotion::dateFieldFormat($promoTerm->valid_from)); ?>">
             </div>
 
             <div class="form-group">
                 <label for="validUntil">Valid Until</label>
                 <input type="datetime-local" class="form-control" id="validUntil" name="validUntil"
-                       required
+                       required @php if(!$promoTerm->isLatestVersion()) echo 'disabled'; @endphp
                        value="<?php echo e(\App\Models\Promotion::dateFieldFormat($promoTerm->valid_until)); ?>">
             </div>
 
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" class="form-control" id="title" name="title" value="{{ $promoTerm->title }}"
+                       @php if(!$promoTerm->isLatestVersion()) echo 'disabled'; @endphp
                        placeholder="Title" required>
             </div>
 
             <div class="form-group">
                 <label for="acceptanceText">Acceptance Text</label>
                 <textarea class="form-control" rows="2" id="acceptanceText" name="acceptanceText"
+                          @php if(!$promoTerm->isLatestVersion()) echo 'disabled'; @endphp
                           placeholder="E.g. 'I have read and accept the terms and conditions and confirm I am over 18 years old.'">{{ $promoTerm->acceptance_text }}</textarea>
             </div>
 
@@ -81,6 +85,7 @@
                 <label for="shortTerms">Short Terms</label>
                 <input type="text" class="form-control" id="shortTerms" name="shortTerms"
                        value="{{ $promoTerm->short_terms }}"
+                       @php if(!$promoTerm->isLatestVersion()) echo 'disabled'; @endphp
                        placeholder="Short Description" required>
             </div>
 
@@ -90,9 +95,10 @@
                           rows="3">{{ $promoTerm->terms_body_text }}</textarea>
             </div>
 
+            @if($promoTerm->isLatestVersion())
+                <button type="submit" class="btn btn-primary">Submit</button>
+            @endif
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
         </form>
     </div>
 
@@ -102,6 +108,7 @@
 
         $(document).ready(function () {
             $('#termsBodyText').summernote({
+
                 // toolbar: [
                 //     // [groupName, [list of button]]
                 //     ['style', ['bold', 'italic', 'underline', 'clear']],
@@ -113,6 +120,17 @@
                 // ]
             });
         });
+
+        @if(!$promoTerm->isLatestVersion())
+
+        $(document).ready(function () {
+            $('#termsBodyText').summernote('disable');
+        });
+
+        @endif
+
+
+
 
     </script>
 

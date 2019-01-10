@@ -59,12 +59,13 @@ EOT;
             @foreach ($promotion->promoTerms as $term)
                 @php /** @var $term \App\Models\PromoTerm */@endphp
                 <tr class="clickable-row">
-                    <td>{{ $term->version }}</td>
+                    <td>{{ $term->version }}@if($term->isLatestVersion()) (Active) @endif</td>
                     <td>{{ $term->valid_from->format('Y-m-d') }}</td>
                     <td>{{ $term->valid_until->format('Y-m-d') }}</td>
+
                     <td>
                         <form action="/promotions/{{ $promotion->id }}/promo-terms/{{$term->id}}">
-                            <input type="submit" value="View/Edit"/>
+                            <input type="submit" @if($term->version == $promotion->getMostRecentPromoTermVersion())value="View/Edit"@else value="View Archive"@endif/>
                         </form>
                     </td>
                 </tr>

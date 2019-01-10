@@ -9,12 +9,12 @@
 
         <ul class="nav navbar-nav">
             <li class="nav-item"><a href="/" class="nav-link">Dashboard</a></li>
-            <li class="nav-item"><a href="/" class="nav-link">Contacts</a></li>
-            <li class="nav-item"><a href="/" class="nav-link">Campaigns</a></li>
-            <li class="nav-item"><a href="/" class="nav-link">Forms</a></li>
-            <li class="nav-item"><a href="/" class="nav-link">Automation</a></li>
+            <li class="nav-item"><a href="/" class="nav-link">Customer Service</a></li>
+            <li class="nav-item"><a href="/" class="nav-link">Fulfilment</a></li>
             <li class="nav-item"><a href="/promotions" class="nav-link">Promotions</a></li>
             <li class="nav-item"><a href="/" class="nav-link">Reports</a></li>
+            <li class="nav-item"><a href="/" class="nav-link">Partners</a></li>
+            <li class="nav-item"><a href="/" class="nav-link">Brand Vault</a></li>
         </ul>
 
         <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
