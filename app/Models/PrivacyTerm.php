@@ -73,7 +73,7 @@ class PrivacyTerm extends Model
      * @return bool
      */
     public function isLatestVersion(){
-        return $this->version == $this->promotion->getMostRecentPrivacyTermVersion();
+        return $this->version == $this->promotion->getMostRecentPrivacyTermVersion($this->partner_id);
     }
 
 

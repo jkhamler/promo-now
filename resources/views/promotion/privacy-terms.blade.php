@@ -25,7 +25,7 @@
 
         @php
 
-            if($promotion->privacyTerms->count() == 0){
+            if($promotion->outstandingPrivacyTermsPartners()->count() > 0){
 
             echo <<<EOT
             <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target=".create-privacy-term-modal">Create Privacy Terms
@@ -62,7 +62,7 @@ EOT;
                     <td>
                         <form action="/promotions/{{ $promotion->id }}/privacy-terms/{{$privacyTerm->id}}">
                             <input type="submit"
-                                   @if($privacyTerm->version == $promotion->getMostRecentPrivacyTermVersion())value="View/Edit"
+                                   @if($privacyTerm->isLatestVersion()) value="View/Edit"
                                    @else value="View Archive"@endif/>
                         </form>
                     </td>
@@ -97,7 +97,7 @@ EOT;
                     <div class="form-group">
                         <label for="partnerId">Partner</label>
                         <select class="form-control" id="partnerId" name="partnerId">
-                            @foreach ($promotion->outstandingPromoTermsPartners() as $partner)
+                            @foreach ($promotion->outstandingPrivacyTermsPartners() as $partner)
                                 <option value="{{ $partner->id }}">{{ $partner->name }}</option>
                             @endforeach
                         </select>

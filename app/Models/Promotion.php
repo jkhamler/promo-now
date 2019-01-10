@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 /**
  * App\Models\Promotion
@@ -106,16 +107,20 @@ class Promotion extends Model
     }
 
     /**
-     * @return int|null
+     * @param $partnerId
+     * @return int
      */
-    public function getMostRecentPrivacyTermVersion(){
+    public function getMostRecentPrivacyTermVersion($partnerId){
 
-        /** @var Collection $privacyTerms */
-        $privacyTerms = $this->privacyTerms;
+        $version = DB::table('privacy_terms AS pt')
+            ->select('pt.version')
+            ->where('pt.promotion_id', $this->id)
+            ->where('pt.partner_id', $partnerId)
+            ->orderBy('pt.version', 'desc')
+            ->first();
 
-        $mostRecentPrivacyTerm = $privacyTerms->first();
+        return ($version instanceof \stdClass) ? $version->version : null;
 
-        return ($mostRecentPrivacyTerm instanceof PrivacyTerm) ? $mostRecentPrivacyTerm->version : null;
     }
 
     /**
@@ -123,7 +128,7 @@ class Promotion extends Model
      */
     public function privacyTerms()
     {
-        return $this->hasMany('App\Models\PrivacyTerm');
+        return $this->hasMany('App\Models\PrivacyTerm')->orderBy('version', 'desc');
     }
 
     /**
@@ -163,26 +168,26 @@ class Promotion extends Model
     }
 
     /**
-     * Returns a list of partners for whom promo terms have not been set up
+     * Returns a list of partners for whom privacy terms have not been set up
      *
      * @return Partner[]|Collection
      */
-    public function outstandingPromoTermsPartners()
+    public function outstandingPrivacyTermsPartners()
     {
         $allPartners = $this->partners();
-        /** @var Collection $existingPromoTerms */
-        $existingPromoTerms = $this->promoTerms;
+        /** @var Collection $existingPrivacyTerms */
+        $existingPrivacyTerms = $this->privacyTerms;
 
-        if ($existingPromoTerms->isEmpty()) {
+        if ($existingPrivacyTerms->isEmpty()) {
             return $allPartners;
         }
 
         $outstandingPartners = new Collection();
 
-        /** @var PromoTerm $existingPromoTerm */
-        foreach ($existingPromoTerms as $existingPromoTerm) {
+        /** @var PrivacyTerm $existingPrivacyTerm */
+        foreach ($existingPrivacyTerms as $existingPrivacyTerm) {
             foreach ($allPartners as $allPartner) {
-                if ($existingPromoTerm->partner_id !== $allPartner->id &&
+                if ($existingPrivacyTerm->partner_id !== $allPartner->id &&
                     (!$outstandingPartners->contains($allPartner))) {
                     $outstandingPartners->add($allPartner);
                 }

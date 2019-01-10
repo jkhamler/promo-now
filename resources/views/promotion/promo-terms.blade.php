@@ -61,7 +61,7 @@ EOT;
 
                     <td>
                         <form action="/promotions/{{ $promotion->id }}/promo-terms/{{$promoTerm->id}}">
-                            <input type="submit" @if($promoTerm->version == $promotion->getMostRecentPromoTermVersion())value="View/Edit"@else value="View Archive"@endif/>
+                            <input type="submit" @if($promoTerm->isLatestVersion()))value="View/Edit"@else value="View Archive"@endif/>
                         </form>
                     </td>
                 </tr>
