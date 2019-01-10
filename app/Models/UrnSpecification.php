@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $reference_id
  * @property integer $promotion_id
  * @property integer $tier_item_id
- * @property string $batch_name
  * @property string $purpose
  * @property integer $length
  * @property string $included_characters
@@ -50,7 +49,6 @@ class UrnSpecification extends Model
     protected $fillable = [
         'reference_id',
         'promotion_id',
-        'batch_name',
         'purpose',
         'length',
         'included_characters',
@@ -82,6 +80,24 @@ class UrnSpecification extends Model
             $purpose = $this->purpose;
         }
         return self::PURPOSES[$purpose] ?? null;
+    }
+
+    /**
+     * @param $batchName
+     * @throws \Exception
+     */
+    public function generateUrnBatch($batchName)
+    {
+        if (!$this->pi_to_generate) {
+            throw new \Exception('PI are not to generate the URNs');
+        }
+
+
+    }
+
+
+    private function _generateUrns()
+    {
     }
 
 

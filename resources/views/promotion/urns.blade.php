@@ -18,7 +18,6 @@
         <table class="table">
             <tr>
                 <td>Reference ID</td>
-                <td>Batch Name</td>
                 <td>Purpose</td>
                 <td>Length</td>
                 <td>Quantity</td>
@@ -32,7 +31,6 @@
                 @endphp
                 <tr class="clickable-row">
                     <td>{{ $urnSpecification->reference_id }}</td>
-                    <td>{{ $urnSpecification->batch_name }}</td>
                     <td>{{ $urnSpecification->getPurposeLabel() }}</td>
                     <td>{{ $urnSpecification->length }}</td>
                     <td>{{ $urnSpecification->urn_quantity }}</td>
@@ -75,14 +73,6 @@
                                aria-describedby="levelHelp" required
                                placeholder="Enter Reference ID">
                         <small id="nameHelp" class="form-text text-muted">E.g. '5000 Winning Codes'
-                        </small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="batchName">Batch Name</label>
-                        <input type="text" class="form-control" id="batchName" name="batchName"
-                               placeholder="Enter batch name" required>
-                        <small id="nameHelp" class="form-text text-muted">E.g. Level 1
                         </small>
                     </div>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Language;
 use App\Models\Promotion;
+use App\Models\UrnBatch;
 use App\Models\UrnSpecification;
 use Illuminate\Http\Request;
 
@@ -74,7 +75,6 @@ class UrnController extends Controller
 
         $request->validate([ // todo - clean this up.
 //            'referenceId' => 'string',
-//            'batchName' => 'string',
 //            'purpose' => 'string',
 //            'length' => 'string',
 //            'includedChars' => 'string',
@@ -92,9 +92,6 @@ class UrnController extends Controller
 
         if (isset($data['referenceId'])) {
             $urnSpecification->reference_id = $data['referenceId'];
-        }
-        if (isset($data['batchName'])) {
-            $urnSpecification->batch_name = $data['batchName'];
         }
         if (isset($data['purpose'])) {
             $urnSpecification->purpose = $data['purpose'];
@@ -138,7 +135,22 @@ class UrnController extends Controller
         return redirect()->to("/promotions/{$urnSpecification->promotion_id}/urn-specifications/{$urnSpecification->id}");
     }
 
-    public function generateURNsAction($urnSpecificationId){
+    /**
+     * @param $urnSpecificationId
+     * @param Request $request
+     */
+    public function generateBatchAction($urnSpecificationId, Request $request)
+    {
+        $data = $request->all();
+
+        $request->validate([ // todo - clean this up.
+        ]);
+
+        /** @var UrnSpecification $urnSpecification */
+        $urnSpecification = UrnSpecification::find($urnSpecificationId);
+
+        $urnBatch = $urnSpecification->generateUrnBatch($data['batchName']);
+
 
     }
 

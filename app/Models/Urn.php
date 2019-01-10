@@ -28,4 +28,13 @@ class Urn extends Model
         'urn_specification_id',
         'urn',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function urnBatch()
+    {
+        return $this->belongsTo('App\Models\URNBatch');
+    }
+
 }

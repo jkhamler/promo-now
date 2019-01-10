@@ -11,7 +11,6 @@ class PromotionsSeeder extends Seeder
      */
     public function run()
     {
-
         $promotion = new \App\Models\Promotion();
 
         $promotion->name = 'Test Promotion';
@@ -39,7 +38,6 @@ class PromotionsSeeder extends Seeder
         $urnSpecification = new \App\Models\UrnSpecification();
         $urnSpecification->reference_id = 'Test URN Reference ID';
         $urnSpecification->promotion_id = $promotion->id;
-        $urnSpecification->batch_name = 'Test Batch';
         $urnSpecification->purpose = \App\Models\UrnSpecification::URN_PURPOSE_PI_TESTING;
         $urnSpecification->length = 350;
         $urnSpecification->included_characters = 'ABCD1234';

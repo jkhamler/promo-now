@@ -17,7 +17,6 @@ class CreateUrnSpecificationsTable extends Migration
             $table->increments('id');
             $table->string('reference_id')->nullable();
             $table->integer('promotion_id')->nullable();
-            $table->string('batch_name')->nullable();
             $table->enum('purpose', [
                 \App\Models\UrnSpecification::URN_PURPOSE_PRINTERS,
                 \App\Models\UrnSpecification::URN_PURPOSE_CUSTOMER_SERVICE,
