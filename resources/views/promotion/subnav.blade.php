@@ -17,6 +17,9 @@
     <li class="nav-item">
         <a class="nav-link" id="privacy-terms-tab" data-toggle="tab" href="#privacyTerms" role="tab" aria-controls="contact" aria-selected="false">Privacy</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" id="faqs-tab" data-toggle="tab" href="#faqs" role="tab" aria-controls="contact" aria-selected="false">FAQs</a>
+    </li>
     {{--<li class="nav-item">--}}
         {{--<a class="nav-link" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="contact" aria-selected="false">Users</a>--}}
     {{--</li>--}}

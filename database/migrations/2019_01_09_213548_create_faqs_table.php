@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFAQGroupsTable extends Migration
+class CreateFAQsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateFAQGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('f_a_q_groups', function (Blueprint $table) {
+        Schema::create('faqs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('promotion_id');
-            $table->string('name');
-            $table->string('description')->nullable();
+            $table->integer('faq_group_id');
+            $table->string('title');
+            $table->string('body_text');
+            $table->integer('order');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateFAQGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('f_a_q_groups');
+        Schema::dropIfExists('faqs');
     }
 }

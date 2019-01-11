@@ -106,9 +106,16 @@ class UrnSpecification extends Model
         $urnBatch = new UrnBatch();
         $urnBatch->batch_name = $batchName;
         $urnBatch->urn_specification_id = $this->id;
+        $urnBatch->save();
 
         for ($i = 0; $i < $this->urn_quantity; $i++) {
 
+            $urn = new Urn();
+            $urn->urn_batch_id = $urnBatch->id;
+
+
+
+            $urn->save();
 
         }
 

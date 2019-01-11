@@ -44,7 +44,8 @@
                 @include('promotion.mechanics')
                 @include('promotion.promo-terms')
                 @include('promotion.privacy-terms')
-                @include('promotion.users')
+                @include('promotion.faqs')
+                {{--@include('promotion.users')--}}
 
             </div>
 

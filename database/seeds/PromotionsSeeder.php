@@ -51,5 +51,46 @@ class PromotionsSeeder extends Seeder
 
         $urnSpecification->save();
 
+        $faqGroupGeneral = new \App\Models\FAQGroup();
+        $faqGroupGeneral->promotion_id = $promotion->id;
+        $faqGroupGeneral->name = 'General';
+        $faqGroupGeneral->description = 'General FAQs';
+        $faqGroupGeneral->save();
+
+        $generalFaq = new \App\Models\FAQ();
+        $generalFaq->faq_group_id = $faqGroupGeneral->id;
+        $generalFaq->title = 'Am I eligible?';
+        $generalFaq->body_text = 'To be eligible you must be a UK resident over 18 years of age..';
+        $generalFaq->order = 1;
+        $generalFaq->save();
+
+        $generalFaq = new \App\Models\FAQ();
+        $generalFaq->faq_group_id = $faqGroupGeneral->id;
+        $generalFaq->title = 'What can I win?';
+        $generalFaq->body_text = 'You can win some amazing prizes shown on the promo site...';
+        $generalFaq->order = 2;
+        $generalFaq->save();
+
+        $faqGroupPrizeClaiming = new \App\Models\FAQGroup();
+        $faqGroupPrizeClaiming->promotion_id = $promotion->id;
+        $faqGroupPrizeClaiming->name = 'Claiming Prizes';
+        $faqGroupPrizeClaiming->description = 'Claiming Prizes FAQs';
+        $faqGroupPrizeClaiming->save();
+
+        $generalFaq = new \App\Models\FAQ();
+        $generalFaq->faq_group_id = $faqGroupPrizeClaiming->id;
+        $generalFaq->title = 'How do I claim my prize?';
+        $generalFaq->body_text = 'To claim your prize please blah blah blah blah';
+        $generalFaq->order = 1;
+        $generalFaq->save();
+
+        $generalFaq = new \App\Models\FAQ();
+        $generalFaq->faq_group_id = $faqGroupPrizeClaiming->id;
+        $generalFaq->title = 'Is there a time limit?';
+        $generalFaq->body_text = 'You must claim your prize before blah blah blah';
+        $generalFaq->order = 2;
+        $generalFaq->save();
+
+
     }
 }

@@ -15,12 +15,23 @@ use Illuminate\Database\Eloquent\Model;
  */
 class FAQGroup extends Model
 {
+    protected $table = 'faq_groups';
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function promotion()
+    {
+        return $this->belongsTo('App\Models\Promotion');
+    }
+
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function faqs()
     {
-        $promoTerms = $this->hasMany('App\Models\FAQ')->orderBy('version', 'desc');
+        $promoTerms = $this->hasMany('App\Models\FAQ', 'faq_group_id')->orderBy('order');
 
         return $promoTerms;
     }

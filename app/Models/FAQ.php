@@ -15,11 +15,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class FAQ extends Model
 {
+    protected $table = 'faqs';
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function faqGroup()
     {
-        return $this->belongsTo('App\Models\FAQGroup');
+        return $this->belongsTo('App\Models\FAQGroup', 'faq_group_id');
     }
 }

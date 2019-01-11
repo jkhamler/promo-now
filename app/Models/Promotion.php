@@ -86,6 +86,14 @@ class Promotion extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function faqGroups()
+    {
+        return $this->hasMany('App\Models\FAQGroup');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function promoTerms()
     {
         $promoTerms = $this->hasMany('App\Models\PromoTerm')->orderBy('version', 'desc');
