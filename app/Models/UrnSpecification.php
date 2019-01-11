@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -71,6 +72,15 @@ class UrnSpecification extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function urnBatches()
+    {
+        return $this->hasMany('App\Models\UrnBatch');
+    }
+
+
+    /**
      * @param null $purpose
      * @return string|null
      */
@@ -112,15 +122,13 @@ class UrnSpecification extends Model
 
             $urn = new Urn();
             $urn->urn_batch_id = $urnBatch->id;
-
-
+            $urn->urn = "ABC{$i}";
 
             $urn->save();
 
         }
 
         return $urnBatch;
-
     }
 
 

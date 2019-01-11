@@ -33,4 +33,14 @@ class UrnBatch extends Model
     {
         return $this->hasMany('App\Models\URN');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function urnSpecification()
+    {
+        return $this->belongsTo('App\Models\URNSpecification');
+    }
+
+
 }

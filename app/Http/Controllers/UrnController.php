@@ -38,7 +38,6 @@ class UrnController extends Controller
         $urnSpecification->save();
 
         return redirect()->to("/promotions/{$promotionId}/urn-specifications/{$urnSpecification->id}");
-
     }
 
     /**
@@ -51,6 +50,7 @@ class UrnController extends Controller
         /** @var Promotion $promotion */
         $promotion = Promotion::find($promotionId);
 
+        /** @var UrnSpecification $urnSpecification */
         $urnSpecification = UrnSpecification::find($urnSpecificationId);
 
         return view('urn.specification.details', [
@@ -60,7 +60,6 @@ class UrnController extends Controller
             'languages' => Language::all(),
         ]);
     }
-
 
     /**
      * Update the URN Specification
@@ -138,8 +137,10 @@ class UrnController extends Controller
     /**
      * @param $urnSpecificationId
      * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function generateBatchAction($urnSpecificationId, Request $request)
+    public function generateUrnBatchAction ($urnSpecificationId, Request $request)
     {
         $data = $request->all();
 
@@ -151,7 +152,7 @@ class UrnController extends Controller
 
         $urnBatch = $urnSpecification->generateUrnBatch($data['batchName']);
 
-
+        return redirect()->to("/promotions/{$urnSpecification->promotion_id}/urn-specifications/{$urnSpecification->id}");
     }
 
 

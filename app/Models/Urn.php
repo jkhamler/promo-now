@@ -26,7 +26,6 @@ class Urn extends Model
      * @var array
      */
     protected $fillable = [
-        'urn_specification_id',
         'urn_batch_id',
         'urn',
     ];

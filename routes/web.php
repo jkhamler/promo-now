@@ -65,6 +65,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('urn-specifications')->group(function () {
         Route::post('/', 'UrnController@createUrnSpecificationAction')->name('createUrnSpecification');
         Route::patch('/{urnSpecificationId}', 'UrnController@updateUrnSpecificationAction')->name('updateUrnSpecification');
+        Route::post('/batch/{urnSpecificationId}', 'UrnController@generateUrnBatchAction')->name('generateUrnBatch');
     });
 
     Route::get('/home', 'HomeController@index')->name('home');

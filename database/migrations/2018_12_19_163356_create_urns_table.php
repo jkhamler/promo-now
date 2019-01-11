@@ -15,7 +15,7 @@ class CreateUrnsTable extends Migration
     {
         Schema::create('urns', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('urn_specification_id');
+            $table->integer('urn_batch_id');
             $table->string('urn');
             $table->timestamps();
         });
