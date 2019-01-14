@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 \Illuminate\Support\Facades\Auth::routes();
 
+Route::prefix('entrants')->group(function () {
+    Route::get('/', 'EntrantController@indexAction')->name('entrantHome');
+    Route::post('/', 'EntrantController@submitEntryAction')->name('submitEntry');
+    Route::post('/log-support-ticket', 'EntrantController@logSupportTicketAction')->name('logSupportTicket');
+});
+
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/', 'HomeController@index')->name('home');
