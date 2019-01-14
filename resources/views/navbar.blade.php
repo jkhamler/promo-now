@@ -29,7 +29,7 @@
                     @php
                         /** @var \App\User $authenticatable */
                             $authenticatable=\Illuminate\Support\Facades\Auth::user();
-                            if($authenticatable){echo $authenticatable->getName();}
+                            if($authenticatable){echo $authenticatable->getFullName();}
                     @endphp
                     <span class="caret"></span>
                 </button>
