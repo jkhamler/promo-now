@@ -51,31 +51,31 @@
             <h1 class="text-center">Entrant Homepage</h1>
 
 
-            <form method="POST" action="{{ route('logSupportTicket') }}">
+            <form method="POST" action="{{ route('submitEntry') }}">
 
                 @csrf
 
                 <div class="form-group">
                     <label for="description">URN</label>
-                    <input type="text" class="form-control" id="urn" name="urn"
+                    <input type="text" class="form-control" id="urn" name="urn" required
                            placeholder="Please enter your URN e.g. 'ABC123'">
                 </div>
 
                 <div class="form-group">
                     <label for="description">Email</label>
-                    <input type="text" class="form-control" id="email" name="email"
+                    <input type="text" class="form-control" id="email" name="email" required
                            placeholder="Please enter your Email address e.g. 'jon@email.com'">
                 </div>
 
                 <div class="form-group">
                     <label for="firstName">First Name</label>
-                    <input type="text" class="form-control" id="firstName" name="firstName"
+                    <input type="text" class="form-control" id="firstName" name="firstName" required
                            placeholder="E.g. 'John'">
                 </div>
 
                 <div class="form-group">
                     <label for="firstName">Surname</label>
-                    <input type="text" class="form-control" id="surname" name="surname"
+                    <input type="text" class="form-control" id="surname" name="surname" required
                            placeholder="E.g. 'Smith'">
                 </div>
 

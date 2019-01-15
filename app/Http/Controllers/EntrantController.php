@@ -18,9 +18,32 @@ class EntrantController extends Controller
 
     /**
      * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function submitEntryAction(Request $request)
     {
+
+        $request->validate([
+//            'urn' => 'string',
+//            'email' => 'string|email',
+//            'firstName' => 'string',
+//            'surname' => 'string',
+        ]);
+
+
+
+
+
+
+
+        return redirect()->to("/entrants");
+
+
+//        echo '<pre>';
+//        echo print_r($request->all(), true);
+//        echo '</pre>';
+//        exit();
+//
 
     }
 
