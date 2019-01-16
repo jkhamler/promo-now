@@ -57,8 +57,15 @@ class EntrantController extends Controller
      */
     public function logSupportTicketAction(Request $request)
     {
+        $request->validate([
+            'firstName' => 'string',
+            'surname' => 'string',
+            'emailAddress' => 'string',
+            'issue' => 'string',
+        ]);
 
-
+        echo 'OK';
+        exit;
     }
 
 
