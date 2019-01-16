@@ -20,6 +20,29 @@ class EntrantController extends Controller
     }
 
     /**
+     * Valid URN
+     *
+     * @param $urnId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function validURNAction($urnId)
+    {
+        $urn = URN::find($urnId);
+
+        return view('entrant.valid-urn', ['urn' => $urn]);
+    }
+
+    /**
+     * Invalid URN
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function invalidURNAction()
+    {
+        return view('entrant.invalid-urn');
+    }
+
+    /**
      * Log Support Ticket
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -38,62 +61,51 @@ class EntrantController extends Controller
 
     }
 
-    /**
-     * Invalid Entry Code
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function invalidEntryCodeAction()
-    {
-        return view('entrant.invalid-entry-code');
-    }
 
     /**
+     * Submit URN
+     *
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function submitEntryAction(Request $request)
+    public function submitURNAction(Request $request)
     {
-
         $request->validate([
-//            'urn' => 'string',
-//            'emailAddress' => 'string|email',
-//            'firstName' => 'string',
-//            'surname' => 'string',
+            'urnId' => 'string',
+            'firstName' => 'string',
+            'surname' => 'string',
+            'emailAddress' => 'string',
         ]);
 
-        $urn = Urn::findByUrn($request->input('urn'));
+        /** @var Urn $urn */
+        $urn = Urn::find($request->input('urnId'));
 
-        if (!$urn) {
-            return redirect()->to("/entrants/invalid-entry-code");
-        } else {
+        if (!$urn->redeemed_at) {
 
-            $existingPersonForEmailAddress = Person::findByEmailAddress($request->input('emailAddress'));
+            $person = Person::findByEmailAddress($request->input('emailAddress'));
 
-            if ($existingPersonForEmailAddress) {
-
-                $personId = $existingPersonForEmailAddress->id;
-
-            } else {
+            if (!$person) {
 
                 $person = new Person();
                 $person->first_name = $request->input('firstName');
                 $person->surname = $request->input('surname');
                 $person->email_address = $request->input('emailAddress');
                 $person->save();
-
-                $personId = $person->id;
             }
 
-
             $entrant = new Entrant();
-            $entrant->person_id = $personId;
             $entrant->urn_id = $urn->id;
+            $entrant->person_id = $person->id;
+            $entrant->ip_address = $request->ip();
+            $entrant->user_agent = $request->userAgent();
 
+            $entrant->save();
 
+            $urn->redeemed_at = new \DateTime();
+            $urn->save();
         }
 
-
+        return view('entrant.entry-summary');
     }
 
 

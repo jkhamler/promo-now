@@ -4,5 +4,7 @@
 
 @section('content')
 
+    <h2 class="text-center">Log Support Ticket</h2>
+
 
 @endsection

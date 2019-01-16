@@ -18,8 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('enter-promo-code')->group(function () {
     Route::get('/', 'EntrantController@enterPromoCodeAction')->name('enterPromoCode');
     Route::get('/support', 'EntrantController@supportTicketAction')->name('entrantSupportTicket');
-//    Route::get('/invalid-code', 'EntrantController@invalidEntryCodeAction')->name('invalidEntryCode');
-//    Route::post('/', 'EntrantController@submitEntryAction')->name('submitEntry');
+    Route::get('/urn/{urnId}', 'EntrantController@validURNAction')->name('validURN');
+    Route::get('/invalid-urn', 'EntrantController@invalidURNAction')->name('invalidURN');
+    Route::post('/submit-urn', 'EntrantController@submitURNAction')->name('submitURN');
 });
 
 Route::group(['middleware' => ['auth']], function () {
