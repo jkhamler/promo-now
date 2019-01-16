@@ -1,4 +1,4 @@
-<!-- Stored in resources/views/promotion/index.blade.php -->
+<!-- Stored in resources/views/promotion/enter-promo-code.blade.php -->
 
 @extends('app')
 

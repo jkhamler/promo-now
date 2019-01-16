@@ -15,10 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 \Illuminate\Support\Facades\Auth::routes();
 
-Route::prefix('entrants')->group(function () {
-    Route::get('/', 'EntrantController@indexAction')->name('entrantHome');
-    Route::post('/', 'EntrantController@submitEntryAction')->name('submitEntry');
-    Route::post('/log-support-ticket', 'EntrantController@logSupportTicketAction')->name('logSupportTicket');
+Route::prefix('enter-promo-code')->group(function () {
+    Route::get('/', 'EntrantController@enterPromoCodeAction')->name('enterPromoCode');
+    Route::get('/support', 'EntrantController@supportTicketAction')->name('entrantSupportTicket');
+//    Route::get('/invalid-code', 'EntrantController@invalidEntryCodeAction')->name('invalidEntryCode');
+//    Route::post('/', 'EntrantController@submitEntryAction')->name('submitEntry');
 });
 
 Route::group(['middleware' => ['auth']], function () {

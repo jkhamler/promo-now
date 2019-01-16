@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $urn_specification_id
  * @property integer $urn_batch_id
  * @property string $urn
+ * @property \DateTime $redeemed_at
  * @property
  */
 class Urn extends Model
@@ -20,6 +21,7 @@ class Urn extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+        'redeemed_at',
     ];
 
     /**
@@ -36,6 +38,14 @@ class Urn extends Model
     public function urnBatch()
     {
         return $this->belongsTo('App\Models\URNBatch');
+    }
+
+    /**
+     * @param $urn
+     * @return Urn|null
+     */
+    public static function findByUrn($urn){
+        return self::where('urn', $urn)->first();
     }
 
 }

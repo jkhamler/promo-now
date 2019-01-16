@@ -17,6 +17,7 @@ class CreateUrnsTable extends Migration
             $table->increments('id');
             $table->integer('urn_batch_id');
             $table->string('urn');
+            $table->dateTime('redeemed_at')->nullable();
             $table->timestamps();
         });
     }
