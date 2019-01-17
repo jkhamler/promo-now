@@ -94,7 +94,7 @@
                 <input type="text" class="form-control" id="cookieTitle" name="cookieTitle"
                        value="{{ $privacyTerm->cookie_title }}"
                        @php if(!$privacyTerm->isLatestVersion()) echo 'disabled'; @endphp
-                       placeholder="Cookie Title" required>
+                       placeholder="Cookie Title">
             </div>
 
             <div class="form-group">
@@ -104,7 +104,7 @@
             </div>
 
             <div class="form-group">
-                <label for="gdprEmail">GDPR Email</label>
+                <label for="gdprEmail">GDPR Email Contact</label>
                 <input type="text" class="form-control" id="gdprEmail" name="gdprEmail"
                        value="{{ $privacyTerm->gdpr_contact_email }}"
                        placeholder="e.g. privacyoffer@client.com"

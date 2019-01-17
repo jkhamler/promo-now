@@ -63,7 +63,7 @@ class PromoTermsController extends Controller
             'validUntil' => 'required|date|after:validFrom',
             'title' => 'required',
             'acceptanceText' => 'required',
-            'shortTerms' => 'required',
+            'shortTerms' => 'string|nullable',
             'termsBodyText' => 'required',
         ]);
 

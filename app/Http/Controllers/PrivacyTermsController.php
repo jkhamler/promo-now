@@ -23,11 +23,11 @@ class PrivacyTermsController extends Controller
             'promotionId' => 'required',
             'partnerId' => 'required',
             'title' => 'required',
-            'acceptanceText' => 'required',
+            'acceptanceText' => 'string|nullable',
             'privacyTermsBodyText' => 'required',
-            'marketingOptIn' => 'required',
-            'cookieTitle' => 'required',
-            'cookieBodyText' => 'required',
+            'marketingOptIn' => 'string|nullable',
+            'cookieTitle' => 'string|nullable',
+            'cookieBodyText' => 'string|nullable',
             'gdprEmail' => 'required|email',
         ]);
 
@@ -64,9 +64,9 @@ class PrivacyTermsController extends Controller
             'title' => 'required',
             'acceptanceText' => 'required',
             'privacyTermsBodyText' => 'required',
-            'marketingOptIn' => 'required',
-            'cookieTitle' => 'required',
-            'cookieBodyText' => 'required',
+            'marketingOptIn' => 'string|nullable',
+            'cookieTitle' => 'string|nullable',
+            'cookieBodyText' => 'string|nullable',
             'gdprEmail' => 'required',
         ]);
 

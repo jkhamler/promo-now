@@ -86,7 +86,7 @@
                 <input type="text" class="form-control" id="shortTerms" name="shortTerms"
                        value="{{ $promoTerm->short_terms }}"
                        @php if(!$promoTerm->isLatestVersion()) echo 'disabled'; @endphp
-                       placeholder="Short Description" required>
+                       placeholder="Short Terms">
             </div>
 
             <div class="form-group">

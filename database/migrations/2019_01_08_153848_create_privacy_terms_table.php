@@ -21,7 +21,7 @@ class CreatePrivacyTermsTable extends Migration
             $table->integer('authorised_by_user_id')->nullable();
             $table->dateTime('authorised_at')->nullable();
             $table->string('title');
-            $table->string('acceptance_text');
+            $table->string('acceptance_text')->nullable();
             $table->longText('terms_body_text');
             $table->string('marketing_opt_in')->nullable();
             $table->string('cookie_title')->nullable();

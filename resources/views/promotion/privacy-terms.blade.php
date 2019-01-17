@@ -130,7 +130,7 @@ EOT;
                     <div class="form-group">
                         <label for="cookieTitle">Cookie Title</label>
                         <input type="text" class="form-control" id="cookieTitle" name="cookieTitle"
-                               placeholder="Cookie Title" required>
+                               placeholder="Cookie Title">
                     </div>
 
                     <div class="form-group">
@@ -139,7 +139,7 @@ EOT;
                     </div>
 
                     <div class="form-group">
-                        <label for="gdprEmail">GDPR Email</label>
+                        <label for="gdprEmail">GDPR Email Contact</label>
                         <input type="text" class="form-control" id="gdprEmail" name="gdprEmail"
                                placeholder="e.g. privacyoffer@client.com" required>
                     </div>

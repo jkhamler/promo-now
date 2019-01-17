@@ -61,7 +61,7 @@ EOT;
 
                     <td>
                         <form action="/promotions/{{ $promotion->id }}/promo-terms/{{$promoTerm->id}}">
-                            <input type="submit" @if($promoTerm->isLatestVersion()))value="View/Edit"@else value="View Archive"@endif/>
+                            <input type="submit" @if($promoTerm->isLatestVersion()) value="View/Edit"@else value="View Archive"@endif/>
                         </form>
                     </td>
                 </tr>
@@ -129,7 +129,7 @@ EOT;
                     </div>
 
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Create</button>
                     <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
                 </form>
 
