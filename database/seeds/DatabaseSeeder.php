@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PromotionsSeeder::class);
         $this->call(TierItemsSeeder::class);
         $this->call(LanguageSeeder::class);
+//        $this->call(\Kordy\Ticketit\Seeds\TicketitTableSeeder::class);
     }
 }

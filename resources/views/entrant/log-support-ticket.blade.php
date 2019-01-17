@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h2 class="text-center">Log Support Ticket</h2>
+    <h2 class="text-center">Contact Us - {{ $promotion->name }}</h2>
 
     <form method="POST" action="{{ route('logSupportTicket') }}">
         @csrf

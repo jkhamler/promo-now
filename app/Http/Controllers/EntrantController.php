@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Entrant;
 use App\Models\Person;
+use App\Models\Promotion;
 use App\Models\Urn;
 use Illuminate\Http\Request;
 
@@ -12,11 +13,15 @@ class EntrantController extends Controller
     /**
      * Entrant Entry Point (Enter URN)
      *
+     * @param $promotionId
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function enterPromoCodeAction()
+    public function enterPromoCodeAction($promotionId)
     {
-        return view('entrant.enter-promo-code');
+        /** @var Promotion $promotion */
+        $promotion = Promotion::find($promotionId);
+
+        return view('entrant.enter-promo-code', ['promotion' => $promotion]);
     }
 
     /**
@@ -45,11 +50,15 @@ class EntrantController extends Controller
     /**
      * Log Support Ticket
      *
+     * @param $promotionId
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function supportTicketAction()
+    public function supportTicketAction($promotionId)
     {
-        return view('entrant.log-support-ticket');
+        /** @var Promotion $promotion */
+        $promotion = Promotion::find($promotionId);
+
+        return view('entrant.log-support-ticket', ['promotion' => $promotion]);
     }
 
     /**
@@ -64,21 +73,48 @@ class EntrantController extends Controller
             'issue' => 'string',
         ]);
 
-        echo 'OK';
-        exit;
+
     }
 
 
     /**
-     * Submit URN
-     *
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function submitURNAction(Request $request)
     {
         $request->validate([
-            'urnId' => 'string',
+            'promotionId' => 'integer',
+            'urn' => 'string',
+        ]);
+
+        /** @var Promotion $promotion */
+        $promotion = Promotion::find($request->input('promotionId'));
+
+        $urn = $request->input('urn');
+        $urnModel = Urn::findByUrn($urn);
+
+        if ($promotion->urns()->contains($urnModel)) {
+            return view('entrant.valid-urn', [
+                'urn' => $urnModel,
+                'promotion' => $promotion,
+            ]);
+        } else {
+            return view('entrant.invalid-urn');
+        }
+    }
+
+    /**
+     * Submit Validated URN
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function submitValidatedURNAction(Request $request)
+    {
+        $request->validate([
+            'urnId' => 'integer',
+            'promotionId' => 'integer',
             'firstName' => 'string',
             'surname' => 'string',
             'emailAddress' => 'string',
@@ -86,6 +122,9 @@ class EntrantController extends Controller
 
         /** @var Urn $urn */
         $urn = Urn::find($request->input('urnId'));
+
+        /** @var Promotion $promotion */
+        $promotion = Promotion::find($request->input('promotionId'));
 
         if (!$urn->redeemed_at) {
 
@@ -112,7 +151,10 @@ class EntrantController extends Controller
             $urn->save();
         }
 
-        return view('entrant.entry-summary');
+        return view('entrant.entry-summary', [
+            'promotion' => $promotion,
+            'person' => $person ?? null,
+        ]);
     }
 
 

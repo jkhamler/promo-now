@@ -9,7 +9,7 @@
 
         <ul class="nav navbar-nav">
             <li class="nav-item"><a href="/" class="nav-link">Dashboard</a></li>
-            <li class="nav-item"><a href="/" class="nav-link">Customer Service</a></li>
+            <li class="nav-item"><a href="/tickets" class="nav-link">Customer Service</a></li>
             <li class="nav-item"><a href="/" class="nav-link">Fulfilment</a></li>
             <li class="nav-item"><a href="/promotions" class="nav-link">Promotions</a></li>
             <li class="nav-item"><a href="/" class="nav-link">Reports</a></li>

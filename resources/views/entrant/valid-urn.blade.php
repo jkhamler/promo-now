@@ -17,9 +17,9 @@
 
     @else
 
-        <h2 class="text-center">Valid Entry Code - {{ $urn->urn }}</h2>
+        <h2 class="text-center">Valid Entry Code - {{ $promotion->name }}</h2>
 
-        <p class="text-center">Congratulations! This entry code is valid. Please enter your details below to claim your
+        <p class="text-center">Congratulations! The entry code {{ $urn->urn }} is valid. Please enter your details below to claim your
             prize.</p>
 
 
@@ -27,6 +27,7 @@
 
             @csrf
 
+            <input type="hidden" name="promotionId" value="{{ $promotion->id }}"/>
             <input type="hidden" name="urnId" value="{{ $urn->id }}"/>
 
             <div class="form-group">

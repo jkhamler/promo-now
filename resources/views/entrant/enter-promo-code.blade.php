@@ -4,11 +4,13 @@
 
 @section('content')
 
-    <h2 class="text-center">Enter Promo Code</h2>
+    <h2 class="text-center">Enter Promo Code - {{ $promotion->name }}</h2>
 
     <form method="POST" action="{{ route('submitURN') }}">
 
         @csrf
+
+        <input type="hidden" name="promotionId" value="{{ $promotion->id }}">
 
         <div class="form-group">
             <label for="description">URN</label>

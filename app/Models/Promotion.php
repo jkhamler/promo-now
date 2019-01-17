@@ -104,7 +104,8 @@ class Promotion extends Model
     /**
      * @return int|null
      */
-    public function getMostRecentPromoTermVersion(){
+    public function getMostRecentPromoTermVersion()
+    {
 
         /** @var Collection $promoTerms */
         $promoTerms = $this->promoTerms;
@@ -118,7 +119,8 @@ class Promotion extends Model
      * @param $partnerId
      * @return int
      */
-    public function getMostRecentPrivacyTermVersion($partnerId){
+    public function getMostRecentPrivacyTermVersion($partnerId)
+    {
 
         $version = DB::table('privacy_terms AS pt')
             ->select('pt.version')
@@ -173,6 +175,30 @@ class Promotion extends Model
             }
         }
         return $partners;
+    }
+
+    /**
+     * @return Collection|Urn[]
+     */
+    public function urns()
+    {
+        $urns = new Collection();
+
+        /** @var UrnSpecification $urnSpecification */
+        foreach ($this->urnSpecifications as $urnSpecification) {
+
+            /** @var UrnBatch $urnBatch */
+            foreach ($urnSpecification->urnBatches as $urnBatch) {
+
+                foreach ($urnBatch->urns as $urn) {
+
+                    if (!$urns->contains($urn)) {
+                        $urns->add($urn);
+                    }
+                }
+            }
+        }
+        return $urns;
     }
 
     /**

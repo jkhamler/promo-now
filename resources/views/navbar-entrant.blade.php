@@ -8,8 +8,10 @@
     <div class="collapse navbar-collapse" id="exCollapsingNavbar">
 
         <ul class="nav navbar-nav">
-            <li class="nav-item"><a href="{{ route('enterPromoCode') }}" class="nav-link">Enter Promo Code</a></li>
-            <li class="nav-item"><a href="{{ route('entrantSupportTicket') }}" class="nav-link">Support</a></li>
+            <li class="nav-item"><a href="{{ route('enterPromoCode', [1]) }}" class="nav-link">Enter Promo
+                    Code</a></li>
+            <li class="nav-item"><a href="{{ route('entrantSupportTicket', [1]) }}" class="nav-link">Support</a>
+            </li>
         </ul>
     </div>
 </nav>
