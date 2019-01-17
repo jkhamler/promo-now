@@ -23,7 +23,7 @@
             prize.</p>
 
 
-        <form method="POST" action="{{ route('submitURN') }}">
+        <form method="POST" action="{{ route('submitValidatedURN') }}">
 
             @csrf
 

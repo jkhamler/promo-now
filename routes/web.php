@@ -21,6 +21,7 @@ Route::prefix('enter-promo-code')->group(function () {
     Route::get('/urn/{urnId}', 'EntrantController@validURNAction')->name('validURN');
     Route::get('/invalid-urn', 'EntrantController@invalidURNAction')->name('invalidURN');
     Route::post('/submit-urn', 'EntrantController@submitURNAction')->name('submitURN');
+    Route::post('/submit-validated-urn', 'EntrantController@submitValidatedURNAction')->name('submitValidatedURN');
     Route::post('/support', 'EntrantController@logSupportTicketAction')->name('logSupportTicket');
 });
 
