@@ -30,6 +30,13 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/', 'HomeController@index')->name('home');
 
+    Route::prefix('partners')->group(function () {
+        Route::get('/', 'PartnerController@indexAction')->name('partnerIndex');
+        Route::get('/{partnerId}', 'PartnerController@detailsAction')->name('partnerDetails');
+        Route::post('/', 'PartnerController@createAction')->name('createPartner');
+        Route::patch('/{partnerId}', 'PartnerController@updateAction')->name('updatePartner');
+    });
+
     Route::prefix('promotions')->group(function () {
         Route::get('/', 'PromotionController@indexAction')->name('promotionIndex');
         Route::get('/{promotionId}', 'PromotionController@detailsAction')->name('promotionDetails');
