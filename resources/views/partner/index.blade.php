@@ -37,36 +37,45 @@
     @endif
 
     <div class="row">
-
-        <table class="table">
-
-            <tr>
-                <td>Name</td>
-                <td>Legal Name</td>
-                <td>Description</td>
-                <td colspan="2">Company Number</td>
-            </tr>
-
-            <tbody>
-
-            @foreach ($partners as $partner)
-                <tr class="clickable-row">
-                    <td>{{ $partner->name }}</td>
-                    <td>{{ $partner->legal_name }}</td>
-                    <td>{{ $partner->description }}</td>
-                    <td>{{ $partner->company_number }}</td>
-                    <td>
-                        <form action="/partners/{{$partner->id}}">
-                            <input type="submit" value="View/Edit"/>
-                        </form>
-                    </td>
+        <div class="container">
+            <table id="partnersTable" class="table table-striped table-bordered hover">
+                <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Legal Name</td>
+                    <td>Description</td>
+                    <td>Company Number</td>
                 </tr>
-            @endforeach
+                </thead>
 
-            </tbody>
-        </table>
+                <tbody>
+                @foreach ($partners as $partner)
+
+                    <tr data-href="partners/{{ $partner->id }}">
+                        <td>{{ $partner->name }}</td>
+                        <td>{{ $partner->legal_name }}</td>
+                        <td>{{ $partner->description }}</td>
+                        <td>{{ $partner->company_number }}</td>
+                    </tr>
+                @endforeach
+
+                </tbody>
+            </table>
+        </div>
 
     </div>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#partnersTable').DataTable();
+        });
+
+        $('#partnersTable').on( 'click', 'tbody tr', function () {
+            window.location.href = $(this).data('href');
+        });
+    </script>
+
 
 
     <!-- Modal -->
@@ -96,7 +105,7 @@
                         <div class="form-group">
                             <label for="legalName">Legal Name</label>
                             <input type="text" class="form-control" id="legalName" name="legalName"
-                                   placeholder="Legal Name" required>
+                                   placeholder="Legal Name">
                             <small id="legalNameHelp" class="form-text text-muted">E.g. GlaxoSmithKline PLC
                             </small>
                         </div>
@@ -104,15 +113,15 @@
                         <div class="form-group">
                             <label for="description">Description</label>
                             <input type="text" class="form-control" id="description" name="description"
-                                   placeholder="Description" required>
+                                   placeholder="Description">
                             <small id="descriptionHelp" class="form-text text-muted">E.g. Largest global e-retailer
                             </small>
                         </div>
 
                         <div class="form-group">
-                            <label for="companyNumber">Description</label>
+                            <label for="companyNumber">Company Number</label>
                             <input type="text" class="form-control" id="companyNumber" name="companyNumber"
-                                   placeholder="Company Number" required>
+                                   placeholder="Company Number">
                             <small id="companyNumberHelp" class="form-text text-muted">E.g. ABC12345
                             </small>
                         </div>
@@ -126,6 +135,8 @@
         </div>
 
     </div>
+
+
 
 @endsection
 

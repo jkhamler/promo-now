@@ -3,7 +3,7 @@
     <div class="container">
 
         <h2>URNs</h2>
-        <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <table id="urnsTable" class="table table-striped table-bordered hover" style="width:100%">
             <thead>
             <tr>
                 <th>URN Batch</th>
@@ -19,9 +19,9 @@
                         <td>{{ $urn->urn }}</td>
                         <td>{{ $urn->created_at->format('d/m/Y H:i:s') }}</td>
                     </tr>
+                @endforeach
             @endforeach
-            @endforeach
-            </tfoot>
+            </tbody>
         </table>
 
     </div>
@@ -31,6 +31,6 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#example').DataTable();
+        $('#urnsTable').DataTable();
     });
 </script>
