@@ -23,6 +23,7 @@ Route::prefix('enter-promo-code')->group(function () {
     Route::post('/submit-urn', 'EntrantController@submitURNAction')->name('submitURN');
     Route::post('/submit-validated-urn', 'EntrantController@submitValidatedURNAction')->name('submitValidatedURN');
     Route::post('/support', 'EntrantController@logSupportTicketAction')->name('logSupportTicket');
+    Route::get('/support-ticket-logged/{personId}', 'EntrantController@supportTicketLoggedAction')->name('supportTicketLogged');
 });
 
 Route::group(['middleware' => ['auth']], function () {

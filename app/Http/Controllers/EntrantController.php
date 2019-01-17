@@ -7,6 +7,8 @@ use App\Models\Person;
 use App\Models\Promotion;
 use App\Models\Urn;
 use Illuminate\Http\Request;
+use Kordy\Ticketit\Models\Setting;
+use Kordy\Ticketit\Models\Ticket;
 
 class EntrantController extends Controller
 {
@@ -63,17 +65,81 @@ class EntrantController extends Controller
 
     /**
      * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function logSupportTicketAction(Request $request)
     {
         $request->validate([
+            'promotionId' => 'integer',
             'firstName' => 'string',
             'surname' => 'string',
             'emailAddress' => 'string',
-            'issue' => 'string',
+            'subject' => 'string',
+            'enquiry' => 'string',
         ]);
 
+        $person = Person::findByEmailAddress($request->input('emailAddress'));
 
+        if (!$person) {
+
+            $person = new Person();
+            $person->first_name = $request->input('firstName');
+            $person->surname = $request->input('surname');
+            $person->email_address = $request->input('emailAddress');
+            $person->save();
+        }
+
+        /** @var Promotion $promotion */
+        $promotion = Promotion::find($request->input('promotionId'));
+
+        // search/create person record
+        // Set up TicketIt ticket with category 'Customer Support' (send notification)
+
+        $priorityId = 2; // todo
+        $categoryId = 3; // todo
+
+        $ticketContent = <<<EOT
+Promotion: {$promotion->name}
+
+Entrant: {$person->name} - {$person->email_address}
+
+Subject: {$request->subject}
+
+Enquiry: {$request->enquiry}
+        
+bar
+EOT;
+
+        $ticket = new Ticket();
+
+        $ticket->subject = $request->subject;
+
+        $ticket->setPurifiedContent($ticketContent);
+
+        $ticket->priority_id = $priorityId;
+        $ticket->category_id = $categoryId;
+
+        $ticket->status_id = Setting::grab('default_status_id');
+        $ticket->user_id = auth()->user()->id;
+        $ticket->autoSelectAgent();
+
+        $ticket->save();
+
+        session()->flash('status', trans('ticketit::lang.the-ticket-has-been-created'));
+
+        return redirect()->to("/enter-promo-code/support-ticket-logged/{$person->id}");
+    }
+
+    /**
+     * @param $personId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function supportTicketLoggedAction($personId)
+    {
+        /** @var Person $person */
+        $person = Person::find($personId);
+
+        return view('entrant.support-ticket-logged', ['person' => $person]);
     }
 
 
