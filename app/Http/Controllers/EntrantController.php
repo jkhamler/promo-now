@@ -22,7 +22,7 @@ class EntrantController extends Controller
         /** @var Promotion $promotion */
         $promotion = Promotion::find(1); // hard coded for demo purposes
 
-        return view('entrant.test-promo', ['promotion' => $promotion]);
+        return view('entrant.enter-promo-code', ['promotion' => $promotion]);
     }
 
     /**
