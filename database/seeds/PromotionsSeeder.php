@@ -21,7 +21,7 @@ class PromotionsSeeder extends Seeder
         $promotion->promo_closed_date = new DateTime('2018-03-01');
         $promotion->offline_date = new DateTime('2018-04-01');
         $promotion->urns_required = true;
-        $promotion->urns_issued = 2500;
+        $promotion->urns_issued = 50;
 
         $promotion->save();
         //
@@ -43,13 +43,27 @@ class PromotionsSeeder extends Seeder
         $urnSpecification->included_characters = 'ABCD1234';
         $urnSpecification->regex_exclude = '^123ABC$';
         $urnSpecification->profanity_check_language_id = 1;
-        $urnSpecification->urn_quantity = 10000;
-        $urnSpecification->winning_urn_quantity = 50;
+        $urnSpecification->urn_quantity = 50;
+        $urnSpecification->winning_urn_quantity = 10;
         $urnSpecification->pi_to_generate = true;
         $urnSpecification->everyone_gets = false;
         $urnSpecification->allocated_by_tier = true;
 
         $urnSpecification->save();
+
+        $urnBatch = new \App\Models\UrnBatch();
+        $urnBatch->urn_specification_id = $urnSpecification->id;
+        $urnBatch->batch_name = 'Batch 1';
+
+        $urnBatch->save();
+
+        for ($i = 0; $i < 50; $i++) {
+
+            $urn = new \App\Models\Urn();
+            $urn->urn_batch_id = $urnBatch->id;
+            $urn->urn = "ABCD{$i}";
+            $urn->save();
+        }
 
         $faqGroupGeneral = new \App\Models\FAQGroup();
         $faqGroupGeneral->promotion_id = $promotion->id;

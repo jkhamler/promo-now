@@ -1,6 +1,6 @@
 <!-- Stored in resources/views/mechanic/enter-promo-code.blade.php -->
 
-@extends('app')
+@extends('master')
 
 @section('title', 'Mechanics')
 

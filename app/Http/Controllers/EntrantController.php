@@ -15,13 +15,12 @@ class EntrantController extends Controller
     /**
      * Entrant Entry Point (Enter URN)
      *
-     * @param $promotionId
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function enterPromoCodeAction($promotionId)
+    public function enterPromoCodeAction()
     {
         /** @var Promotion $promotion */
-        $promotion = Promotion::find($promotionId);
+        $promotion = Promotion::find(1); // hard coded for demo purposes
 
         return view('entrant.enter-promo-code', ['promotion' => $promotion]);
     }
@@ -52,13 +51,12 @@ class EntrantController extends Controller
     /**
      * Log Support Ticket
      *
-     * @param $promotionId
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function supportTicketAction($promotionId)
+    public function supportTicketAction()
     {
         /** @var Promotion $promotion */
-        $promotion = Promotion::find($promotionId);
+        $promotion = Promotion::find(1); // hard coded for demo purposes
 
         return view('entrant.log-support-ticket', ['promotion' => $promotion]);
     }

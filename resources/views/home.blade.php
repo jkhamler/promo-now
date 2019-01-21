@@ -1,6 +1,6 @@
 <!-- Stored in resources/views/home.blade.php -->
 
-@extends('app')
+@extends('master')
 
 @section('title', 'PromoNow')
 

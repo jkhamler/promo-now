@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 \Illuminate\Support\Facades\Auth::routes();
 
-Route::prefix('enter-promo-code')->group(function () {
-    Route::get('/{promotionId}', 'EntrantController@enterPromoCodeAction')->name('enterPromoCode');
-    Route::get('/support/{promotionId}', 'EntrantController@supportTicketAction')->name('entrantSupportTicket');
+Route::prefix('test-promo')->group(function () {
+    Route::get('/', 'EntrantController@enterPromoCodeAction')->name('enterPromoCode');
+    Route::get('/support', 'EntrantController@supportTicketAction')->name('entrantSupportTicket');
     Route::get('/urn/{urnId}', 'EntrantController@validURNAction')->name('validURN');
     Route::get('/invalid-urn', 'EntrantController@invalidURNAction')->name('invalidURN');
     Route::post('/submit-urn', 'EntrantController@submitURNAction')->name('submitURN');

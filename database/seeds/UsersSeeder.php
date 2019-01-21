@@ -13,11 +13,12 @@ class UsersSeeder extends Seeder
     public function run()
     {
         \App\User::create([
-            'name' => 'jkhamler',
-            'first_name' => 'Jon',
-            'surname' => 'Hamler',
-            'email' => 'jkhamler@gmail.com',
-            'password' => Hash::make('j1k2h3bass')
+            'name' => 'pcheatle',
+            'first_name' => 'Paul',
+            'surname' => 'Cheatle',
+            'email' => 'paul@promonow.com',
+            'password' => Hash::make('123456'),
+            'ticketit_admin' => 1,
         ]);
 
     }

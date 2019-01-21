@@ -17,18 +17,27 @@ class TierItemsSeeder extends Seeder
 
         $partner1 = new \App\Models\Partner();
         $partner1->name = 'Amazon';
+        $partner1->legal_name = 'Amazon PLC';
+        $partner1->description = 'Largest Online Retails';
+        $partner1->company_number = 'AMAZ12345';
         $partner1->save();
 
         $partner1Id = $partner1->id;
 
         $partner2 = new \App\Models\Partner();
         $partner2->name = 'Tesco';
+        $partner2->legal_name = 'Tesco PLC';
+        $partner2->description = 'Largest UK Food Retailer';
+        $partner2->company_number = 'TESC12345';
         $partner2->save();
 
         $partner2Id = $partner2->id;
 
         $partner3 = new \App\Models\Partner();
         $partner3->name = 'Waitrose';
+        $partner3->legal_name = 'Waitrose PLC';
+        $partner3->description = 'Middle class food';
+        $partner3->company_number = 'WAIT12345';
         $partner3->save();
 
         $partner3Id = $partner3->id;
@@ -70,7 +79,7 @@ class TierItemsSeeder extends Seeder
         $item1b = new \App\Models\TierItem();
 
         $item1b->tier_id = $tier1Id;
-        $item1b->partner_id = $partner1Id;
+        $item1b->partner_id = $partner2Id;
         $item1b->short_description = 'iPhone';
         $item1b->long_description = 'iPhone 8';
         $item1b->coupon_number = 'XYZ789';
@@ -80,7 +89,7 @@ class TierItemsSeeder extends Seeder
         $item2 = new \App\Models\TierItem();
 
         $item2->tier_id = $tier2Id;
-        $item2->partner_id = $partner1Id;
+        $item2->partner_id = $partner3Id;
         $item2->short_description = 'Car';
         $item2->long_description = 'A Free Car';
         $item2->coupon_number = 'ABC789';
