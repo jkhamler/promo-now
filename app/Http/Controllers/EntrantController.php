@@ -22,7 +22,7 @@ class EntrantController extends Controller
         /** @var Promotion $promotion */
         $promotion = Promotion::find(1); // hard coded for demo purposes
 
-        return view('entrant.enter-promo-code', ['promotion' => $promotion]);
+        return view('entrant.test-promo', ['promotion' => $promotion]);
     }
 
     /**
@@ -125,7 +125,7 @@ EOT;
 
         session()->flash('status', trans('ticketit::lang.the-ticket-has-been-created'));
 
-        return redirect()->to("/enter-promo-code/support-ticket-logged/{$person->id}");
+        return redirect()->to("/test-promo/support-ticket-logged/{$person->id}");
     }
 
     /**
