@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::patch('/{partnerId}', 'PartnerController@updateAction')->name('updatePartner');
     });
 
+//    Route::group(['middleware' => ['role:super-admin']], function () { // todo - adjust
+
     Route::prefix('promotions')->group(function () {
         Route::get('/', 'PromotionController@indexAction')->name('promotionIndex');
         Route::get('/{promotionId}', 'PromotionController@detailsAction')->name('promotionDetails');
@@ -48,8 +50,9 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/{promotionId}/promo-terms/{promoTermId}', 'PromoTermsController@detailsAction')->name('promoTermsDetails');
         Route::get('/{promotionId}/privacy-terms/{promoTermId}', 'PrivacyTermsController@detailsAction')->name('privacyTermsDetails');
-
     });
+
+//    });
 
     Route::prefix('mechanics')->group(function () {
         Route::get('/', 'MechanicController@indexAction')->name('mechanicIndex');

@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property integer $person_id
  * @property integer $urn_id
+ * @property integer $promotion_id
  * @property string $ip_address
  * @property string $user_agent
  */
@@ -28,7 +29,35 @@ class Entrant extends Model
     protected $fillable = [
         'person_id',
         'urn_id',
+        'promotion_id',
         'ip_address',
         'user_agent',
     ];
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function promotion()
+    {
+        return $this->belongsTo('App\Models\Promotion');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function person()
+    {
+        return $this->belongsTo('App\Models\Person');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tierItems()
+    {
+        return $this->belongsToMany('App\Models\TierItem', 'entrant_tier_items')->using('App\Models\EntrantTierItem');
+    }
+
+
 }

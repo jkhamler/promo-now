@@ -9,8 +9,15 @@
 
         <ul class="nav navbar-nav">
             <li class="nav-item"><a href="/" class="nav-link">Dashboard</a></li>
+
+            @role('customer-service')
             <li class="nav-item"><a href="/tickets" class="nav-link">Customer Service</a></li>
-            <li class="nav-item"><a href="/" class="nav-link">Fulfilment</a></li>
+            @endrole
+
+            @role('fulfillment')
+            <li class="nav-item"><a href="/" class="nav-link">Fulfillment</a></li>
+            @endrole
+
             <li class="nav-item"><a href="{{ route('promotionIndex') }}" class="nav-link">Promotions</a></li>
             <li class="nav-item"><a href="/" class="nav-link">Reports</a></li>
             <li class="nav-item"><a href="{{ route('partnerIndex') }}" class="nav-link">Partners</a></li>

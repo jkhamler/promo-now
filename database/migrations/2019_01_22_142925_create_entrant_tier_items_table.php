@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEntrantsTable extends Migration
+class CreateEntrantTierItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateEntrantsTable extends Migration
      */
     public function up()
     {
-        Schema::create('entrants', function (Blueprint $table) {
+        Schema::create('entrant_tier_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('person_id');
-            $table->integer('urn_id');
-            $table->integer('promotion_id');
-            $table->string('ip_address');
-            $table->string('user_agent');
+            $table->integer('entrant_id');
+            $table->integer('tier_item_id');
+            $table->dateTime('claimed_datetime')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateEntrantsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entrants');
+        Schema::dropIfExists('entrant_tier_items');
     }
 }

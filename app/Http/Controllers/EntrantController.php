@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Entrant;
+use App\Models\EntrantTierItem;
+use App\Models\Mechanic;
 use App\Models\Person;
 use App\Models\Promotion;
 use App\Models\Urn;
@@ -206,6 +208,7 @@ EOT;
             $entrant = new Entrant();
             $entrant->urn_id = $urn->id;
             $entrant->person_id = $person->id;
+            $entrant->promotion_id = $promotion->id;
             $entrant->ip_address = $request->ip();
             $entrant->user_agent = $request->userAgent();
 
@@ -213,6 +216,19 @@ EOT;
 
             $urn->redeemed_at = new \DateTime();
             $urn->save();
+
+            /** @var Mechanic $primaryMechanic */
+            $primaryMechanic = $promotion->mechanics->first();
+
+            if ($primaryMechanic->type == Mechanic::MECHANIC_TYPE_EVERYBODY_GETS
+                && $primaryMechanic->tier_item_id) {
+
+                // automatically assign the tier item
+                $entrantTierItem = new EntrantTierItem();
+                $entrantTierItem->entrant_id = $entrant->id;
+                $entrantTierItem->tier_item_id = $primaryMechanic->tier_item_id;
+                $entrantTierItem->save();
+            }
         }
 
         return view('entrant.entry-summary', [

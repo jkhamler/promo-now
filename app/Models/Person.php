@@ -20,7 +20,6 @@ class Person extends Model
         'updated_at',
     ];
 
-
     /**
      * @var array
      */
@@ -37,4 +36,21 @@ class Person extends Model
     public static function findByEmailAddress($emailAddress){
         return self::where('email_address', $emailAddress)->first();
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function entrants()
+    {
+        return $this->hasMany('App\Models\Entrant');
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullName(){
+        return $this->first_name . ' ' . $this->surname;
+    }
+
+
 }

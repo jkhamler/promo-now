@@ -24,16 +24,6 @@ class PromotionsSeeder extends Seeder
         $promotion->urns_issued = 50;
 
         $promotion->save();
-        //
-
-        $mechanic1 = new \App\Models\Mechanic();
-        $mechanic1->type = \App\Models\Mechanic::MECHANIC_TYPE_TIMED_DRAW;
-
-        $mechanic1->name = 'Timed Draw 123';
-        $mechanic1->description = 'Timed Draw 123 Description';
-        $mechanic1->promotion_id = $promotion->id;
-
-        $mechanic1->save();
 
         $urnSpecification = new \App\Models\UrnSpecification();
         $urnSpecification->reference_id = 'Test URN Reference ID';
@@ -50,6 +40,17 @@ class PromotionsSeeder extends Seeder
         $urnSpecification->allocated_by_tier = true;
 
         $urnSpecification->save();
+
+        $mechanic1 = new \App\Models\Mechanic();
+        $mechanic1->type = \App\Models\Mechanic::MECHANIC_TYPE_EVERYBODY_GETS;
+
+        $mechanic1->name = 'Everybody Gets 123';
+        $mechanic1->description = 'Everybody Gets 123 Description';
+        $mechanic1->promotion_id = $promotion->id;
+        $mechanic1->urn_specification_id = $urnSpecification->id;
+        $mechanic1->tier_item_id = 1;
+
+        $mechanic1->save();
 
         $urnBatch = new \App\Models\UrnBatch();
         $urnBatch->urn_specification_id = $urnSpecification->id;

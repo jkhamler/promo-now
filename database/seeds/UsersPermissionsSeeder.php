@@ -19,19 +19,33 @@ class UsersPermissionsSeeder extends Seeder
 
         /** Create Permissions */
         Permission::create(['name' => 'create service ticket']);
-
         Permission::create(['name' => 'comment on service ticket']);
+        Permission::create(['name' => 'can see customer service tab']);
+        Permission::create(['name' => 'can see promotions tab']);
+
+
+
 
 
         /** Create roles and assign created permissions */
         $superAdminRole = Role::create(['name' => 'super-admin']);
         $superAdminRole->givePermissionTo(Permission::all());
 
+
+
+
         $marketingRole = Role::create(['name' => 'marketing']);
         $marketingRole->givePermissionTo('comment on service ticket');
+        $marketingRole->givePermissionTo('can see promotions tab');
+
+
+
 
         $customerServiceRole = Role::create(['name' => 'customer-service']);
-//        $customerServiceRole->givePermissionTo('comment on service ticket');
+        $customerServiceRole->givePermissionTo('can see customer service tab');
+
+
+
 
         $fulfillmentRole = Role::create(['name' => 'fulfillment']);
 //        $fulfillmentRole->givePermissionTo('comment on service ticket');

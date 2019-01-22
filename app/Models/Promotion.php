@@ -102,6 +102,16 @@ class Promotion extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function entrants()
+    {
+        $entrants = $this->hasMany('App\Models\Entrant')->orderBy('created_at', 'desc');
+
+        return $entrants;
+    }
+
+    /**
      * @return int|null
      */
     public function getMostRecentPromoTermVersion()
