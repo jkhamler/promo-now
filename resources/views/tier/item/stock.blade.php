@@ -29,12 +29,14 @@
 
     </div>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#tierItemStockTable').DataTable();
-        });
+</div>
 
-        $('#tierItemStockTable').on('click', 'tbody tr', function () {
-            window.location.href = $(this).data('href');
-        });
-    </script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#tierItemStockTable').DataTable();
+    });
+
+    $('#tierItemStockTable').on('click', 'tbody tr', function () {
+        window.location.href = $(this).data('href');
+    });
+</script>

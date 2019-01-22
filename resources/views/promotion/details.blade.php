@@ -12,7 +12,6 @@
         </ol>
     </nav>
 
-
     @include('promotion.subnav')
     @php /** @var $promotion \App\Models\Promotion **/
     @endphp
@@ -27,7 +26,6 @@
                         @endforeach
                     </ul>
                 </div>
-
             </div>
         </div>
     @endif
