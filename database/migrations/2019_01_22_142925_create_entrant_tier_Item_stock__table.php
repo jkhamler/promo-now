@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateEntrantTierStockItemsTable extends Migration
+class CreateEntrantTierItemStockTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateEntrantTierStockItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('entrant_tier_stock_items', function (Blueprint $table) {
+        Schema::create('entrant_tier_item_stock', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('entrant_id');
-            $table->integer('tier_stock_item_id');
+            $table->integer('tier_item_stock_id');
             $table->enum('claim_status',
                 [
                     'PENDING',
@@ -24,7 +24,7 @@ class CreateEntrantTierStockItemsTable extends Migration
                     'REJECTED',
                     'ON_HOLD',
                     'DISPATCHED',
-                ]);
+                ])->default('PENDING');
             $table->dateTime('claimed_datetime')->nullable();
             $table->timestamps();
         });
@@ -39,5 +39,6 @@ class CreateEntrantTierStockItemsTable extends Migration
     {
         Schema::dropIfExists('entrant_tier_items');
         Schema::dropIfExists('entrant_tier_stock_items');
+        Schema::dropIfExists('entrant_tier_item_stock');
     }
 }

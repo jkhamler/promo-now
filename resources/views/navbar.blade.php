@@ -10,13 +10,13 @@
         <ul class="nav navbar-nav">
             <li class="nav-item"><a href="/" class="nav-link">Dashboard</a></li>
 
-            @role('customer-service')
+            {{--@role('customer-service')--}}
             <li class="nav-item"><a href="/tickets" class="nav-link">Customer Service</a></li>
-            @endrole
+            {{--@endrole--}}
 
-            @role('fulfillment')
+            {{--@role('fulfillment')--}}
             <li class="nav-item"><a href="/" class="nav-link">Fulfillment</a></li>
-            @endrole
+            {{--@endrole--}}
 
             <li class="nav-item"><a href="{{ route('promotionIndex') }}" class="nav-link">Promotions</a></li>
             <li class="nav-item"><a href="/" class="nav-link">Reports</a></li>

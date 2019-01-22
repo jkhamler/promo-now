@@ -11,19 +11,28 @@
             <thead>
             <tr>
                 <th>Entry Date/time</th>
-                <th>Name</th>
+                <th>Entrant</th>
                 <th>Email</th>
                 <th>Item</th>
+                <th>Reference Number</th>
             </tr>
             </thead>
             <tbody>
             @foreach($promotion->entrants as $entrant)
-                <tr>
-                    <td>{{ $entrant->created_at->format('d/m/Y H:i:s') }}</td>
-                    <td>{{ $entrant->person->getFullName() }}</td>
-                    <td>{{ $entrant->person->email_address }}</td>
-                    <td>{{ $entrant->tierItems->first()->short_description }}</td>
-                </tr>
+                @foreach($entrant->tierItemStock as $tierItemStock)
+                    @php
+                        /** @var $entrant \App\Models\Entrant */
+                        /** @var $tierItemStock \App\Models\TierItemStock */
+
+                    @endphp
+                    <tr>
+                        <td>{{ $entrant->created_at->format('d/m/Y H:i:s') }}</td>
+                        <td>{{ $entrant->person->getFullName() }}</td>
+                        <td>{{ $entrant->person->email_address }}</td>
+                        <td>{{ $tierItemStock->tierItem->short_description }}</td>
+                        <td>{{ $tierItemStock->reference_number }}</td>
+                    </tr>
+                @endforeach
             @endforeach
             </tbody>
         </table>

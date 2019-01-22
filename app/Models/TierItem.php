@@ -56,5 +56,13 @@ class TierItem extends Model
         return $this->hasMany('App\Models\TierItemStock');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function unallocatedStock()
+    {
+        return $this->hasMany('App\Models\TierItemStock')->whereNull('allocated_datetime');
+    }
+
 
 }

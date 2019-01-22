@@ -42,7 +42,7 @@ class TierItemStock extends Model
      */
     public function entrants()
     {
-        return $this->belongsToMany('App\Models\Entrant', 'entrant_tier_stock_items')->using('App\Models\EntrantTierStockItem');
+        return $this->belongsToMany('App\Models\Entrant', 'entrant_tier_item_stock')->using('App\Models\EntrantTierItemStock');
     }
 
 

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Entrant;
-use App\Models\EntrantTierStockItem;
+use App\Models\EntrantTierItemStock;
 use App\Models\Mechanic;
 use App\Models\Person;
 use App\Models\Promotion;
+use App\Models\TierItem;
+use App\Models\TierItemStock;
 use App\Models\Urn;
 use Illuminate\Http\Request;
 use Kordy\Ticketit\Models\Setting;
@@ -223,10 +225,16 @@ EOT;
             if ($primaryMechanic->type == Mechanic::MECHANIC_TYPE_EVERYBODY_GETS
                 && $primaryMechanic->tier_item_id) {
 
+                /** @var TierItem $tierItem */
+                $tierItem = $primaryMechanic->tierItem;
+
+                /** @var TierItemStock $firstStockItem */
+                $firstStockItem = $tierItem->unallocatedStock->first();
+
                 // automatically assign the tier item
-                $entrantTierItem = new EntrantTierStockItem();
+                $entrantTierItem = new EntrantTierItemStock();
                 $entrantTierItem->entrant_id = $entrant->id;
-                $entrantTierItem->tier_item_id = $primaryMechanic->tier_item_id;
+                $entrantTierItem->tier_item_stock_id = $firstStockItem->id;
                 $entrantTierItem->save();
             }
         }

@@ -86,6 +86,14 @@ class Mechanic extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function tierItem()
+    {
+        return $this->belongsTo('App\Models\TierItem');
+    }
+
+    /**
      * @param null $type
      * @return string|null
      */
