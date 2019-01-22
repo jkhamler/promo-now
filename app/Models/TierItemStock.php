@@ -9,10 +9,25 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @property integer $tier_item_id
  * @property string $reference_number
+ * @property \DateTime $allocated_datetime
  */
 class TierItemStock extends Model
 {
     protected $table = 'tier_item_stock';
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'allocated_datetime',
+    ];
+
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'tier_item_id',
+        'reference_number',
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -21,5 +36,14 @@ class TierItemStock extends Model
     {
         return $this->belongsTo('App\Models\TierItem');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function entrants()
+    {
+        return $this->belongsToMany('App\Models\Entrant', 'entrant_tier_stock_items')->using('App\Models\EntrantTierStockItem');
+    }
+
 
 }

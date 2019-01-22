@@ -47,13 +47,6 @@ class TierItem extends Model
         return $this->belongsTo('App\Models\Partner');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function entrants()
-    {
-        return $this->belongsToMany('App\Models\Entrant', 'entrant_tier_items')->using('App\Models\EntrantTierItem');
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

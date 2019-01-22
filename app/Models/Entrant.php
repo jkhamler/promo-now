@@ -54,9 +54,9 @@ class Entrant extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function tierItems()
+    public function tierStockItems()
     {
-        return $this->belongsToMany('App\Models\TierItem', 'entrant_tier_items')->using('App\Models\EntrantTierItem');
+        return $this->belongsToMany('App\Models\TierStockItem', 'entrant_tier_stock_items')->using('App\Models\EntrantTierStockItem');
     }
 
 

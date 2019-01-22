@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Entrant;
-use App\Models\EntrantTierItem;
+use App\Models\EntrantTierStockItem;
 use App\Models\Mechanic;
 use App\Models\Person;
 use App\Models\Promotion;
@@ -224,7 +224,7 @@ EOT;
                 && $primaryMechanic->tier_item_id) {
 
                 // automatically assign the tier item
-                $entrantTierItem = new EntrantTierItem();
+                $entrantTierItem = new EntrantTierStockItem();
                 $entrantTierItem->entrant_id = $entrant->id;
                 $entrantTierItem->tier_item_id = $primaryMechanic->tier_item_id;
                 $entrantTierItem->save();
