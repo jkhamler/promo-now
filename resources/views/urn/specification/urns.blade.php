@@ -8,6 +8,7 @@
             <tr>
                 <th>URN Batch</th>
                 <th>URN</th>
+                <th>Redeemed at</th>
                 <th>Created at</th>
             </tr>
             </thead>
@@ -17,6 +18,7 @@
                     <tr>
                         <td>{{ $urnBatch->batch_name }}</td>
                         <td>{{ $urn->urn }}</td>
+                        <td>{{ $urn->redeemed_at }}</td>
                         <td>{{ $urn->created_at->format('d/m/Y H:i:s') }}</td>
                     </tr>
                 @endforeach
