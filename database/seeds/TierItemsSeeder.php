@@ -73,8 +73,16 @@ class TierItemsSeeder extends Seeder
         $item1->short_description = 'TV';
         $item1->long_description = 'Television';
         $item1->coupon_number = 'ABC12345';
+        $item1->quantity = 50;
 
         $item1->save();
+
+        for ($i = 0; $i < 50; $i++) {
+            $tierItemStock = new \App\Models\TierItemStock();
+            $tierItemStock->tier_item_id = $item1->id;
+            $tierItemStock->reference_number = 'TVREF' . $i;
+            $tierItemStock->save();
+        }
 
         $item1b = new \App\Models\TierItem();
 
@@ -83,8 +91,16 @@ class TierItemsSeeder extends Seeder
         $item1b->short_description = 'iPhone';
         $item1b->long_description = 'iPhone 8';
         $item1b->coupon_number = 'XYZ789';
+        $item1b->quantity = 100;
 
         $item1b->save();
+
+        for ($i = 0; $i < 100; $i++) {
+            $tierItemStock = new \App\Models\TierItemStock();
+            $tierItemStock->tier_item_id = $item1b->id;
+            $tierItemStock->reference_number = 'IPHONEREF' . $i;
+            $tierItemStock->save();
+        }
 
         $item2 = new \App\Models\TierItem();
 
@@ -93,7 +109,16 @@ class TierItemsSeeder extends Seeder
         $item2->short_description = 'Car';
         $item2->long_description = 'A Free Car';
         $item2->coupon_number = 'ABC789';
+        $item2->quantity = 250;
 
         $item2->save();
+
+        for ($i = 0; $i < 250; $i++) {
+            $tierItemStock = new \App\Models\TierItemStock();
+            $tierItemStock->tier_item_id = $item2->id;
+            $tierItemStock->reference_number = 'CARREF' . $i;
+            $tierItemStock->save();
+        }
+
     }
 }

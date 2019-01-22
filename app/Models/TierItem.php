@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $long_description
  * @property string $coupon_number
  * @property integer $partner_id
+ * @property integer $quantity
  */
 class TierItem extends Model
 {
@@ -26,6 +27,7 @@ class TierItem extends Model
         'long_description',
         'coupon_number',
         'partner_id',
+        'quantity',
     ];
 
 
@@ -52,5 +54,14 @@ class TierItem extends Model
     {
         return $this->belongsToMany('App\Models\Entrant', 'entrant_tier_items')->using('App\Models\EntrantTierItem');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function stock()
+    {
+        return $this->hasMany('App\Models\TierItemStock');
+    }
+
 
 }

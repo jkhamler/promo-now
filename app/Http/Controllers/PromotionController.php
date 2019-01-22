@@ -126,4 +126,8 @@ class PromotionController extends Controller
         return redirect()->to("/promotions/{$promotion->id}");
 
     }
+
+    public function faqGroupDetailsAction($faqGroupDetailId){
+
+    }
 }

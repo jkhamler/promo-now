@@ -36,7 +36,7 @@
                     <td>{{ $urnSpecification->urn_quantity }}</td>
                     <td>{{ $urnSpecification->winning_urn_quantity }}</td>
                     <td>
-                        <form action="/promotions/{{$promotion->id}}/urn-specifications/{{$urnSpecification->id}}">
+                        <form action="{{ route('urnSpecificationDetails', [$promotion->id, $urnSpecification->id]) }}">
                             <input type="submit" value="View/Edit"/>
                         </form>
                     </td>

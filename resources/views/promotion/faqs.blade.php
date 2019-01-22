@@ -2,78 +2,99 @@
 /** @var $promotion \App\Models\Promotion */
 ?>
 
-<div class="tab-pane fade" id="faqs" role="tabpanel" aria-labelledby="faqs-tab">
+<div class="tab-pane fade" id="faqs" role="tabpanel"
+     aria-labelledby="faqs-tab">
 
     <div class="container">
+        <h2>{{ $promotion->name }}</h2>
+        <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+                data-target=".create-faq-group-modal">Create FAQ Group
+        </button>
+    </div>
 
-        @if ($errors->any())
-            <div class="row">
-                <div class="col-6">
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
+    <div class="container-fluid p-3">
+        <h4>FAQ Groups</h4>
+
+        <table class="table">
+            <tr>
+                <td>Name</td>
+                <td>Description</td>
+            </tr>
+            <tbody>
+
+            @foreach ($promotion->faqGroups as $faqGroup)
+                @php
+                    /** @var $faqGroup \App\Models\FAQGroup */
+                @endphp
+                <tr class="clickable-row">
+                    <td>{{ $faqGroup->name }}</td>
+                    <td>{{ $faqGroup->description }}</td>
+                    <td>
+                        <form action="{{ route('faqGroupDetails', [$promotion->id, $faqGroup->id]) }}">
+                            <input type="submit" value="View/Edit"/>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade create-faq-group-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+            <div class="container-fluid p-3">
+
+                <h2>Create URN Specification for Promotion - {{ $promotion->name }}</h2>
+
+                <form method="POST" action="{{ route('createUrnSpecification') }}">
+                    @csrf
+
+                    <input type="hidden" name="promotionId" value="{{ $promotion->id }}"/>
+
+                    <div class="form-group">
+                        <label for="referenceId">Reference ID</label>
+                        <input type="text" class="form-control" id="referenceId" name="referenceId"
+                               aria-describedby="levelHelp" required
+                               placeholder="Enter Reference ID">
+                        <small id="nameHelp" class="form-text text-muted">E.g. '5000 Winning Codes'
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="purpose">Purpose</label>
+                        <select class="form-control" id="purpose" name="purpose">
+                            @foreach ($urnSpecificationPurposes as $purposeValue => $purposeLabel)
+                                <option value="{{ $purposeValue }}">{{ $purposeLabel }}</option>
                             @endforeach
-                        </ul>
+                        </select>
                     </div>
 
-                </div>
-            </div>
-        @endif
-
-        <h2>{{ $promotion->name }} - FAQs</h2>
-
-    </div>
-
-    <br/>
-
-    <!-- Accordion -->
-    <div class="container-fluid bg-gray" id="accordion-style-1">
-        <section>
-            <div class="row">
-
-                <div class="col-12">
-                    <div class="accordion" id="accordionExample">
-
-                        @foreach($promotion->faqGroups as $faqGroup)
-
-                            <div class="card">
-                                <div class="card-header" id="heading{{ $loop->iteration }}">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link btn-block text-left" type="button"
-                                                data-toggle="collapse"
-                                                data-target="#collapse{{ $loop->iteration }}"
-                                                aria-expanded="true"
-                                                aria-controls="collapse{{ $loop->iteration }}">
-                                            <i class="fa fa-amazon main"></i><i
-                                                    class="fa fa-angle-double-right mr-3"></i>{{ $faqGroup->name }}
-                                        </button>
-                                    </h5>
-                                </div>
-
-                                <div id="collapse{{ $loop->iteration }}" class="collapse fade"
-                                     aria-labelledby="heading{{ $loop->iteration }}"
-                                     data-parent="#accordionExample">
-                                    <div class="card-body">
-
-                                        @foreach($faqGroup->faqs as $faq)
-
-                                            <h3>{{ $faq->title }}</h3>
-                                            <p>{{ $faq->body_text }}</p>
-
-                                        @endforeach
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        @endforeach
-
+                    <div class="form-group">
+                        <label for="length">Length</label>
+                        <input type="number" class="form-control" id="length" name="length"
+                               aria-describedby="levelHelp" required min="1"
+                               placeholder="Enter length">
+                        <small id="levelHelp" class="form-text text-muted">E.g. '5000'
+                        </small>
                     </div>
-                </div>
-            </div>
-        </section>
-    </div>
 
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
 
 </div>

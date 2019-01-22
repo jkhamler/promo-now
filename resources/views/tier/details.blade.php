@@ -11,7 +11,6 @@
 
         $promotion = $tier->promotion;
 
-
     @endphp
 
     <nav aria-label="breadcrumb">
@@ -22,6 +21,7 @@
             <li class="breadcrumb-item active" aria-current="page">{{$tier->short_description}}</li>
         </ol>
     </nav>
+
 
     @php /** @var $tier \App\Models\Tier **/
     @endphp
@@ -117,7 +117,7 @@
                     <td>{{ $tierItem->quantity }}</td>
                     <td>{{ $tierItem->partner->name }}</td>
                     <td>
-                        <form action="/tiers/items/{{$tierItem->id}}">
+                        <form action="{{ route('tierItemDetails', [$tierItem->id]) }}">
                             <input type="submit" value="View/Edit"/>
                         </form>
                     </td>

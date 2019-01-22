@@ -17,6 +17,14 @@ class CreateEntrantTierItemsTable extends Migration
             $table->increments('id');
             $table->integer('entrant_id');
             $table->integer('tier_item_id');
+            $table->enum('claim_status',
+                [
+                    'PENDING',
+                    'CLAIMED',
+                    'REJECTED',
+                    'ON_HOLD',
+                    'DISPATCHED',
+                ]);
             $table->dateTime('claimed_datetime')->nullable();
             $table->timestamps();
         });

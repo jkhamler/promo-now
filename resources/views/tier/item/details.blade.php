@@ -5,13 +5,9 @@
 @section('content')
 
     @php
-
         /** @var \App\Models\TierItem $tierItem */
-
         $tier = $tierItem->tier;
-
         $promotion = $tier->promotion;
-
     @endphp
 
     <nav aria-label="breadcrumb">
@@ -24,7 +20,8 @@
         </ol>
     </nav>
 
-    @php /** @var $tier \App\Models\Tier **/
+    @include('tier.item.subnav')
+    @php /** @var $promotion \App\Models\Promotion **/
     @endphp
 
     @if ($errors->any())
@@ -42,47 +39,22 @@
         </div>
     @endif
 
-    <h2>Tier Item - {{$tierItem->short_description}}</h2>
+    <div class="row">
 
-    <div class="col-8">
-        <form method="POST" action="{{ route('updateTierItem', [$tierItem->id, 'id']) }}">
+        <div class="container-fluid">
 
-            <div class="form-group">
-                @csrf
-                @method('PATCH')
-                <input type="hidden" name="tier_item_id" value="{{ $tierItem->id }}"/>
+            <div class="tab-content" id="myTabContent">
 
-                <label for="shortDescription">Short Description</label>
-                <input type="text" class="form-control" id="shortDescription" name="shortDescription"
-                       placeholder="Short Description" required value="{{$tierItem->short_description}}">
+                @include('tier.item.basics')
+                @include('tier.item.stock')
+
             </div>
 
-            <div class="form-group">
-                <label for="longDescription">Long Description</label>
-                <input type="text" class="form-control" id="longDescription" name="longDescription"
-                       placeholder="Long Description" required value="{{$tierItem->long_description}}">
-            </div>
+        </div>
 
-            <div class="form-group">
-                <label for="couponNumber">Coupon Number</label>
-                <input type="text" class="form-control" id="couponNumber" name="couponNumber"
-                       placeholder="Coupon Number" required value="{{$tierItem->coupon_number}}">
-            </div>
-
-            <div class="form-group">
-                <label for="partner">Partner</label>
-                <select class="form-control" id="partnerId" name="partnerId">
-                    @foreach ($partners as $partner)
-                        <option value="{{ $partner->id }}" @php if($partner->id == $tierItem->partner_id){echo 'selected';} @endphp>{{ $partner->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Update</button>
-        </form>
     </div>
 
-    <br/>
+
 
 
 @endsection

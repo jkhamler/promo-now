@@ -46,7 +46,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::patch('/{promotionId}', 'PromotionController@updateAction')->name('updatePromotion');
 
         Route::get('/{promotionId}/mechanics/{mechanicId}', 'MechanicController@detailsAction')->name('mechanicDetails');
-        Route::get('/{promotionId}/urn-specifications/{urnSpecificationId}', 'UrnController@urnSpecificationDetailsAction')->name('urnSpecificationDetailsAction');
+        Route::get('/{promotionId}/urn-specifications/{urnSpecificationId}', 'UrnController@urnSpecificationDetailsAction')->name('urnSpecificationDetails');
+
+        Route::get('/{promotionId}/faq-groups/{faqGroupId}', 'FAQController@faqGroupDetailsAction')->name('faqGroupDetails');
 
         Route::get('/{promotionId}/promo-terms/{promoTermId}', 'PromoTermsController@detailsAction')->name('promoTermsDetails');
         Route::get('/{promotionId}/privacy-terms/{promoTermId}', 'PrivacyTermsController@detailsAction')->name('privacyTermsDetails');

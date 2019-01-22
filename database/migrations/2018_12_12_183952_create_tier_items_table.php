@@ -20,6 +20,7 @@ class CreateTierItemsTable extends Migration
             $table->string('long_description')->nullable();
             $table->string('coupon_number')->nullable();
             $table->integer('partner_id');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }

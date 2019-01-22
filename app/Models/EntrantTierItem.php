@@ -14,6 +14,13 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  */
 class EntrantTierItem extends Pivot
 {
+    /**
+     * The table associated with the model
+     *
+     * @var string
+     */
+    protected $table = 'entrant_tier_items';
+
     protected $dates = [
         'created_at',
         'updated_at',
