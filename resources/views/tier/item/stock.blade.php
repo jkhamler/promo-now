@@ -11,6 +11,7 @@
                 <td>Partner</td>
                 <td>Tier Item</td>
                 <td>Reference Number</td>
+                <td>Allocated Date/time</td>
             </tr>
             </thead>
 
@@ -21,6 +22,7 @@
                     <td>{{ $tierItem->partner->name }}</td>
                     <td>{{ $tierItem->short_description }}</td>
                     <td>{{ $tierItemStock->reference_number }}</td>
+                    <td>{{ $tierItemStock->allocated_datetime }}</td>
                 </tr>
             @endforeach
 

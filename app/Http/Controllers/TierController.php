@@ -167,6 +167,7 @@ class TierController extends Controller
             'shortDescription' => 'required',
             'longDescription' => 'required',
             'couponNumber' => 'required',
+            'quantity' => 'required',
         ]);
 
         /** @var TierItem $tierItem */
@@ -176,6 +177,7 @@ class TierController extends Controller
         $tierItem->long_description = $data['longDescription'];
         $tierItem->coupon_number = $data['couponNumber'];
         $tierItem->partner_id = $data['partnerId'];
+        $tierItem->quantity = $data['quantity'];
 
         $tierItem->save();
 

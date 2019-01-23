@@ -230,6 +230,8 @@ EOT;
 
                 /** @var TierItemStock $firstStockItem */
                 $firstStockItem = $tierItem->unallocatedStock->first();
+                $firstStockItem->allocated_datetime = new \DateTime();
+                $firstStockItem->save();
 
                 // automatically assign the tier item
                 $entrantTierItem = new EntrantTierItemStock();
