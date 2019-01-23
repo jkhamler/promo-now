@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Partner;
 use App\Models\Tier;
 use App\Models\TierItem;
+use App\Models\TierItemStock;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -183,5 +184,45 @@ class TierController extends Controller
 
         return redirect()->to("/tiers/items/{$tierItem->id}");
     }
+
+    /**
+     * @param $tierItemStockId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function tierItemStockDetailsAction($tierItemStockId)
+    {
+        $tierItemStock = TierItemStock::find($tierItemStockId);
+
+        return view('tier.item.stock.details', [
+            'tierItemStock' => $tierItemStock,
+        ]);
+
+    }
+
+    /**
+     * @param $tierItemStockId
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateTierItemStockAction($tierItemStockId, Request $request)
+    {
+        $data = $request->all();
+
+        $request->validate([
+            'referenceNumber' => 'required',
+        ]);
+
+        /** @var TierItemStock $tierItemStock */
+        $tierItemStock = TierItemStock::find($tierItemStockId);
+
+        $tierItemStock->reference_number = $data['referenceNumber'];
+
+        $tierItemStock->save();
+
+        return view('tier.item.stock.details', [
+            'tierItemStock' => $tierItemStock,
+        ]);
+    }
+
 
 }

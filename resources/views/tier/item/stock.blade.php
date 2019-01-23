@@ -18,7 +18,7 @@
             <tbody>
 
             @foreach ($tierItem->stock as $tierItemStock)
-                <tr data-href="partners/{{ $tierItemStock->id }}">
+                <tr data-href="{{ route('tierItemStockDetails', [$tierItemStock->id]) }}">
                     <td>{{ $tierItem->partner->name }}</td>
                     <td>{{ $tierItem->short_description }}</td>
                     <td>{{ $tierItemStock->reference_number }}</td>

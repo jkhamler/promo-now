@@ -33,7 +33,7 @@
                     <td>{{ $tier->long_description }}</td>
                     <td>{{ $tier->quantity }}</td>
                     <td>
-                        <form action="/tiers/{{$tier->id}}">
+                        <form action="{{ route('tierDetails', [$tier->id]) }}">
                             <input type="submit" value="View/Edit"/>
                         </form>
                     </td>
@@ -59,7 +59,7 @@
 
                 <h2>Create Tier for Promotion - {{ $promotion->name }}</h2>
 
-                <form method="POST" action="{{ route('createTier') }}">
+                <form method="POST" action="{{ route('createTier', [$promotion->id]) }}">
                     @csrf
 
                     <input type="hidden" name="promotion_id" value="{{ $promotion->id }}"/>

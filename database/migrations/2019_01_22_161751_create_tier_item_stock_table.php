@@ -17,7 +17,7 @@ class CreateTierItemStockTable extends Migration
             $table->increments('id');
             $table->integer('tier_item_id');
             $table->dateTime('allocated_datetime')->nullable();
-            $table->string('reference_number')->nullable();
+            $table->string('reference_number')->nullable()->unique();
             $table->timestamps();
         });
     }

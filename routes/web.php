@@ -73,6 +73,15 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/', 'TierController@createTierItemAction')->name('createTierItem');
             Route::patch('/{tierItemId}', 'TierController@updateTierItemAction')->name('updateTierItem');
         });
+
+        Route::prefix('stock')->group(function () {
+            Route::get('/{tierItemStockId}', 'TierController@tierItemStockDetailsAction')->name('tierItemStockDetails');
+            Route::patch('/{tierItemStockId}', 'TierController@updateTierItemStockAction')->name('updateTierItemStock');
+//            Route::post('/', 'TierController@createTierItemAction')->name('createTierItem');
+//            Route::patch('/{tierItemId}', 'TierController@updateTierItemAction')->name('updateTierItem');
+        });
+
+
     });
 
     Route::prefix('privacy-terms')->group(function () {
