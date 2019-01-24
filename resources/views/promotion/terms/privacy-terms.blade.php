@@ -13,7 +13,8 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{ route('promotionIndex') }}">Promotions</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('promotionDetails', [$promotion->id]) }}">{{ $promotion->name }}</a></li>
+            <li class="breadcrumb-item"><a
+                        href="{{ route('promotionDetails', [$promotion->id]) }}">{{ $promotion->name }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">Privacy Terms Details</li>
         </ol>
     </nav>
@@ -69,7 +70,7 @@
 
             <div class="form-group">
                 <label for="acceptanceText">Acceptance Text</label>
-                <textarea class="form-control" rows="2" id="acceptanceText" name="acceptanceText"
+                <textarea class="form-control" id="acceptanceText" name="acceptanceText"
                           @php if(!$privacyTerm->isLatestVersion()) echo 'disabled'; @endphp
                           placeholder="E.g. 'I have read and accept the terms and conditions and confirm I am over 18 years old.'">{{ $privacyTerm->acceptance_text }}</textarea>
             </div>
@@ -77,13 +78,12 @@
             <div class="form-group">
                 <label for="terms">Terms</label>
                 <textarea class="form-control" id="privacyTermsBodyText" name="privacyTermsBodyText"
-                          @php if(!$privacyTerm->isLatestVersion()) echo 'disabled'; @endphp
-                          rows="3">{{ $privacyTerm->terms_body_text }}</textarea>
+                        @php if(!$privacyTerm->isLatestVersion()) echo 'disabled'; @endphp>{{ $privacyTerm->terms_body_text }}</textarea>
             </div>
 
             <div class="form-group">
                 <label for="marketingOptIn">Marketing Opt In</label>
-                <textarea class="form-control" rows="2" id="marketingOptIn" name="marketingOptIn"
+                <textarea class="form-control" id="marketingOptIn" name="marketingOptIn"
                           @php if(!$privacyTerm->isLatestVersion()) echo 'disabled'; @endphp
                           placeholder="E.g. 'I would like to receive marketing communications.'">{{ $privacyTerm->marketing_opt_in }}</textarea>
             </div>
@@ -123,18 +123,11 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            $('#privacyTermsBodyText').summernote({
 
-                // toolbar: [
-                //     // [groupName, [list of button]]
-                //     ['style', ['bold', 'italic', 'underline', 'clear']],
-                //     ['font', ['strikethrough', 'superscript', 'subscript']],
-                //     ['fontsize', ['fontsize']],
-                //     ['color', ['color']],
-                //     ['para', ['ul', 'ol', 'paragraph']],
-                //     ['height', ['height']]
-                // ]
-            });
+            $('#privacyTermsBodyText').summernote({});
+            $('#acceptanceText').summernote({});
+            $('#marketingOptIn').summernote({});
+            $('#cookieBodyText').summernote({});
         });
 
         @if(!$privacyTerm->isLatestVersion())

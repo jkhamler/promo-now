@@ -78,17 +78,16 @@
 
             <div class="form-group">
                 <label for="acceptanceText">Acceptance Text</label>
-                <textarea class="form-control" rows="2" id="acceptanceText" name="acceptanceText"
+                <textarea class="form-control" id="acceptanceText" name="acceptanceText"
                           @php if(!$promoTerm->isLatestVersion()) echo 'disabled'; @endphp
                           placeholder="E.g. 'I have read and accept the terms and conditions and confirm I am over 18 years old.'">{{ $promoTerm->acceptance_text }}</textarea>
             </div>
 
             <div class="form-group">
                 <label for="shortTerms">Short Terms</label>
-                <input type="text" class="form-control" id="shortTerms" name="shortTerms"
-                       value="{{ $promoTerm->short_terms }}"
-                       @php if(!$promoTerm->isLatestVersion()) echo 'disabled'; @endphp
-                       placeholder="Short Terms">
+                <textarea class="form-control" id="shortTerms" name="shortTerms"
+                          @php if(!$promoTerm->isLatestVersion()) echo 'disabled'; @endphp
+                          placeholder="E.g. 'Short Terms and COnditions'">{{ $promoTerm->short_terms }}</textarea>
             </div>
 
             <div class="form-group">
@@ -109,18 +108,9 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            $('#termsBodyText').summernote({
-
-                // toolbar: [
-                //     // [groupName, [list of button]]
-                //     ['style', ['bold', 'italic', 'underline', 'clear']],
-                //     ['font', ['strikethrough', 'superscript', 'subscript']],
-                //     ['fontsize', ['fontsize']],
-                //     ['color', ['color']],
-                //     ['para', ['ul', 'ol', 'paragraph']],
-                //     ['height', ['height']]
-                // ]
-            });
+            $('#termsBodyText').summernote({});
+            $('#acceptanceText').summernote({});
+            $('#shortTerms').summernote({});
         });
 
         @if(!$promoTerm->isLatestVersion())

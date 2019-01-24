@@ -23,7 +23,7 @@ class CreatePrivacyTermsTable extends Migration
             $table->string('title');
             $table->longText('acceptance_text')->nullable();
             $table->longText('terms_body_text');
-            $table->string('marketing_opt_in')->nullable();
+            $table->longText('marketing_opt_in')->nullable();
             $table->string('cookie_title')->nullable();
             $table->longText('cookie_body_text')->nullable();
             $table->string('gdpr_contact_email')->nullable();
