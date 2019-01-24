@@ -30,7 +30,7 @@
             <tbody>
 
             @foreach ($tier->items as $tierItem)
-                <tr data-href="{{ route('tierItemDetails', [$tierItem->id]) }}">
+                <tr data-href="{{ route('tierItemDetails', [$promotion->id, $tier->id, $tierItem->id]) }}">
                     <td>{{ $tierItem->short_description }}</td>
                     <td>{{ $tierItem->long_description }}</td>
                     <td>{{ $tierItem->coupon_number }}</td>
@@ -71,7 +71,7 @@
 
                     <h2>Create Tier Item</h2>
 
-                    <form method="POST" action="{{ route('createTierItem') }}">
+                    <form method="POST" action="{{ route('createTierItem', [$promotion->id, $tier->id]) }}">
 
                         <div class="form-group">
 

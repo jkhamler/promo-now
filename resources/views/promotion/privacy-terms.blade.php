@@ -79,7 +79,7 @@ EOT;
 
                 <h2>Create Privacy Terms - {{ $promotion->name }}</h2>
 
-                <form method="POST" action="{{ route('createPrivacyTerms') }}" id="createPrivacyTermsForm">
+                <form method="POST" action="{{ route('createPrivacyTerms', [$promotion->id]) }}" id="createPrivacyTermsForm">
 
                     @csrf
                     <input type="hidden" name="promotionId" value="{{ $promotion->id }}"/>

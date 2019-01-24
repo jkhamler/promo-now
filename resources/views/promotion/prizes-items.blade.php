@@ -29,7 +29,7 @@
             <tbody>
 
             @foreach ($promotion->tiers as $tier)
-                <tr data-href="{{ route('tierDetails', [$tier->id]) }}">
+                <tr data-href="{{ route('tierDetails', [$promotion->id, $tier->id]) }}">
                     <td>{{ $tier->level }}</td>
                     <td>{{ $tier->short_description }}</td>
                     <td>{{ $tier->long_description }}</td>

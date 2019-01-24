@@ -11,10 +11,11 @@
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item"><a href="/promotions">Promotions</a></li>
+
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('promotionIndex') }}">Promotions</a></li>
             <li class="breadcrumb-item"><a
-                        href="/promotions/{{ $promotion->id }}">{{ $promotion->name }}</a></li>
+                        href="{{ route('promotionDetails', [$promotion->id]) }}">{{ $promotion->name }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">Promo Terms Details</li>
         </ol>
     </nav>
@@ -36,7 +37,8 @@
 
     <h2>Promo Terms</h2>
 
-    @if(!$promoTerm->isLatestVersion())<h4>(Archived - last updated {{ $promoTerm->updated_at->format('d/m/Y H:i:s') }})</h4>@endif
+    @if(!$promoTerm->isLatestVersion())<h4>(Archived - last updated {{ $promoTerm->updated_at->format('d/m/Y H:i:s') }}
+        )</h4>@endif
 
     <div class="col-12">
 
@@ -128,8 +130,6 @@
         });
 
         @endif
-
-
 
 
     </script>

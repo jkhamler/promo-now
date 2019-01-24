@@ -11,10 +11,9 @@
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item"><a href="/promotions">Promotions</a></li>
-            <li class="breadcrumb-item"><a
-                        href="/promotions/{{ $promotion->id }}">{{ $promotion->name }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('promotionIndex') }}">Promotions</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('promotionDetails', [$promotion->id]) }}">{{ $promotion->name }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">Privacy Terms Details</li>
         </ol>
     </nav>

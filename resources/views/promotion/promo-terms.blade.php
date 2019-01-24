@@ -91,7 +91,7 @@ EOT;
 
                 <h2>Create Promo Terms - {{ $promotion->name }}</h2>
 
-                <form method="POST" action="{{ route('createPromoTerms') }}" id="createPromoTermsForm">
+                <form method="POST" action="{{ route('createPromoTerms', [$promotion->id]) }}" id="createPromoTermsForm">
 
                     @csrf
                     <input type="hidden" name="promotionId" value="{{ $promotion->id }}"/>

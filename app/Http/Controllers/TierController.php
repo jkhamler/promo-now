@@ -15,10 +15,11 @@ class TierController extends Controller
     /**
      * Create a tier
      *
+     * @param $promotionId
      * @param Request $request
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function createAction(Request $request)
+    public function createAction($promotionId, Request $request)
     {
         $data = $request->all();
 
@@ -45,16 +46,17 @@ class TierController extends Controller
 
         $tier->save();
 
-        return redirect()->to("/tiers/{$tier->id}");
+        return redirect()->to(route('tierDetails', [$promotionId, $tier->id]));
     }
 
     /**
      * Tier Details
      *
+     * @param $promotionId
      * @param $tierId
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function detailsAction($tierId)
+    public function detailsAction($promotionId, $tierId)
     {
         $tier = Tier::find($tierId);
 
@@ -101,8 +103,7 @@ class TierController extends Controller
 
         $tier->save();
 
-        return redirect()->to("/tiers/{$tier->id}");
-
+        return redirect()->to(route('tierDetails', [$promotionId, $tier->id]));
     }
 
     /**
@@ -124,10 +125,12 @@ class TierController extends Controller
     /**
      * Update a tier item
      *
+     * @param $promotionId
+     * @param $tierId
      * @param Request $request
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function createTierItemAction(Request $request)
+    public function createTierItemAction($promotionId, $tierId, Request $request)
     {
         $data = $request->all();
 
@@ -149,17 +152,19 @@ class TierController extends Controller
 
         $tierItem->save();
 
-        return redirect()->to("/tiers/{$tierItem->tier_id}");
+        return redirect()->to(route('tierItemDetails', [$promotionId, $tierId, $tierItem->id]));
     }
 
     /**
      * Update a tier item
      *
-     * @param integer $tierItemId
+     * @param $promotionId
+     * @param $tierId
+     * @param $tierItemId
      * @param Request $request
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateTierItemAction($tierItemId, Request $request)
+    public function updateTierItemAction($promotionId, $tierId, $tierItemId, Request $request)
     {
         $data = $request->all();
 
@@ -182,7 +187,7 @@ class TierController extends Controller
 
         $tierItem->save();
 
-        return redirect()->to("/tiers/items/{$tierItem->id}");
+        return redirect()->to(route('tierItemDetails', [$promotionId, $tierId, $tierItem->id]));
     }
 
     /**

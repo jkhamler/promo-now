@@ -56,7 +56,7 @@ class PartnerController extends Controller
 
         $partner->save();
 
-        return redirect()->to("/partners/{$partner->id}");
+        return redirect()->to(route('partnerDetails', [$partner->id]));
     }
 
     /**
@@ -85,7 +85,7 @@ class PartnerController extends Controller
 
         $partner->save();
 
-        return redirect()->to("/partners/{$partner->id}");
+        return redirect()->to(route('partnerDetails', [$partner->id]));
     }
 
 }
