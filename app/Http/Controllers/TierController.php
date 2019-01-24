@@ -109,10 +109,12 @@ class TierController extends Controller
     /**
      * Tier Item Details
      *
+     * @param $promotionId
+     * @param $tierId
      * @param $tierItemId
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function tierItemDetailsAction($tierItemId)
+    public function tierItemDetailsAction($promotionId, $tierId, $tierItemId)
     {
         $tierItem = TierItem::find($tierItemId);
 
@@ -140,6 +142,7 @@ class TierController extends Controller
             'longDescription' => 'required',
             'couponNumber' => 'required',
             'partnerId' => 'required',
+            'quantity' => 'required',
         ]);
 
         $tierItem = new TierItem();
@@ -149,6 +152,7 @@ class TierController extends Controller
         $tierItem->long_description = $data['longDescription'];
         $tierItem->coupon_number = $data['couponNumber'];
         $tierItem->partner_id = $data['partnerId'];
+        $tierItem->quantity = $data['quantity'];
 
         $tierItem->save();
 

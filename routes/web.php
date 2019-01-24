@@ -55,6 +55,7 @@ Route::group(['middleware' => ['auth']], function () {
         /** FAQ Groups */
         Route::get('/{promotionId}/faq-groups/{faqGroupId}', 'FAQController@faqGroupDetailsAction')->name('FAQGroupDetails');
         Route::post('/{promotionId}/faq-groups', 'FAQController@createFAQGroupAction')->name('createFAQGroup');
+        Route::patch('/{promotionId}/faq-groups/{faqGroupId}', 'FAQController@updateFAQGroupAction')->name('updateFAQGroup');
 
         /** Mechanics */
         Route::get('/{promotionId}/mechanics/{mechanicId}', 'MechanicController@detailsAction')->name('mechanicDetails');

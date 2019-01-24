@@ -27,11 +27,12 @@
                 data-target=".create-mechanic-modal">Create
             Mechanic
         </button>
+
     </div>
+
 
     <div class="container-fluid p-3">
         <h4>Mechanics</h4>
-
 
         <table id="mechanicsTable" class="table table-striped table-bordered hover" style="width: 100%;">
             <thead>

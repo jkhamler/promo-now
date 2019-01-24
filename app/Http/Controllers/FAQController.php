@@ -54,4 +54,14 @@ class FAQController extends Controller
 
         return redirect()->to(route('FAQGroupDetails', [$promotionId, $faqGroup->id]));
     }
+
+    /**
+     * @param $promotionId
+     * @param $faqGroupId
+     * @param Request $request
+     */
+    public function updateFAQGroupAction($promotionId, $faqGroupId, Request $request)
+    {
+
+    }
 }

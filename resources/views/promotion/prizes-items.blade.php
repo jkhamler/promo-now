@@ -6,6 +6,22 @@
      aria-labelledby="prizes-items-tab">
 
     <div class="container">
+
+        @if ($errors->any())
+            <div class="row">
+                <div class="col-6">
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        @endif
+
         <h2>{{ $promotion->name }}</h2>
         <button type="button" class="btn btn-primary float-right" data-toggle="modal"
                 data-target=".create-tier-modal">
@@ -42,6 +58,24 @@
     </div>
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#tierTable').DataTable();
+
+        $('#urnsRequired').change(function () {
+            if (this.checked)
+                $('#urnsIssued').show();
+            else
+                $('#urnsIssued').hide();
+        });
+    });
+
+    $('#tierTable').on('click', 'tbody tr', function () {
+        window.location.href = $(this).data('href');
+    });
+</script>
 
 
 <!-- Modal -->
@@ -104,22 +138,3 @@
     </div>
 
 </div>
-
-
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        $('#tierTable').DataTable();
-
-        $('#urnsRequired').change(function () {
-            if (this.checked)
-                $('#urnsIssued').show();
-            else
-                $('#urnsIssued').hide();
-        });
-    });
-
-    $('#tierTable').on('click', 'tbody tr', function () {
-        window.location.href = $(this).data('href');
-    });
-</script>

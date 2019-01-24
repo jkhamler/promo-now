@@ -14,8 +14,11 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{ route('promotionIndex') }}">Promotions</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('promotionDetails', [$promotion->id]) }}">{{ $promotion->name }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('tierDetails', [$promotion->id, $tier->id]) }}">{{ $tier->short_description }}</a></li>
+            <li class="breadcrumb-item"><a
+                        href="{{ route('promotionDetails', [$promotion->id]) }}">{{ $promotion->name }}</a></li>
+            <li class="breadcrumb-item"><a
+                        href="{{ route('tierDetails', [$promotion->id, $tier->id]) }}">{{ $tier->short_description }}</a>
+            </li>
             <li class="breadcrumb-item active" aria-current="page">{{$tierItem->short_description}}</li>
         </ol>
     </nav>
@@ -46,7 +49,8 @@
             <div class="container-fluid p-3">
 
                 <div class="col-8">
-                    <form method="POST" action="{{ route('updateTierItemStock', [$tierItemStock->id, 'id']) }}">
+                    <form method="POST"
+                          action="{{ route('updateTierItemStock', [$promotion->id, $tier->id, $tierItem->id, $tierItemStock->id]) }}">
 
                         <div class="form-group">
                             @csrf
