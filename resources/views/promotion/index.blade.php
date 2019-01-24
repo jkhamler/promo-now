@@ -41,8 +41,8 @@
 
     <div class="row">
 
-        <table class="table">
-
+        <table id="promotionTable" class="table table-striped table-bordered hover" style="width: 100%;">
+            <thead>
             <tr>
                 <td>Name</td>
                 <td>URL</td>
@@ -51,9 +51,9 @@
                 <td>Promo Open Date</td>
                 <td>Promo Closed Date</td>
                 <td>Offline Date</td>
-                <td colspan="2">URNs Issued</td>
+                <td>URNs Issued</td>
             </tr>
-
+            </thead>
             <tbody>
 
             <?php
@@ -80,7 +80,7 @@
             ?>
 
             @foreach ($promotions as $promotion)
-                <tr class="clickable-row">
+                <tr data-href="{{ route('promotionDetails', [$promotion->id]) }}">
                     <td>{{ $promotion->name }}</td>
                     <td>{{ $promotion->url }}</td>
                     <td>{{ $promotion->description }}</td>
@@ -89,11 +89,6 @@
                     <td>{{ $promotion->promo_closed_date->format('Y-m-d') }}</td>
                     <td>{{ $promotion->offline_date->format('Y-m-d') }}</td>
                     <td>{{ $promotion->urns_issued }}</td>
-                    <td>
-                        <form action="/promotions/{{$promotion->id}}">
-                            <input type="submit" value="View/Edit"/>
-                        </form>
-                    </td>
                 </tr>
             @endforeach
 
@@ -101,6 +96,16 @@
         </table>
 
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#promotionTable').DataTable();
+        });
+
+        $('#promotionTable').on('click', 'tbody tr', function () {
+            window.location.href = $(this).data('href');
+        });
+    </script>
 
 
     <!-- Modal -->

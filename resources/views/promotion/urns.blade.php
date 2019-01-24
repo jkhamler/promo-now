@@ -15,7 +15,8 @@
     <div class="container-fluid p-3">
         <h4>URN Specifications</h4>
 
-        <table class="table">
+        <table id="urnSpecificationsTable" class="table table-striped table-bordered hover" style="width: 100%;">
+            <thead>
             <tr>
                 <td>Reference ID</td>
                 <td>Purpose</td>
@@ -23,23 +24,20 @@
                 <td>Quantity</td>
                 <td>Winning Quantity</td>
             </tr>
+            </thead>
+
             <tbody>
 
             @foreach ($promotion->urnSpecifications as $urnSpecification)
                 @php
                     /** @var $urnSpecification \App\Models\UrnSpecification */
                 @endphp
-                <tr class="clickable-row">
+                <tr data-href="{{ route('urnSpecificationDetails', [$promotion->id, $urnSpecification->id]) }}">
                     <td>{{ $urnSpecification->reference_id }}</td>
                     <td>{{ $urnSpecification->getPurposeLabel() }}</td>
                     <td>{{ $urnSpecification->length }}</td>
                     <td>{{ $urnSpecification->urn_quantity }}</td>
                     <td>{{ $urnSpecification->winning_urn_quantity }}</td>
-                    <td>
-                        <form action="{{ route('urnSpecificationDetails', [$promotion->id, $urnSpecification->id]) }}">
-                            <input type="submit" value="View/Edit"/>
-                        </form>
-                    </td>
                 </tr>
             @endforeach
 
@@ -48,6 +46,16 @@
     </div>
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#urnSpecificationsTable').DataTable();
+    });
+
+    $('#urnSpecificationsTable').on('click', 'tbody tr', function () {
+        window.location.href = $(this).data('href');
+    });
+</script>
 
 
 <!-- Modal -->

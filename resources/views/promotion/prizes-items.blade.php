@@ -17,26 +17,23 @@
     <div class="container-fluid p-3">
         <h4>Tiers</h4>
 
-        <table class="table">
+        <table id="tierTable" class="table table-striped table-bordered hover" style="width: 100%;">
+            <thead>
             <tr>
                 <td>Level</td>
                 <td>Short Description</td>
                 <td>Long Description</td>
-                <td colspan="2">Quantity</td>
+                <td>Quantity</td>
             </tr>
+            </thead>
             <tbody>
 
             @foreach ($promotion->tiers as $tier)
-                <tr class="clickable-row">
+                <tr data-href="{{ route('tierDetails', [$tier->id]) }}">
                     <td>{{ $tier->level }}</td>
                     <td>{{ $tier->short_description }}</td>
                     <td>{{ $tier->long_description }}</td>
                     <td>{{ $tier->quantity }}</td>
-                    <td>
-                        <form action="{{ route('tierDetails', [$tier->id]) }}">
-                            <input type="submit" value="View/Edit"/>
-                        </form>
-                    </td>
                 </tr>
             @endforeach
 
@@ -112,11 +109,17 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
+        $('#tierTable').DataTable();
+
         $('#urnsRequired').change(function () {
             if (this.checked)
                 $('#urnsIssued').show();
             else
                 $('#urnsIssued').hide();
         });
+    });
+
+    $('#tierTable').on('click', 'tbody tr', function () {
+        window.location.href = $(this).data('href');
     });
 </script>
