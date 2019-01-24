@@ -13,10 +13,11 @@ class PromoTermsController extends Controller
     /**
      * Creates a new promo terms record (version 1)
      *
+     * @param $promotionId
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function createAction(Request $request)
+    public function createAction($promotionId, Request $request)
     {
         $data = $request->all();
 
@@ -44,8 +45,7 @@ class PromoTermsController extends Controller
 
         $promoTerm->save();
 
-        return redirect()->to("/promotions/{$promoTerm->promotion_id}/promo-terms/{$promoTerm->id}");
-
+        return redirect()->to(route('promoTermDetails', [$promotionId, $promoTerm->id]));
     }
 
     /**

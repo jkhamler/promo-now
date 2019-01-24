@@ -15,25 +15,22 @@
     <div class="container-fluid p-3">
         <h4>FAQ Groups</h4>
 
-        <table class="table">
+        <table id="faqGroupsTable" class="table table-striped table-bordered hover" style="width: 100%;">
+            <thead>
             <tr>
                 <td>Name</td>
                 <td>Description</td>
             </tr>
+            </thead>
             <tbody>
 
             @foreach ($promotion->faqGroups as $faqGroup)
                 @php
                     /** @var $faqGroup \App\Models\FAQGroup */
                 @endphp
-                <tr class="clickable-row">
+                <tr data-href="{{ route('FAQGroupDetails', [$promotion->id, $faqGroup->id]) }}">
                     <td>{{ $faqGroup->name }}</td>
                     <td>{{ $faqGroup->description }}</td>
-                    <td>
-                        <form action="{{ route('faqGroupDetails', [$promotion->id, $faqGroup->id]) }}">
-                            <input type="submit" value="View/Edit"/>
-                        </form>
-                    </td>
                 </tr>
             @endforeach
 
@@ -42,6 +39,16 @@
     </div>
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#faqGroupsTable').DataTable();
+    });
+
+    $('#faqGroupsTable').on('click', 'tbody tr', function () {
+        window.location.href = $(this).data('href');
+    });
+</script>
 
 
 <!-- Modal -->
@@ -54,37 +61,28 @@
 
             <div class="container-fluid p-3">
 
-                <h2>Create URN Specification for Promotion - {{ $promotion->name }}</h2>
+                <h2>Create FAQ Group for Promotion - {{ $promotion->name }}</h2>
 
-                <form method="POST" action="{{ route('createUrnSpecification') }}">
+                <form method="POST" action="{{ route('createFAQGroup', [$promotion->id]) }}">
                     @csrf
 
                     <input type="hidden" name="promotionId" value="{{ $promotion->id }}"/>
 
                     <div class="form-group">
-                        <label for="referenceId">Reference ID</label>
-                        <input type="text" class="form-control" id="referenceId" name="referenceId"
-                               aria-describedby="levelHelp" required
-                               placeholder="Enter Reference ID">
-                        <small id="nameHelp" class="form-text text-muted">E.g. '5000 Winning Codes'
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name"
+                               aria-describedby="nameHelp" required
+                               placeholder="Enter name">
+                        <small id="nameHelp" class="form-text text-muted">E.g. 'General FAQs'
                         </small>
                     </div>
 
                     <div class="form-group">
-                        <label for="purpose">Purpose</label>
-                        <select class="form-control" id="purpose" name="purpose">
-                            @foreach ($urnSpecificationPurposes as $purposeValue => $purposeLabel)
-                                <option value="{{ $purposeValue }}">{{ $purposeLabel }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="length">Length</label>
-                        <input type="number" class="form-control" id="length" name="length"
-                               aria-describedby="levelHelp" required min="1"
-                               placeholder="Enter length">
-                        <small id="levelHelp" class="form-text text-muted">E.g. '5000'
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="description" name="description"
+                               aria-describedby="descriptionHelp" required
+                               placeholder="Enter description">
+                        <small id="descriptionHelp" class="form-text text-muted">E.g. 'General FAQs Description'
                         </small>
                     </div>
 

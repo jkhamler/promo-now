@@ -70,7 +70,7 @@
 
                 <h2>Create URN Specification for Promotion - {{ $promotion->name }}</h2>
 
-                <form method="POST" action="{{ route('createUrnSpecification') }}">
+                <form method="POST" action="{{ route('createUrnSpecification', [$promotion->id]) }}">
                     @csrf
 
                     <input type="hidden" name="promotionId" value="{{ $promotion->id }}"/>

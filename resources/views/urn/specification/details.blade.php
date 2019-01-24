@@ -42,7 +42,7 @@
 
             <div class="tab-content" id="myTabContent">
 
-                @include('urn.specification.urn-specification')
+                @include('urn.specification.basics')
                 @include('urn.specification.urns')
 
             </div>

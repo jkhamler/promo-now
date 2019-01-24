@@ -81,7 +81,7 @@
 
                 <h2>Create Mechanic</h2>
 
-                <form method="POST" action="{{ route('createMechanic') }}">
+                <form method="POST" action="{{ route('createMechanic', [$promotion->id]) }}">
 
                     @csrf
                     <input type="hidden" name="promotion_id" value="{{ $promotion->id }}"/>

@@ -11,24 +11,13 @@ use Illuminate\Http\Request;
 class MechanicController extends Controller
 {
     /**
-     * Mechanic Listing
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function indexAction()
-    {
-        $mechanics = Mechanic::all();
-
-        return view('mechanic.index', ['mechanics' => $mechanics]);
-    }
-
-    /**
      * Create a mechanic
      *
+     * @param $promotionId
      * @param Request $request
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function createAction(Request $request)
+    public function createAction($promotionId, Request $request)
     {
         $data = $request->all();
 
@@ -38,8 +27,6 @@ class MechanicController extends Controller
             'type' => 'required',
             'promotion_id' => 'required',
         ]);
-
-        $promotionId = $data['promotion_id'];
 
         $mechanic = new Mechanic();
 
@@ -79,12 +66,14 @@ class MechanicController extends Controller
     /**
      * Update the mechanic
      *
+     * @param $promotionId
      * @param $mechanicId
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateAction($mechanicId, Request $request)
+    public function updateAction($promotionId, $mechanicId, Request $request)
     {
+
         $data = $request->all();
 
         $request->validate([ // todo - clean this up.
@@ -162,6 +151,6 @@ class MechanicController extends Controller
         }
         $mechanic->save();
 
-        return redirect()->to("/promotions/{$mechanic->promotion_id}/mechanics/{$mechanic->id}");
+        return redirect()->to(route('mechanicDetails', [$promotionId, $mechanicId]));
     }
 }

@@ -3,8 +3,13 @@
 
     <h2>URN Specification</h2>
 
+    @php
+        /** @var $urnSpecification \App\Models\UrnSpecification */
+    @endphp
+
     <div class="col-8">
-        <form method="POST" action="{{ route('updateUrnSpecification', [$urnSpecification->id, 'id']) }}">
+        <form method="POST"
+              action="{{ route('updateUrnSpecification', [$promotion->id, $urnSpecification->id, 'id']) }}">
 
             <div class="form-group">
                 @csrf
@@ -58,7 +63,7 @@
                 <select class="form-control" id="profanityCheckLanguageId" name="profanityCheckLanguageId">
                     <option value='0'>Not Selected</option>
                     @foreach ($languages as $language)
-                        <option value="{{ $language->id }}"@php if($urnSpecification->profanity_check_language_id == $language->id){
+                        <option value="{{ $language->id }}"@php $selectedProfanityCheckLanguage = null; if($urnSpecification->profanity_check_language_id == $language->id){
                                 $selectedProfanityCheckLanguage = $language->name;
                                 echo 'selected';}@endphp>{{ $language->name }}</option>
                     @endforeach
@@ -107,7 +112,8 @@
         </form>
 
         <button type="button" class="btn btn-primary float-right" data-toggle="modal" id="generateURNsButton"
-                data-target=".generate-url-batch-modal">Generate URN Batch
+                data-target=".generate-url-batch-modal" @php if(!$urnSpecification->pi_to_generate){echo "style='display: none;'";} @endphp>
+            Generate URN Batch
         </button>
 
         <br/>
@@ -128,7 +134,7 @@
 
                 <h2>Generate URN Batch</h2>
 
-                <form method="POST" action="{{ route('generateUrnBatch', ['id' => $urnSpecification->id]) }}">
+                <form method="POST" action="{{ route('generateUrnBatch', [$promotion->id, $urnSpecification->id]) }}">
 
                     <div class="form-group">
                         @csrf
@@ -172,6 +178,18 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="profanityCheckLanguageId">Profanity Check Language</label>
+                        <select class="form-control" id="profanityCheckLanguageId" name="profanityCheckLanguageId" disabled>
+                            <option value='0'>Not Selected</option>
+                            @foreach ($languages as $language)
+                                <option value="{{ $language->id }}"@php $selectedProfanityCheckLanguage = null; if($urnSpecification->profanity_check_language_id == $language->id){
+                                $selectedProfanityCheckLanguage = $language->name;
+                                echo 'selected';}@endphp>{{ $language->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label for="urnQuantity">URN Quantity</label>
                         <input type="text" class="form-control" id="urnQuantity" name="urnQuantity"
                                disabled value="{{ $urnSpecification->urn_quantity }}">
@@ -181,6 +199,12 @@
                         <label for="winningUrnQuantity">Winning URN Quantity</label>
                         <input type="text" class="form-control" id="winningUrnQuantity" name="winningUrnQuantity"
                                disabled value="{{ $urnSpecification->winning_urn_quantity }}">
+                    </div>
+
+                    <div class="checkbox">
+                        <label><input type="checkbox"
+                                      disabled
+                                      name="piToGenerate"@php if($urnSpecification->pi_to_generate){echo 'checked';} @endphp>PI to generate</label>
                     </div>
 
                     <div class="checkbox">
@@ -206,16 +230,3 @@
     </div>
 
 </div>
-
-
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        $('#piToGenerate').change(function () {
-            if (this.checked)
-                $('#generateURNsButton').show();
-            else
-                $('#generateURNsButton').hide();
-        });
-    });
-</script>
