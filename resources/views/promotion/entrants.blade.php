@@ -6,7 +6,28 @@
 
     <div class="container">
 
-        <h2>Entrants</h2>
+        @if ($errors->any())
+            <div class="row">
+                <div class="col-6">
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        @endif
+
+        <h2>{{ $promotion->name }}</h2>
+
+    </div>
+
+    <div class="container-fluid p-3">
+        <h4>Entrants</h4>
+
         <table id="entrantsTable" class="table table-striped table-bordered hover" style="width:100%">
             <thead>
             <tr>
