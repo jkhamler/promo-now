@@ -16,7 +16,7 @@
                 <input type="hidden" name="faq_group_id" value="{{ $faqGroup->id }}"/>
 
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="level" name="level"
+                <input type="text" class="form-control" id="name" name="name"
                        aria-describedby="nameHelp" required
                        placeholder="Enter level" value="{{$faqGroup->name}}">
             </div>

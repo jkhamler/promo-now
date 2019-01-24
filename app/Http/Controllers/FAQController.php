@@ -60,10 +60,26 @@ class FAQController extends Controller
      * @param $promotionId
      * @param $faqGroupId
      * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function updateFAQGroupAction($promotionId, $faqGroupId, Request $request)
     {
+        $data = $request->all();
 
+        $request->validate([
+            'name' => 'required',
+            'description' => 'nullable',
+        ]);
+
+        /** @var FAQGroup $faqGroup */
+        $faqGroup = FAQGroup::find($faqGroupId);
+
+        $faqGroup->name = $data['name'];
+        $faqGroup->description = $data['description'];
+
+        $faqGroup->save();
+
+        return redirect()->to(route('FAQGroupDetails', [$promotionId, $faqGroupId]));
     }
 
     /**
