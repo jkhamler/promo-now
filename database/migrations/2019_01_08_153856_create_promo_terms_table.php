@@ -22,7 +22,7 @@ class CreatePromoTermsTable extends Migration
             $table->integer('authorised_by_user_id')->nullable();
             $table->dateTime('authorised_at')->nullable();
             $table->string('title');
-            $table->string('acceptance_text');
+            $table->longText('acceptance_text');
             $table->string('short_terms')->nullable();
             $table->longText('terms_body_text');
             $table->timestamps();

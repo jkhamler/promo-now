@@ -41,34 +41,24 @@ EOT;
     <div class="container-fluid p-3">
         <h4>Privacy Terms</h4>
 
-
-        <table class="table">
-
+        <table id="privacyTermsTable" class="table table-striped table-bordered hover" style="width: 100%;">
+            <thead>
             <tr>
                 <td>Version</td>
                 <td>Partner</td>
-                <td colspan="2">Title</td>
+                <td>Title</td>
             </tr>
-
+            </thead>
             <tbody>
 
             @foreach ($promotion->privacyTerms as $privacyTerm)
                 @php /** @var $privacyTerm \App\Models\PrivacyTerm */@endphp
-                <tr class="clickable-row">
+                <tr data-href="{{ route('privacyTermDetails', [$promotion->id, $privacyTerm->id]) }}">
                     <td>{{ $privacyTerm->version }}@if($privacyTerm->isLatestVersion()) (Active) @endif</td>
                     <td>{{ $privacyTerm->partner->name }}</td>
                     <td>{{ $privacyTerm->title }}</td>
-
-                    <td>
-                        <form action="/promotions/{{ $promotion->id }}/privacy-terms/{{$privacyTerm->id}}">
-                            <input type="submit"
-                                   @if($privacyTerm->isLatestVersion()) value="View/Edit"
-                                   @else value="View Archive"@endif/>
-                        </form>
-                    </td>
                 </tr>
             @endforeach
-
 
             </tbody>
         </table>
@@ -168,6 +158,12 @@ EOT;
             //     ['height', ['height']]
             // ]
         });
+
+        $('#privacyTermsTable').DataTable();
+    });
+
+    $('#privacyTermsTable').on('click', 'tbody tr', function () {
+        window.location.href = $(this).data('href');
     });
 
 </script>

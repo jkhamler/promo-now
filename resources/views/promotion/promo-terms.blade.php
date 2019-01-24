@@ -42,28 +42,22 @@ EOT;
         <h4>Promo Terms</h4>
 
 
-        <table class="table">
-
+        <table id="promoTermsTable" class="table table-striped table-bordered hover" style="width: 100%;">
+            <thead>
             <tr>
                 <td>Version</td>
                 <td>Valid From</td>
-                <td colspan="2">Valid Until</td>
+                <td>Valid Until</td>
             </tr>
-
+            </thead>
             <tbody>
 
             @foreach ($promotion->promoTerms as $promoTerm)
                 @php /** @var $promoTerm \App\Models\PromoTerm */@endphp
-                <tr class="clickable-row">
+                <tr data-href="{{ route('promoTermDetails', [$promotion->id, $promoTerm->id]) }}">
                     <td>{{ $promoTerm->version }}@if($promoTerm->isLatestVersion()) (Active) @endif</td>
                     <td>{{ $promoTerm->valid_from->format('Y-m-d') }}</td>
                     <td>{{ $promoTerm->valid_until->format('Y-m-d') }}</td>
-
-                    <td>
-                        <form action="/promotions/{{ $promotion->id }}/promo-terms/{{$promoTerm->id}}">
-                            <input type="submit" @if($promoTerm->isLatestVersion()) value="View/Edit"@else value="View Archive"@endif/>
-                        </form>
-                    </td>
                 </tr>
             @endforeach
 
@@ -73,6 +67,17 @@ EOT;
     </div>
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#promoTermsTable').DataTable();
+    });
+
+    $('#promoTermsTable').on('click', 'tbody tr', function () {
+        window.location.href = $(this).data('href');
+    });
+</script>
+
 
 <!-- Modal -->
 <div class="modal fade create-promo-term-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"

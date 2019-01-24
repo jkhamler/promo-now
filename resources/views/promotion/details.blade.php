@@ -30,6 +30,27 @@
         </div>
     @endif
 
+    <div class="row">
+
+        <div class="container-fluid">
+
+            <div class="tab-content" id="myTabContent">
+
+                @include('promotion.campaign-basics')
+                @include('promotion.urns')
+                @include('promotion.prizes-items')
+                @include('promotion.mechanics')
+                @include('promotion.promo-terms')
+                @include('promotion.privacy-terms')
+                @include('promotion.faqs')
+                @include('promotion.entrants')
+
+            </div>
+
+        </div>
+
+    </div>
+
     <script type="text/javascript">
         $(document).ready(function () {
 

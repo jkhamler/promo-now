@@ -33,31 +33,22 @@
         <h4>Mechanics</h4>
 
 
-        <table class="table">
-
+        <table id="mechanicsTable" class="table table-striped table-bordered hover" style="width: 100%;">
+            <thead>
             <tr>
                 <td>Name</td>
                 <td>Description</td>
-                <td colspan="2">Type</td>
+                <td>Type</td>
             </tr>
-
+            </thead>
             <tbody>
-
-            <?php
-
-            ?>
 
             @foreach ($promotion->mechanics as $mechanic)
                 @php /** @var $mechanic \App\Models\Mechanic */@endphp
-                <tr class="clickable-row">
+                <tr data-href="{{ route('mechanicDetails', [$promotion->id, $mechanic->id]) }}">
                     <td>{{ $mechanic->name }}</td>
                     <td>{{ $mechanic->description }}</td>
                     <td>{{ $mechanic->getTypeLabel() }}</td>
-                    <td>
-                        <form action="/promotions/{{ $promotion->id }}/mechanics/{{$mechanic->id}}">
-                            <input type="submit" value="View/Edit"/>
-                        </form>
-                    </td>
                 </tr>
             @endforeach
 
@@ -67,6 +58,16 @@
     </div>
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#mechanicsTable').DataTable();
+    });
+
+    $('#mechanicsTable').on('click', 'tbody tr', function () {
+        window.location.href = $(this).data('href');
+    });
+</script>
 
 <!-- Modal -->
 <div class="modal fade create-mechanic-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
