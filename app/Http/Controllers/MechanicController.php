@@ -37,7 +37,7 @@ class MechanicController extends Controller
 
         $mechanic->save();
 
-        return redirect()->to("/promotions/{$promotionId}/mechanics/{$mechanic->id}");
+        return redirect()->to(route('mechanicDetails', [$promotionId, $mechanic->id]));
     }
 
     /**

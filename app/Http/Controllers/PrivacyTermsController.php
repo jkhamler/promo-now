@@ -12,10 +12,11 @@ class PrivacyTermsController extends Controller
     /**
      * Creates a new privacy terms record (version 1)
      *
+     * @param $promotionId
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function createAction(Request $request)
+    public function createAction($promotionId, Request $request)
     {
         $data = $request->all();
 
@@ -47,16 +48,17 @@ class PrivacyTermsController extends Controller
 
         $privacyTerm->save();
 
-        return redirect()->to("/promotions/{$privacyTerm->promotion_id}/privacy-terms/{$privacyTerm->id}");
+        return redirect()->to(route('privacyTermDetails', [$promotionId, $privacyTerm->id]));
 
     }
 
     /**
+     * @param $promotionId
      * @param $privacyTermId
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateAction($privacyTermId, Request $request)
+    public function updateAction($promotionId, $privacyTermId, Request $request)
     {
         $data = $request->all();
 
@@ -88,7 +90,7 @@ class PrivacyTermsController extends Controller
 
         $revisedPrivacyTerm->save();
 
-        return redirect()->to("/promotions/{$privacyTerm->promotion_id}/privacy-terms/{$revisedPrivacyTerm->id}");
+        return redirect()->to(route('privacyTermDetails', [$promotionId, $revisedPrivacyTerm->id]));
 
     }
 

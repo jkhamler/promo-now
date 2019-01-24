@@ -42,7 +42,8 @@
 
     <div class="col-12">
 
-        <form method="POST" action="{{ route('updatePromoTerms', [$promoTerm->id, 'id']) }}" id="createPromoTermsForm">
+        <form method="POST" action="{{ route('updatePromoTerms', [$promotion->id, $promoTerm->id]) }}"
+              id="updatePromoTermsForm">
 
             @csrf
             @method('PATCH')
@@ -53,7 +54,6 @@
                 <input type="text" class="form-control" id="version" name="version" value="{{ $promoTerm->version }}"
                        disabled>
             </div>
-
 
             <div class="form-group">
                 <label for="validFrom">Valid From</label>

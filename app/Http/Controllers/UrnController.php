@@ -37,7 +37,7 @@ class UrnController extends Controller
 
         $urnSpecification->save();
 
-        return redirect()->to("/promotions/{$promotionId}/urn-specifications/{$urnSpecification->id}");
+        return redirect()->to(route('urnSpecificationDetails', [$promotionId, $urnSpecification->id]));
     }
 
     /**
@@ -131,16 +131,19 @@ class UrnController extends Controller
         }
         $urnSpecification->save();
 
-        return redirect()->to("/promotions/{$urnSpecification->promotion_id}/urn-specifications/{$urnSpecification->id}");
+        return redirect()->to(route('urnSpecificationDetails', [$promotionId, $urnSpecification->id]));
     }
 
     /**
+     * Generate URN Batch
+     *
+     * @param $promotionId
      * @param $urnSpecificationId
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function generateUrnBatchAction ($urnSpecificationId, Request $request)
+    public function generateUrnBatchAction ($promotionId, $urnSpecificationId, Request $request)
     {
         $data = $request->all();
 
@@ -152,7 +155,7 @@ class UrnController extends Controller
 
         $urnBatch = $urnSpecification->generateUrnBatch($data['batchName']);
 
-        return redirect()->to("/promotions/{$urnSpecification->promotion_id}/urn-specifications/{$urnSpecification->id}");
+        return redirect()->to(route('urnSpecificationDetails', [$promotionId, $urnSpecification->id]));
     }
 
 

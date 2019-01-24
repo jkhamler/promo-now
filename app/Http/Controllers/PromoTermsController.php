@@ -49,13 +49,15 @@ class PromoTermsController extends Controller
     }
 
     /**
+     * Update promo terms
+     *
+     * @param $promotionId
      * @param $promoTermId
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateAction($promoTermId, Request $request)
+    public function updateAction($promotionId, $promoTermId, Request $request)
     {
-
         $data = $request->all();
 
         $request->validate([
@@ -84,7 +86,7 @@ class PromoTermsController extends Controller
 
         $revisedPromoTerm->save();
 
-        return redirect()->to("/promotions/{$promoTerm->promotion_id}/promo-terms/{$revisedPromoTerm->id}");
+        return redirect()->to(route('promoTermDetails', [$promotionId, $revisedPromoTerm->id]));
 
     }
 

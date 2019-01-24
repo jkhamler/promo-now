@@ -129,7 +129,7 @@ EOT;
 
         session()->flash('status', trans('ticketit::lang.the-ticket-has-been-created'));
 
-        return redirect()->to("/test-promo/support-ticket-logged/{$person->id}");
+        return redirect()->to(route('supportTicketLogged', [$person->id]));
     }
 
     /**

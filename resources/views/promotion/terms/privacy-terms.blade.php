@@ -40,8 +40,8 @@
 
     <div class="col-12">
 
-        <form method="POST" action="{{ route('updatePrivacyTerms', [$privacyTerm->id, 'id']) }}"
-              id="createPromoTermsForm">
+        <form method="POST" action="{{ route('updatePrivacyTerms', [$promotion->id, $privacyTerm->id]) }}"
+              id="updatePromoTermsForm">
 
             @csrf
             @method('PATCH')

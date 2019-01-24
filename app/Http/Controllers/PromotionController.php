@@ -80,7 +80,7 @@ class PromotionController extends Controller
 
         $promotion->save();
 
-        return redirect()->to("/promotions/{$promotion->id}");
+        return redirect()->to(route('promotionDetails', [$promotion->id]));
     }
 
 
@@ -123,11 +123,7 @@ class PromotionController extends Controller
 
         $promotion->save();
 
-        return redirect()->to("/promotions/{$promotion->id}");
-
-    }
-
-    public function faqGroupDetailsAction($faqGroupDetailId){
+        return redirect()->to(route('promotionDetails', [$promotion->id]));
 
     }
 }
