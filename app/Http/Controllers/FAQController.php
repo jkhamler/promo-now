@@ -106,6 +106,35 @@ class FAQController extends Controller
     /**
      * @param $promotionId
      * @param $faqGroupId
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function createFAQAction($promotionId, $faqGroupId, Request $request)
+    {
+        $data = $request->all();
+
+        $request->validate([
+            'title' => 'required',
+            'bodyText' => 'required',
+            'order' => 'required',
+        ]);
+
+        /** @var FAQ $faq */
+        $faq = new FAQ();
+
+        $faq->order = $data['order'];
+        $faq->faq_group_id = $faqGroupId;
+        $faq->title = $data['title'];
+        $faq->body_text = $data['bodyText'];
+
+        $faq->save();
+
+        return redirect()->to(route('FAQDetails', [$promotionId, $faqGroupId, $faq->id]));
+    }
+
+    /**
+     * @param $promotionId
+     * @param $faqGroupId
      * @param $faqId
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse

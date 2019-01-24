@@ -71,77 +71,54 @@
     });
 </script>
 
-{{--<!-- Create FAQ Modal -->--}}
-{{--<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"--}}
-{{--aria-hidden="true">--}}
+<!-- Create FAQ Modal -->
+<div class="modal fade create-faq-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+     aria-hidden="true">
 
-{{--<div class="modal-dialog modal-lg">--}}
+    <div class="modal-dialog modal-lg">
 
-{{--<div class="modal-content">--}}
+        <div class="modal-content">
 
-{{--<div class="container-fluid p-3">--}}
+            <div class="container-fluid p-3">
 
-{{--<h2>Create Tier Item</h2>--}}
+                <h2>Create Tier Item</h2>
 
-{{--<form method="POST" action="{{ route('createTierItem', [$promotion->id, $faqGroup->id]) }}">--}}
+                <form method="POST" action="{{ route('createFAQ', [$promotion->id, $faqGroup->id]) }}">
 
-{{--<div class="form-group">--}}
 
-{{--@csrf--}}
-{{--<input type="hidden" name="tier_id" value="{{ $faqGroup->id }}"/>--}}
+                    <div class="form-group">
+                        <label for="order">Order</label>
+                        <input type="number" min="1" class="form-control" id="order" name="order"
+                               placeholder="Order" required>
+                    </div>
 
-{{--<label for="shortDescription">Short Description</label>--}}
-{{--<input type="text" class="form-control" id="shortDescription" name="shortDescription"--}}
-{{--aria-describedby="shortDescriptionHelp" required--}}
-{{--placeholder="Enter short description">--}}
-{{--<small id="shortDescriptionHelp" class="form-text text-muted">E.g. 'LCD TV'--}}
-{{--</small>--}}
-{{--</div>--}}
+                    <div class="form-group">
 
-{{--<div class="form-group">--}}
-{{--<label for="longDescription">Long Description</label>--}}
-{{--<input type="text" class="form-control" id="longDescription" name="longDescription"--}}
-{{--aria-describedby="longDescriptionHelp" required--}}
-{{--placeholder="Enter long description">--}}
-{{--<small id="longDescriptionHelp" class="form-text text-muted">E.g. '40 Inch LCD TV'--}}
-{{--</small>--}}
-{{--</div>--}}
+                        @csrf
+                        <input type="hidden" name="faq_group_id" value="{{ $faqGroup->id }}"/>
 
-{{--<div class="form-group">--}}
-{{--<label for="description">Coupon Number</label>--}}
-{{--<input type="text" class="form-control" id="couponNumber" name="couponNumber"--}}
-{{--aria-describedby="couponNumberHelp" required--}}
-{{--placeholder="Enter coupon number">--}}
-{{--<small id="couponNumberHelp" class="form-text text-muted">E.g. ABC12345--}}
-{{--</small>--}}
-{{--</div>--}}
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" name="title"
+                               aria-describedby="titleHelp" required
+                               placeholder="Enter title">
+                        <small id="titleHelp" class="form-text text-muted">E.g. 'How do I claim my prize?'
+                        </small>
+                    </div>
 
-{{--<div class="form-group">--}}
-{{--<label for="quantity">Quantity</label>--}}
-{{--<input type="number" min="1" class="form-control" id="quantity" name="quantity"--}}
-{{--aria-describedby="quantityHelp" required--}}
-{{--placeholder="Enter quantity">--}}
-{{--<small id="quantityHelp" class="form-text text-muted">E.g. 50--}}
-{{--</small>--}}
-{{--</div>--}}
 
-{{--<div class="form-group">--}}
-{{--<label for="partnerId">Partner</label>--}}
-{{--<select class="form-control" id="partnerId" name="partnerId">--}}
-{{--@foreach ($partners as $partner)--}}
-{{--<option value="{{ $partner->id }}">{{ $partner->name }}</option>--}}
-{{--@endforeach--}}
-{{--</select>--}}
-{{--</div>--}}
+                    <div class="form-group">
+                        <label for="bodyText">Body Text</label>
+                        <textarea class="form-control" id="bodyText" name="bodyText"></textarea>
+                    </div>
 
-{{--<button type="submit" class="btn btn-primary">Submit</button>--}}
-{{--<button id="deleteButton" type="button" class="btn btn-outline-primary" data-dismiss="modal">--}}
-{{--Cancel--}}
-{{--</button>--}}
-{{--</form>--}}
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button id="deleteButton" type="button" class="btn btn-outline-primary" data-dismiss="modal">
+                        Cancel
+                    </button>
+                </form>
 
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
+            </div>
+        </div>
+    </div>
+</div>
 
