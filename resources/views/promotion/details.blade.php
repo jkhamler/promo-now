@@ -60,8 +60,13 @@
                 else
                     $('#urnsIssued').hide();
             });
+
+            $('#description').summernote({});
+
         });
     </script>
+
+
 
 @endsection
 

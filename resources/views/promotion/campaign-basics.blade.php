@@ -31,8 +31,8 @@
 
             <div class="form-group">
                 <label for="description">Description</label>
-                <input type="text" class="form-control" id="description" name="description"
-                       placeholder="Description" required value="{{$promotion->description}}">
+                <textarea class="form-control" id="description" name="description"
+                          rows="3">{{ $promotion->description }}</textarea>
             </div>
 
             <div class="form-group">

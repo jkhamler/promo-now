@@ -17,8 +17,9 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{ route('promotionIndex') }}">Promotions</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('promotionDetails', [$promotion->id]) }}">{{ $promotion->name }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{$faqGroup->short_description}}</li>
+            <li class="breadcrumb-item"><a
+                        href="{{ route('promotionDetails', [$promotion->id]) }}">{{ $promotion->name }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{$faqGroup->name}}</li>
         </ol>
     </nav>
 
@@ -45,8 +46,8 @@
 
             <div class="tab-content" id="myTabContent">
 
-                @include('tier.basics')
-                @include('tier.items')
+                @include('faq.basics')
+                @include('faq.faqs')
 
             </div>
 

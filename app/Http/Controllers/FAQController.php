@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FAQ;
 use App\Models\FAQGroup;
 use App\Models\Promotion;
 use Illuminate\Http\Request;
@@ -64,4 +65,56 @@ class FAQController extends Controller
     {
 
     }
+
+    /**
+     * @param $promotionId
+     * @param $faqGroupId
+     * @param $faqId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function FAQDetailsAction($promotionId, $faqGroupId, $faqId)
+    {
+        /** @var FAQGroup $faq */
+        $faqGroup = FAQGroup::find($faqGroupId);
+
+        /** @var FAQ $faq */
+        $faq = FAQ::find($faqId);
+
+        return view('faq.faq-details', [
+            'faqGroup' => $faqGroup,
+            'faq' => $faq,
+        ]);
+
+    }
+
+    /**
+     * @param $promotionId
+     * @param $faqGroupId
+     * @param $faqId
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateFAQAction($promotionId, $faqGroupId, $faqId, Request $request)
+    {
+        $data = $request->all();
+
+        $request->validate([
+            'order' => 'required',
+            'title' => 'required',
+            'bodyText' => 'required',
+        ]);
+
+        /** @var FAQ $faq */
+        $faq = FAQ::find($faqId);
+
+        $faq->order = $data['order'];
+        $faq->title = $data['title'];
+        $faq->body_text = $data['bodyText'];
+
+        $faq->save();
+
+        return redirect()->to(route('FAQDetails', [$promotionId, $faqGroupId, $faq->id]));
+
+    }
+
 }

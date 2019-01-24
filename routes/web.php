@@ -51,11 +51,18 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/', 'PromotionController@createAction')->name('createPromotion');
         Route::patch('/{promotionId}', 'PromotionController@updateAction')->name('updatePromotion');
 
-
         /** FAQ Groups */
-        Route::get('/{promotionId}/faq-groups/{faqGroupId}', 'FAQController@faqGroupDetailsAction')->name('FAQGroupDetails');
-        Route::post('/{promotionId}/faq-groups', 'FAQController@createFAQGroupAction')->name('createFAQGroup');
-        Route::patch('/{promotionId}/faq-groups/{faqGroupId}', 'FAQController@updateFAQGroupAction')->name('updateFAQGroup');
+        Route::prefix('/{promotionId}/faq-groups')->group(function () {
+
+            Route::get('/{faqGroupId}', 'FAQController@faqGroupDetailsAction')->name('FAQGroupDetails');
+            Route::post('/', 'FAQController@createFAQGroupAction')->name('createFAQGroup');
+            Route::patch('/{faqGroupId}', 'FAQController@updateFAQGroupAction')->name('updateFAQGroup');
+
+            Route::prefix('{faqGroupId}/faqs')->group(function () {
+                Route::get('/{faqId}', 'FAQController@FAQDetailsAction')->name('FAQDetails');
+                Route::patch('/{faqId}', 'FAQController@updateFAQAction')->name('updateFAQ');
+            });
+        });
 
         /** Mechanics */
         Route::get('/{promotionId}/mechanics/{mechanicId}', 'MechanicController@detailsAction')->name('mechanicDetails');
