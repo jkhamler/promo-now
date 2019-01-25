@@ -121,28 +121,36 @@ EOT;
 
                     <div class="form-group">
                         <label for="acceptanceText">Acceptance Text</label>
-                        <textarea class="form-control" rows="2" id="acceptanceText" name="acceptanceText"
+                        <textarea class="form-control" id="acceptanceText" name="acceptanceText"
                                   placeholder="E.g. 'I have read and accept the terms and conditions and confirm I am over 18 years old.'"></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="shortTerms">Short Terms</label>
-                        <input type="text" class="form-control" id="shortTerms" name="shortTerms"
-                               placeholder="Short Description" required>
+                        <textarea class="form-control" id="shortTerms" name="shortTerms" rows="2"
+                                  placeholder="E.g. 'Short Terms and COnditions'"></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="terms">Terms</label>
                         <textarea class="form-control" id="termsBodyText" name="termsBodyText" rows="3"></textarea>
-                    </div>
-
-
-                    <button type="submit" class="btn btn-primary">Create</button>
-                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create</button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
                 </form>
-
             </div>
+
         </div>
     </div>
-
 </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#acceptanceText').summernote({});
+        $('#shortTerms').summernote({});
+        $('#termsBodyText').summernote({});
+    });
+
+
+</script>

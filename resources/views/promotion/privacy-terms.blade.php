@@ -10,7 +10,7 @@
 
             <div class="col-6">
                 @php
-                    if($promotion->outstandingPrivacyTermsPartners()->count() == 0){
+                    if($promotion->outstandingPrivacyTermsPartners()->count() > 0){
                     echo <<<EOT
                     <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target=".create-privacy-term-modal">Create Privacy Terms
                     </button>
@@ -79,7 +79,8 @@ EOT;
 
                 <h2>Create Privacy Terms - {{ $promotion->name }}</h2>
 
-                <form method="POST" action="{{ route('createPrivacyTerms', [$promotion->id]) }}" id="createPrivacyTermsForm">
+                <form method="POST" action="{{ route('createPrivacyTerms', [$promotion->id]) }}"
+                      id="createPrivacyTermsForm">
 
                     @csrf
                     <input type="hidden" name="promotionId" value="{{ $promotion->id }}"/>
@@ -101,19 +102,18 @@ EOT;
 
                     <div class="form-group">
                         <label for="acceptanceText">Acceptance Text</label>
-                        <textarea class="form-control" rows="2" id="acceptanceText" name="acceptanceText"
+                        <textarea class="form-control" id="acceptanceText" name="acceptanceText"
                                   placeholder="E.g. 'I have read and accept the terms and conditions and confirm I am over 18 years old.'"></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="terms">Terms</label>
-                        <textarea class="form-control" id="privacyTermsBodyText" name="privacyTermsBodyText"
-                                  rows="3"></textarea>
+                        <textarea class="form-control" id="privacyTermsBodyText" name="privacyTermsBodyText"></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="marketingOptIn">Marketing Opt In</label>
-                        <textarea class="form-control" rows="2" id="marketingOptIn" name="marketingOptIn"
+                        <textarea class="form-control" id="marketingOptIn" name="marketingOptIn"
                                   placeholder="E.g. 'I would like to receive marketing communications.'"></textarea>
                     </div>
 
@@ -147,17 +147,10 @@ EOT;
 <script type="text/javascript">
 
     $(document).ready(function () {
-        $('#privacyTermsBodyText').summernote({
-            // toolbar: [
-            //     // [groupName, [list of button]]
-            //     ['style', ['bold', 'italic', 'underline', 'clear']],
-            //     ['font', ['strikethrough', 'superscript', 'subscript']],
-            //     ['fontsize', ['fontsize']],
-            //     ['color', ['color']],
-            //     ['para', ['ul', 'ol', 'paragraph']],
-            //     ['height', ['height']]
-            // ]
-        });
+        $('#privacyTermsBodyText').summernote({});
+        $('#acceptanceText').summernote({});
+        $('#marketingOptIn').summernote({});
+        $('#cookieBodyText').summernote({});
 
         $('#privacyTermsTable').DataTable();
     });

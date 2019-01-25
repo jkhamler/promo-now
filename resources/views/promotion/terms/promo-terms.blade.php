@@ -108,9 +108,9 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            $('#termsBodyText').summernote({});
             $('#acceptanceText').summernote({});
             $('#shortTerms').summernote({});
+            $('#termsBodyText').summernote({});
         });
 
         @if(!$promoTerm->isLatestVersion())
@@ -120,7 +120,6 @@
         });
 
         @endif
-
 
     </script>
 
