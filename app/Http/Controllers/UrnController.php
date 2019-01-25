@@ -64,11 +64,12 @@ class UrnController extends Controller
     /**
      * Update the URN Specification
      *
+     * @param $promotionId
      * @param $urnSpecificationId
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateUrnSpecificationAction($urnSpecificationId, Request $request)
+    public function updateUrnSpecificationAction($promotionId, $urnSpecificationId, Request $request)
     {
         $data = $request->all();
 

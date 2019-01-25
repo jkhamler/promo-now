@@ -5,7 +5,7 @@
     <div class="container-fluid p-3">
 
         <div class="col-8">
-            <form method="POST" action="{{ route('updateTierItem', [$promotion->id, $tier->id, $tierItem->id, 'id']) }}">
+            <form method="POST" action="{{ route('updateTierItem', [$promotion->id, $tier->id, $tierItem->id]) }}">
 
                 <div class="form-group">
                     @csrf

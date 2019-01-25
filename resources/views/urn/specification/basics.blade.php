@@ -9,7 +9,7 @@
 
     <div class="col-8">
         <form method="POST"
-              action="{{ route('updateUrnSpecification', [$promotion->id, $urnSpecification->id, 'id']) }}">
+              action="{{ route('updateUrnSpecification', [$promotion->id, $urnSpecification->id]) }}">
 
             <div class="form-group">
                 @csrf

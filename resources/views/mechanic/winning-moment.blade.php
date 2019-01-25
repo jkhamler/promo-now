@@ -14,7 +14,7 @@
 
                 <h4>Type: {{$mechanic->getTypeLabel()}}</h4>
 
-                <form method="POST" action="{{ route('updateMechanic', [$mechanic->id, 'id']) }}">
+                <form method="POST" action="{{ route('updateMechanic', [$promotion->id, $mechanic->id]) }}">
                     @csrf
                     @method('PATCH')
 
