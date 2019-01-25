@@ -5,11 +5,18 @@
 <div class="tab-pane fade" id="urns" role="tabpanel"
      aria-labelledby="urns-tab">
 
-    <div class="container">
-        <h2>{{ $promotion->name }}</h2>
-        <button type="button" class="btn btn-primary float-right" data-toggle="modal"
-                data-target=".create-urn-specification-modal">Create URN Specification
-        </button>
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-6"><h2>{{ $promotion->name }}</h2></div>
+            <div class="col-6">
+                <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+                        data-target=".create-urn-specification-modal">Create URN Specification
+                </button>
+            </div>
+
+        </div>
+
     </div>
 
     <div class="container-fluid p-3">
