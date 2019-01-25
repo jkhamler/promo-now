@@ -4,7 +4,15 @@
 
 <div class="tab-pane fade" id="mechanics" role="tabpanel" aria-labelledby="mechanics-tab">
 
-    <div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6"><h2>{{ $promotion->name }}</h2></div>
+            <div class="col-6">
+                <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+                        data-target=".create-mechanic-modal">Create Mechanic
+                </button>
+            </div>
+        </div>
 
         @if ($errors->any())
             <div class="row">
@@ -20,13 +28,6 @@
                 </div>
             </div>
         @endif
-
-
-        <h2>{{ $promotion->name }}</h2>
-        <button type="button" class="btn btn-primary float-right" data-toggle="modal"
-                data-target=".create-mechanic-modal">Create
-            Mechanic
-        </button>
 
     </div>
 

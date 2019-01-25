@@ -4,7 +4,22 @@
 
 <div class="tab-pane fade" id="privacyTerms" role="tabpanel" aria-labelledby="privacy-terms-tab">
 
-    <div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6"><h2>{{ $promotion->name }}</h2></div>
+
+            <div class="col-6">
+                @php
+                    if($promotion->outstandingPrivacyTermsPartners()->count() == 0){
+                    echo <<<EOT
+                    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target=".create-privacy-term-modal">Create Privacy Terms
+                    </button>
+EOT;
+                    }
+                @endphp
+            </div>
+
+        </div>
 
         @if ($errors->any())
             <div class="row">
@@ -20,21 +35,6 @@
                 </div>
             </div>
         @endif
-
-        <h2>{{ $promotion->name }}</h2>
-
-        @php
-
-            if($promotion->outstandingPrivacyTermsPartners()->count() > 0){
-
-            echo <<<EOT
-            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target=".create-privacy-term-modal">Create Privacy Terms
-            </button>
-EOT;
-
-            }
-
-        @endphp
 
     </div>
 

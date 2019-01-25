@@ -4,7 +4,23 @@
 
 <div class="tab-pane fade" id="promoTerms" role="tabpanel" aria-labelledby="promo-terms-tab">
 
-    <div class="container">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6"><h2>{{ $promotion->name }}</h2></div>
+
+            <div class="col-6">
+                @php
+                    if($promotion->promoTerms->count() == 0){
+                    echo <<<EOT
+                    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target=".create-promo-term-modal">Create Promo Terms
+                    </button>
+EOT;
+                    }
+                @endphp
+            </div>
+
+        </div>
 
         @if ($errors->any())
             <div class="row">
@@ -21,22 +37,8 @@
             </div>
         @endif
 
-        <h2>{{ $promotion->name }}</h2>
-
-        @php
-
-            if($promotion->promoTerms->count() == 0){
-
-            echo <<<EOT
-            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target=".create-promo-term-modal">Create Promo Terms
-            </button>
-EOT;
-
-            }
-
-        @endphp
-
     </div>
+
 
     <div class="container-fluid p-3">
         <h4>Promo Terms</h4>
@@ -91,7 +93,8 @@ EOT;
 
                 <h2>Create Promo Terms - {{ $promotion->name }}</h2>
 
-                <form method="POST" action="{{ route('createPromoTerms', [$promotion->id]) }}" id="createPromoTermsForm">
+                <form method="POST" action="{{ route('createPromoTerms', [$promotion->id]) }}"
+                      id="createPromoTermsForm">
 
                     @csrf
                     <input type="hidden" name="promotionId" value="{{ $promotion->id }}"/>

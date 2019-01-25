@@ -5,11 +5,30 @@
 <div class="tab-pane fade" id="faqs" role="tabpanel"
      aria-labelledby="faqs-tab">
 
-    <div class="container">
-        <h2>{{ $promotion->name }}</h2>
-        <button type="button" class="btn btn-primary float-right" data-toggle="modal"
-                data-target=".create-faq-group-modal">Create FAQ Group
-        </button>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6"><h2>{{ $promotion->name }}</h2></div>
+            <div class="col-6">
+                <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+                        data-target=".create-faq-group-modal">Create FAQ Group</button>
+            </div>
+        </div>
+
+        @if ($errors->any())
+            <div class="row">
+                <div class="col-6">
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        @endif
+
     </div>
 
     <div class="container-fluid p-3">
