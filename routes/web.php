@@ -57,6 +57,8 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/{faqGroupId}', 'FAQController@faqGroupDetailsAction')->name('FAQGroupDetails');
             Route::post('/', 'FAQController@createFAQGroupAction')->name('createFAQGroup');
             Route::patch('/{faqGroupId}', 'FAQController@updateFAQGroupAction')->name('updateFAQGroup');
+            Route::post('/{faqGroupId}/reorder', 'FAQController@reorderFAQsAction')->name('reorderFAQs');
+            Route::get('/{faqGroupId}/list-data', 'FAQController@FAQListDataAction')->name('FAQListData');
 
             Route::prefix('{faqGroupId}/faqs')->group(function () {
                 Route::get('/{faqId}', 'FAQController@FAQDetailsAction')->name('FAQDetails');

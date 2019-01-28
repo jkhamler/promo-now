@@ -33,27 +33,40 @@
     <div class="container-fluid p-3">
         <h4>FAQs</h4>
 
+        {{--<table id="faqTable" class="table table-striped table-bordered hover" style="width: 100%;">--}}
+        {{--<thead>--}}
+        {{--<tr>--}}
+        {{--<td>Order</td>--}}
+        {{--<td>Title</td>--}}
+        {{--<td>Body Text</td>--}}
+        {{--</tr>--}}
+        {{--</thead>--}}
+
+        {{--<tbody id="tableContents">--}}
+
+        {{--@foreach ($faqGroup->faqs as $faq)--}}
+        {{--@php /** @var $faq \App\Models\FAQ */--}}
+        {{--@endphp--}}
+        {{--<tr class="row1" data-id="{{ $faq->id }}"--}}
+        {{--data-href="{{ route('FAQDetails', [$promotion->id, $faqGroup->id, $faq->id]) }}">--}}
+        {{--<td>{{ $faq->order }}</td>--}}
+        {{--<td>{{ $faq->title }}</td>--}}
+        {{--<td>{{ $faq->body_text }}</td>--}}
+        {{--</tr>--}}
+        {{--@endforeach--}}
+
+        {{--</tbody>--}}
+        {{--</table>--}}
+
         <table id="faqTable" class="table table-striped table-bordered hover" style="width: 100%;">
             <thead>
             <tr>
-                <td>Order</td>
-                <td>Title</td>
-                <td>Body Text</td>
+                <th>Order</th>
+                <th>Title</th>
+                <th>Body Text</th>
             </tr>
             </thead>
-
-            <tbody>
-
-            @foreach ($faqGroup->faqs as $faq)
-                @php /** @var $faq \App\Models\FAQ */
-                @endphp
-                <tr data-href="{{ route('FAQDetails', [$promotion->id, $faqGroup->id, $faq->id]) }}">
-                    <td>{{ $faq->order }}</td>
-                    <td>{{ $faq->title }}</td>
-                    <td>{{ $faq->body_text }}</td>
-                </tr>
-            @endforeach
-
+            <tbody id="tableContents">
             </tbody>
         </table>
 
@@ -61,14 +74,77 @@
 
 </div>
 
+<!-- jQuery UI -->
+<script
+        src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous"></script>
+
 <script type="text/javascript">
+
     $(document).ready(function () {
-        $('#faqTable').DataTable();
+        $('#faqTable').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax": '{{ route('FAQListData', [$promotion->id, $faqGroup->id]) }}',
+            "columns": [
+                {"data": "order"},
+                {"data": "title"},
+                {"data": "body_text"},
+            ],
+        });
+
     });
 
-    $('#faqTable').on('click', 'tbody tr', function () {
-        window.location.href = $(this).data('href');
+    // $('#faqTable').on('click', 'tbody tr', function () {
+    //     window.location.href = $(this).data('href');
+    // });
+
+    $("#tableContents").sortable({
+        items: "tr",
+        cursor: 'move',
+        opacity: 0.6,
+        update: function () {
+            sendOrderToServer();
+        }
     });
+
+
+    function sendOrderToServer() {
+
+        var order = [];
+        $('tr').each(function (index, element) {
+        // $('tr.row1').each(function (index, element) {
+            order.push({
+                id: $(this).attr('id'),
+                position: index + 1
+            });
+        });
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "{{ route('reorderFAQs', [$promotion->id, $faqGroup->id]) }}",
+            data: {
+                order: order,
+                _token: '{{csrf_token()}}'
+            },
+            success: function (response) {
+                if (response.status == "success") {
+
+                    var table = $('#faqTable').DataTable();
+                    table.clear().draw();
+
+                    console.log(response);
+                } else {
+                    console.log(response);
+                }
+            }
+        });
+
+    }
+
+
 </script>
 
 <!-- Create FAQ Modal -->

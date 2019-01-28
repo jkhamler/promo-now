@@ -162,4 +162,51 @@ class FAQController extends Controller
 
     }
 
+    /**
+     * @param $promotionId
+     * @param $faqGroupId
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
+    public function reorderFAQsAction($promotionId, $faqGroupId, Request $request)
+    {
+        foreach ($request->input('order') as $faqOrder) {
+            if (array_key_exists('id', $faqOrder)) {
+                /** @var FAQ $faq */
+                $faq = FAQ::find($faqOrder['id']);
+
+                $faq->order = $faqOrder['position'];
+                $faq->save();
+            }
+        }
+        return response(['status' => 'success']);
+    }
+
+    /**
+     * @return array
+     */
+    public function FAQListDataAction($promotionId, $faqGroupId)
+    {
+        /** @var FAQGroup $faqGroup */
+        $faqGroup = FAQGroup::find($faqGroupId);
+
+        $data = [];
+
+        /** @var FAQ $faq */
+        foreach ($faqGroup->faqs as $faq) {
+
+            $data[] = [
+                'DT_RowId' => $faq->id,
+                'order' => $faq->order,
+                'title' => $faq->title,
+                'body_text' => $faq->body_text,
+            ];
+
+        }
+
+        return [
+            'data' => $data
+        ];
+    }
+
 }
