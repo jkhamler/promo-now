@@ -117,7 +117,7 @@
         // $('tr.row1').each(function (index, element) {
             order.push({
                 id: $(this).attr('id'),
-                position: index + 1
+                position: index
             });
         });
 
