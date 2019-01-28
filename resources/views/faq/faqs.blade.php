@@ -114,7 +114,6 @@
 
         var order = [];
         $('tr').each(function (index, element) {
-        // $('tr.row1').each(function (index, element) {
             order.push({
                 id: $(this).attr('id'),
                 position: index
@@ -157,16 +156,9 @@
 
             <div class="container-fluid p-3">
 
-                <h2>Create Tier Item</h2>
+                <h2>Create FAQ</h2>
 
                 <form method="POST" action="{{ route('createFAQ', [$promotion->id, $faqGroup->id]) }}">
-
-
-                    <div class="form-group">
-                        <label for="order">Order</label>
-                        <input type="number" min="1" class="form-control" id="order" name="order"
-                               placeholder="Order" required>
-                    </div>
 
                     <div class="form-group">
 

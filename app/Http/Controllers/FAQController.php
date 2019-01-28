@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\FAQ;
 use App\Models\FAQGroup;
 use App\Models\Promotion;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class FAQController extends Controller
@@ -116,16 +117,25 @@ class FAQController extends Controller
         $request->validate([
             'title' => 'required',
             'bodyText' => 'required',
-            'order' => 'required',
         ]);
+
+        /** @var FAQGroup $faqGroup */
+        $faqGroup = FAQGroup::find($faqGroupId);
+
+        /** @var Collection $existingFAQs */
+        $existingFAQs = $faqGroup->faqs;
+
+        /** @var FAQ $lastFAQ */
+        $lastFAQ = $existingFAQs->last();
+
 
         /** @var FAQ $faq */
         $faq = new FAQ();
 
-        $faq->order = $data['order'];
         $faq->faq_group_id = $faqGroupId;
         $faq->title = $data['title'];
         $faq->body_text = $data['bodyText'];
+        $faq->order = $lastFAQ ? $lastFAQ->order + 1 : 1;
 
         $faq->save();
 
