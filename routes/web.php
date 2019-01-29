@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 \Illuminate\Support\Facades\Auth::routes();
 
+
 /** Entrant Pages (does not require authentication - e.g. 'enter promo code' */
 Route::prefix('test-promo')->group(function () {
     Route::get('/', 'EntrantController@enterPromoCodeAction')->name('enterPromoCode');
@@ -40,6 +41,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/{partnerId}', 'PartnerController@detailsAction')->name('partnerDetails');
         Route::post('/', 'PartnerController@createAction')->name('createPartner');
         Route::patch('/{partnerId}', 'PartnerController@updateAction')->name('updatePartner');
+    });
+
+    /** Tickets */
+    Route::prefix('tickets')->group(function () {
+        Route::get('/customer-services', 'TicketController@customerServicesAction')->name('customerServicesIndex');
+        Route::get('/fulfillment', 'TicketController@fulfillmentAction')->name('fulfillmentIndex');
     });
 
     /** Promotions */
@@ -78,7 +85,6 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/', 'MechanicController@indexAction')->name('mechanicIndex');
             Route::post('/', 'MechanicController@createAction')->name('createMechanic');
             Route::patch('/{mechanicId}', 'MechanicController@updateAction')->name('updateMechanic');
-            Route::post('/{promotionId}/urn-specifications/batch/{urnSpecificationId}', 'UrnController@generateUrnBatchAction')->name('generateUrnBatch');
         });
 
         /** Privacy Terms */
@@ -127,6 +133,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/{urnSpecificationId}', 'UrnController@urnSpecificationDetailsAction')->name('urnSpecificationDetails');
             Route::post('/', 'UrnController@createUrnSpecificationAction')->name('createUrnSpecification');
             Route::patch('/{urnSpecificationId}', 'UrnController@updateUrnSpecificationAction')->name('updateUrnSpecification');
+            Route::post('/batch/{urnSpecificationId}', 'UrnController@generateUrnBatchAction')->name('generateUrnBatch');
 
         });
     });

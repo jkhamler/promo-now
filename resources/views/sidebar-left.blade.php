@@ -15,7 +15,7 @@
             </li>
             {{--@role('customer-service')--}}
             <li class="nav-item">
-                <a class="nav-link" href="/tickets">
+                <a class="nav-link" href="{{ route('customerServicesIndex') }}">
                     <i class="fas fa-sms"></i>
                     &nbsp;Customer Services
                 </a>
@@ -25,7 +25,7 @@
 
             {{--@role('fulfillment')--}}
             <li class="nav-item">
-                <a class="nav-link" href="/tickets">
+                <a class="nav-link" href="{{ route('fulfillmentIndex') }}">
                     <i class="fas fa-calendar-alt"></i>
                     &nbsp;Fulfillment
                 </a>
