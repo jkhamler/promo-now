@@ -54,9 +54,9 @@ class Address extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function address()
+    public function country()
     {
-        return $this->belongsTo('App\Models\Address');
+        return $this->belongsTo('App\Models\Country');
     }
 
 

@@ -51,7 +51,7 @@ class Person extends Model
      */
     public function addresses()
     {
-        return $this->belongsToMany('App\Models\Address');
+        return $this->belongsToMany('App\Models\Address', 'person_addresses');
     }
 
 

@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $promotion_id
  * @property string $ip_address
  * @property string $user_agent
+ * @property \DateTime $created_at
+ * @property \DateTime $updated_at
  */
 class Entrant extends Model
 {
@@ -21,7 +23,6 @@ class Entrant extends Model
         'created_at',
         'updated_at',
     ];
-
 
     /**
      * @var array
@@ -49,6 +50,14 @@ class Entrant extends Model
     public function person()
     {
         return $this->belongsTo('App\Models\Person');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function urn()
+    {
+        return $this->belongsTo('App\Models\Urn');
     }
 
     /**

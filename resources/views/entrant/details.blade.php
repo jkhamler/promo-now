@@ -20,6 +20,9 @@
         </ol>
     </nav>
 
+    @include('entrant.subnav')
+
+
     @if ($errors->any())
         <div class="row">
             <div class="col-6">
@@ -38,6 +41,10 @@
     <div class="row">
 
         <div class="tab-content" id="myTabContent">
+
+            @include('entrant.entrant-basics')
+            @include('entrant.contact-details')
+            @include('entrant.item-details')
 
         </div>
 
