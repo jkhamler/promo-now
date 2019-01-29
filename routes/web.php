@@ -43,12 +43,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::patch('/{partnerId}', 'PartnerController@updateAction')->name('updatePartner');
     });
 
-    /** Tickets */
-    Route::prefix('tickets')->group(function () {
-        Route::get('/customer-services', 'TicketController@customerServicesAction')->name('customerServicesIndex');
-        Route::get('/fulfillment', 'TicketController@fulfillmentAction')->name('fulfillmentIndex');
-    });
-
     /** Promotions */
     Route::prefix('promotions')->group(function () {
 

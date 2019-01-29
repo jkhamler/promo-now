@@ -13,7 +13,10 @@ use App\Models\Promotion;
 use App\Models\TierItem;
 use App\Models\TierItemStock;
 use App\Models\Urn;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Kordy\Ticketit\Models\Setting;
 use Kordy\Ticketit\Models\Ticket;
 
@@ -101,6 +104,26 @@ class EntrantController extends Controller
             'enquiry' => 'string',
         ]);
 
+        $normalPriority = DB::table('ticketit_priorities AS tp')
+            ->select('tp.id AS id')
+            ->where('tp.name', 'Normal')
+            ->first();
+
+        $supportCategory = DB::table('ticketit_categories AS tc')
+            ->select('tc.id AS id')
+            ->where('tc.name', 'Customer Services')
+            ->first();
+
+        $supportUserId = DB::table('ticketit_categories_users AS tcu')
+            ->select('tcu.user_id AS user_id')
+            ->where('tcu.category_id', $supportCategory->id)
+            ->first();
+
+        /** @var User $supportUser */
+        $supportUser = User::find($supportUserId->user_id);
+
+        Auth::login($supportUser);
+
         $person = Person::findByEmailAddress($request->input('emailAddress'));
 
         if (!$person) {
@@ -118,8 +141,11 @@ class EntrantController extends Controller
         // search/create person record
         // Set up TicketIt ticket with category 'Customer Support' (send notification)
 
-        $priorityId = 2; // todo
-        $categoryId = 3; // todo
+
+
+
+        $priorityId = $normalPriority->id;
+        $categoryId = $supportCategory->id;
 
         $ticketContent = <<<EOT
 Promotion: {$promotion->name}
@@ -143,7 +169,9 @@ EOT;
         $ticket->category_id = $categoryId;
 
         $ticket->status_id = Setting::grab('default_status_id');
-        $ticket->user_id = auth()->user()->id;
+
+        $ticket->user_id = Auth::id();
+
         $ticket->autoSelectAgent();
 
         $ticket->save();
