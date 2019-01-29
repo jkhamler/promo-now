@@ -33,7 +33,8 @@ class Person extends Model
      * @param $emailAddress
      * @return Person|null
      */
-    public static function findByEmailAddress($emailAddress){
+    public static function findByEmailAddress($emailAddress)
+    {
         return self::where('email_address', $emailAddress)->first();
     }
 
@@ -46,10 +47,38 @@ class Person extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function addresses()
+    {
+        return $this->belongsToMany('App\Models\Address');
+    }
+
+
+
+    /**
      * @return string
      */
-    public function getFullName(){
+    public function getFullName()
+    {
         return $this->first_name . ' ' . $this->surname;
+    }
+
+    /**
+     *
+     *
+     * @param int $charsToShow
+     * @return string
+     */
+    public function emailMasked($charsToShow = 2)
+    {
+        $arr = explode('@', $this->email_address);
+
+        return
+            substr($arr[0], 0, $charsToShow) .
+            str_repeat('*', strlen($arr[0]) - $charsToShow) .
+            '@' . substr($arr[1], 0, $charsToShow) .
+            str_repeat('*', strlen($arr[1]) - $charsToShow);
     }
 
 

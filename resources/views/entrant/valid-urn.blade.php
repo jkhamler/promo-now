@@ -48,6 +48,46 @@
                        placeholder="E.g. 'Smith'">
             </div>
 
+            <div class="form-group">
+                <label for="addressLine1">Address Line 1</label>
+                <input type="text" class="form-control" id="addressLine1" name="addressLine1" required
+                       placeholder="E.g. '24 Main Street'">
+            </div>
+
+            <div class="form-group">
+                <label for="addressLine2">Address Line 2</label>
+                <input type="text" class="form-control" id="addressLine2" name="addressLine2">
+            </div>
+
+            {{--<div class="form-group">--}}
+                {{--<label for="addressLine3">Address Line 3</label>--}}
+                {{--<input type="text" class="form-control" id="addressLine3" name="addressLine3">--}}
+            {{--</div>--}}
+
+            <div class="form-group">
+                <label for="city">Town/City</label>
+                <input type="text" class="form-control" id="city" name="city" required>
+            </div>
+
+            <div class="form-group">
+                <label for="state">County/State</label>
+                <input type="text" class="form-control" id="state" name="state" required>
+            </div>
+
+            <div class="form-group">
+                <label for="postcode">Postcode</label>
+                <input type="text" class="form-control" id="postcode" name="postcode" required>
+            </div>
+
+            <div class="form-group">
+                <label for="purpose">Country</label>
+                <select class="form-country" id="countryId" name="countryId">
+                    @foreach ($countries as $country)
+                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 

@@ -16,6 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TierItemsSeeder::class);
         $this->call(LanguageSeeder::class);
         $this->call(TicketItSeeder::class);
-//        $this->call(\Kordy\Ticketit\Seeds\TicketitTableSeeder::class);
+        $this->call(CountrySeeder::class);
     }
 }

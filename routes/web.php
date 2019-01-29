@@ -45,11 +45,16 @@ Route::group(['middleware' => ['auth']], function () {
     /** Promotions */
     Route::prefix('promotions')->group(function () {
 
-        /** Promotion Basic Details */
+        /** Basic Details */
         Route::get('/', 'PromotionController@indexAction')->name('promotionIndex');
         Route::get('/{promotionId}', 'PromotionController@detailsAction')->name('promotionDetails');
         Route::post('/', 'PromotionController@createAction')->name('createPromotion');
         Route::patch('/{promotionId}', 'PromotionController@updateAction')->name('updatePromotion');
+
+        /** Entrants */
+        Route::prefix('/{promotionId}/entrants')->group(function () {
+            Route::get('/{entrantId}', 'EntrantController@detailsAction')->name('entrantDetails');
+        });
 
         /** FAQ Groups */
         Route::prefix('/{promotionId}/faq-groups')->group(function () {
@@ -68,21 +73,28 @@ Route::group(['middleware' => ['auth']], function () {
         });
 
         /** Mechanics */
-        Route::get('/{promotionId}/mechanics/{mechanicId}', 'MechanicController@detailsAction')->name('mechanicDetails');
-        Route::get('/{promotionId}/mechanics', 'MechanicController@indexAction')->name('mechanicIndex');
-        Route::post('/{promotionId}/mechanics', 'MechanicController@createAction')->name('createMechanic');
-        Route::patch('/{promotionId}/mechanics/{mechanicId}', 'MechanicController@updateAction')->name('updateMechanic');
-        Route::post('/{promotionId}/urn-specifications/batch/{urnSpecificationId}', 'UrnController@generateUrnBatchAction')->name('generateUrnBatch');
+        Route::prefix('/{promotionId}/mechanics')->group(function () {
+            Route::get('/{mechanicId}', 'MechanicController@detailsAction')->name('mechanicDetails');
+            Route::get('/', 'MechanicController@indexAction')->name('mechanicIndex');
+            Route::post('/', 'MechanicController@createAction')->name('createMechanic');
+            Route::patch('/{mechanicId}', 'MechanicController@updateAction')->name('updateMechanic');
+            Route::post('/{promotionId}/urn-specifications/batch/{urnSpecificationId}', 'UrnController@generateUrnBatchAction')->name('generateUrnBatch');
+        });
 
         /** Privacy Terms */
-        Route::get('/{promotionId}/privacy-terms/{promoTermId}', 'PrivacyTermsController@detailsAction')->name('privacyTermDetails');
-        Route::post('/{promotionId}/privacy-terms', 'PrivacyTermsController@createAction')->name('createPrivacyTerms');
-        Route::patch('/{promotionId}/privacy-terms/{privacyTermId}', 'PrivacyTermsController@updateAction')->name('updatePrivacyTerms');
+        Route::prefix('/{promotionId}/privacy-terms')->group(function () {
+            Route::get('/{promoTermId}', 'PrivacyTermsController@detailsAction')->name('privacyTermDetails');
+            Route::post('/', 'PrivacyTermsController@createAction')->name('createPrivacyTerms');
+            Route::patch('/{privacyTermId}', 'PrivacyTermsController@updateAction')->name('updatePrivacyTerms');
+
+        });
 
         /** Promo Terms */
-        Route::get('/{promotionId}/promo-terms/{promoTermId}', 'PromoTermsController@detailsAction')->name('promoTermDetails');
-        Route::post('/{promotionId}/promo-terms', 'PromoTermsController@createAction')->name('createPromoTerms');
-        Route::patch('/{promotionId}/promo-terms/{promoTermsId}', 'PromoTermsController@updateAction')->name('updatePromoTerms');
+        Route::prefix('/{promotionId}/promo-terms')->group(function () {
+            Route::get('/{promoTermId}', 'PromoTermsController@detailsAction')->name('promoTermDetails');
+            Route::post('/', 'PromoTermsController@createAction')->name('createPromoTerms');
+            Route::patch('/{promoTermsId}', 'PromoTermsController@updateAction')->name('updatePromoTerms');
+        });
 
         /** Tiers */
         Route::prefix('/{promotionId}/tiers')->group(function () {

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
+use App\Models\Country;
 use App\Models\Entrant;
 use App\Models\EntrantTierItemStock;
 use App\Models\Mechanic;
 use App\Models\Person;
+use App\Models\PersonAddress;
 use App\Models\Promotion;
 use App\Models\TierItem;
 use App\Models\TierItemStock;
@@ -16,6 +19,16 @@ use Kordy\Ticketit\Models\Ticket;
 
 class EntrantController extends Controller
 {
+
+    public function detailsAction($promotionId, $entrantId)
+    {
+        /** @var Entrant $entrant */
+        $entrant = Entrant::find($entrantId);
+
+        return view('entrant.details', ['entrant' => $entrant]);
+    }
+
+
     /**
      * Entrant Entry Point (Enter URN)
      *
@@ -39,7 +52,10 @@ class EntrantController extends Controller
     {
         $urn = URN::find($urnId);
 
-        return view('entrant.valid-urn', ['urn' => $urn]);
+        return view('entrant.valid-urn', [
+            'urn' => $urn,
+            'countries' => Country::all(),
+        ]);
     }
 
     /**
@@ -144,7 +160,6 @@ EOT;
         return view('entrant.support-ticket-logged', ['person' => $person]);
     }
 
-
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -166,6 +181,8 @@ EOT;
             return view('entrant.valid-urn', [
                 'urn' => $urnModel,
                 'promotion' => $promotion,
+                'countries' => Country::all(),
+
             ]);
         } else {
             return view('entrant.invalid-urn');
@@ -186,6 +203,13 @@ EOT;
             'firstName' => 'string',
             'surname' => 'string',
             'emailAddress' => 'string',
+            'addressLine1' => 'string',
+            'addressLine2' => 'string',
+            'addressLine3' => 'string',
+            'city' => 'string',
+            'state' => 'string',
+            'postcode' => 'string',
+            'countryId' => 'integer',
         ]);
 
         /** @var Urn $urn */
@@ -206,6 +230,21 @@ EOT;
                 $person->email_address = $request->input('emailAddress');
                 $person->save();
             }
+
+            $address = new Address();
+            $address->address_line_1 = $request->input('addressLine1');
+            $address->address_line_2 = $request->input('addressLine2');
+//            $address->address_line_3 = $request->input('addressLine3');
+            $address->city = $request->input('city');
+            $address->state = $request->input('state');
+            $address->postcode = $request->input('postcode');
+            $address->country_id = $request->input('countryId');
+            $address->save();
+
+            $personAddress = new PersonAddress();
+            $personAddress->person_id = $person->id;
+            $personAddress->address_id = $address->id;
+            $personAddress->save();
 
             $entrant = new Entrant();
             $entrant->urn_id = $urn->id;

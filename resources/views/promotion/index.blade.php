@@ -40,7 +40,7 @@
     @endif
 
     <div class="container-fluid p-3">
-        <h4>Mechanics</h4>
+        <h4>Promotions</h4>
 
         <table id="promotionTable" class="table table-striped table-bordered hover" style="width: 100%;">
             <thead>

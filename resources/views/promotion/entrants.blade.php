@@ -46,10 +46,10 @@
                         /** @var $tierItemStock \App\Models\TierItemStock */
 
                     @endphp
-                    <tr>
+                    <tr data-href="{{ route('entrantDetails', [$promotion->id, $entrant->id]) }}">
                         <td>{{ $entrant->created_at->format('d/m/Y H:i:s') }}</td>
                         <td>{{ $entrant->person->getFullName() }}</td>
-                        <td>{{ $entrant->person->email_address }}</td>
+                        <td>{{ $entrant->person->emailMasked() }}</td>
                         <td>{{ $tierItemStock->tierItem->short_description }}</td>
                         <td>{{ $tierItemStock->reference_number }}</td>
                     </tr>
@@ -66,4 +66,9 @@
     $(document).ready(function () {
         $('#entrantsTable').DataTable();
     });
+
+    $('#entrantsTable').on('click', 'tbody tr', function () {
+        window.location.href = $(this).data('href');
+    });
+
 </script>
