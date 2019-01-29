@@ -2,37 +2,45 @@
     <div class="well">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" href="#">
+                <a class="nav-link active" href="/">
                     <i class="fas fa-home"></i>
-                    &nbsp;General <span class="sr-only">(current)</span>
+                    &nbsp;Dashboard <span class="sr-only">(current)</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('promotionIndex') }}">
                     <i class="fas fa-envelope-square"></i>
-                    &nbsp;Email
+                    &nbsp;Promotions
                 </a>
             </li>
+            {{--@role('customer-service')--}}
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/tickets">
                     <i class="fas fa-sms"></i>
-                    &nbsp;SMS
+                    &nbsp;Customer Services
                 </a>
             </li>
+
+            {{--@endrole--}}
+
+            {{--@role('fulfillment')--}}
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/tickets">
                     <i class="fas fa-calendar-alt"></i>
-                    &nbsp;Scheduler
+                    &nbsp;Fulfillment
                 </a>
             </li>
+            {{--@endrole--}}
+
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/">
                     <i class="fas fa-money-bill-alt"></i>
-                    &nbsp;Audit
+                    &nbsp;Reports
                 </a>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/">
                     <i class="fas fa-phone"></i>
                     &nbsp;Request Services
                 </a>

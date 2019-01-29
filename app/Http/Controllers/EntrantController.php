@@ -20,6 +20,11 @@ use Kordy\Ticketit\Models\Ticket;
 class EntrantController extends Controller
 {
 
+    /**
+     * @param $promotionId
+     * @param $entrantId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function detailsAction($promotionId, $entrantId)
     {
         /** @var Entrant $entrant */

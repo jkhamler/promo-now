@@ -7,24 +7,13 @@
 
     <div class="collapse navbar-collapse" id="exCollapsingNavbar">
 
-        <ul class="nav navbar-nav">
-            <li class="nav-item"><a href="/" class="nav-link">Dashboard</a></li>
-
-            {{--@role('customer-service')--}}
-            <li class="nav-item"><a href="/tickets" class="nav-link">Customer Service</a></li>
-            {{--@endrole--}}
-
-            {{--@role('fulfillment')--}}
-            <li class="nav-item"><a href="/" class="nav-link">Fulfillment</a></li>
-            {{--@endrole--}}
-
-            <li class="nav-item"><a href="{{ route('promotionIndex') }}" class="nav-link">Promotions</a></li>
-            <li class="nav-item"><a href="/" class="nav-link">Reports</a></li>
-            <li class="nav-item"><a href="{{ route('partnerIndex') }}" class="nav-link">Partners</a></li>
-            <li class="nav-item"><a href="/" class="nav-link">Brand Vault</a></li>
-        </ul>
 
         <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
+
+            <li class="nav-item"><a href="/" class="nav-link">Audit</a></li>
+            <li class="nav-item"><a href="{{ route('partnerIndex') }}" class="nav-link">Partners</a></li>
+            <li class="nav-item"><a href="/" class="nav-link">Brand Vault</a></li>
+
 
             <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i
                             class="fa fa-cog fa-fw fa-lg"></i></a></li>
@@ -56,6 +45,7 @@
                 </ul>
             </li>
         </ul>
+
     </div>
 </nav>
 
