@@ -138,12 +138,6 @@ class EntrantController extends Controller
         /** @var Promotion $promotion */
         $promotion = Promotion::find($request->input('promotionId'));
 
-        // search/create person record
-        // Set up TicketIt ticket with category 'Customer Support' (send notification)
-
-
-
-
         $priorityId = $normalPriority->id;
         $categoryId = $supportCategory->id;
 
@@ -158,7 +152,6 @@ Enquiry: {$request->enquiry}
         
 bar
 EOT;
-
         $ticket = new Ticket();
 
         $ticket->subject = $request->subject;

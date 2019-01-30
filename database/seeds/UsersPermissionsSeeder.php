@@ -22,6 +22,7 @@ class UsersPermissionsSeeder extends Seeder
         Permission::create(['name' => 'comment on service ticket']);
         Permission::create(['name' => 'can see customer service tab']);
         Permission::create(['name' => 'can see promotions tab']);
+        Permission::create(['name' => 'fulfill order']);
 
         /** Create roles and assign created permissions */
         $superAdminRole = Role::create(['name' => 'super-admin']);
@@ -34,11 +35,8 @@ class UsersPermissionsSeeder extends Seeder
         $customerServiceRole = Role::create(['name' => 'customer-service']);
         $customerServiceRole->givePermissionTo('can see customer service tab');
 
-
-
-
         $fulfillmentRole = Role::create(['name' => 'fulfillment']);
-//        $fulfillmentRole->givePermissionTo('comment on service ticket');
+        $fulfillmentRole->givePermissionTo('fulfill order');
 
 
         /** Users */
@@ -51,8 +49,8 @@ class UsersPermissionsSeeder extends Seeder
         $superAdminUser->password = Hash::make('123456');
         $superAdminUser->ticketit_admin = 1;
 
-        $superAdminUser->save();
         $superAdminUser->assignRole('super-admin');
+        $superAdminUser->save();
 
         $marketingUser = new \App\User();
 
@@ -62,8 +60,8 @@ class UsersPermissionsSeeder extends Seeder
         $marketingUser->email = 'dsmith@email.com';
         $marketingUser->password = Hash::make('123456');
 
-        $marketingUser->save();
         $marketingUser->assignRole('marketing');
+        $marketingUser->save();
 
         $customerServiceUser = new \App\User();
 
@@ -73,8 +71,8 @@ class UsersPermissionsSeeder extends Seeder
         $customerServiceUser->email = 'cclark@email.com';
         $customerServiceUser->password = Hash::make('123456');
 
-        $customerServiceUser->save();
         $customerServiceUser->assignRole('customer-service');
+        $customerServiceUser->save();
 
         $fulfillmentUser = new \App\User();
 
@@ -84,7 +82,7 @@ class UsersPermissionsSeeder extends Seeder
         $fulfillmentUser->email = 'jdavies@email.com';
         $fulfillmentUser->password = Hash::make('123456');
 
-        $fulfillmentUser->save();
         $fulfillmentUser->assignRole('fulfillment');
+        $fulfillmentUser->save();
     }
 }

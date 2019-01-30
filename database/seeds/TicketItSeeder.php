@@ -15,24 +15,42 @@ class TicketItSeeder extends Seeder
 
         DB::table('ticketit_categories')
             ->insert([
-               ['name' => 'Technical', 'color' => '#009051'],
-               ['name' => 'Billing', 'color' => '#005493'],
-               ['name' => 'Customer Services', 'color' => '#ff9300'],
-               ['name' => 'Fulfilment', 'color' => '#ff7e79'],
+                ['id' => 1, 'name' => 'Technical', 'color' => '#009051'],
+                ['id' => 2, 'name' => 'Billing', 'color' => '#005493'],
+                ['id' => 3, 'name' => 'Customer Services', 'color' => '#ff9300'],
+                ['id' => 4, 'name' => 'Fulfilment', 'color' => '#ff7e79'],
             ]);
 
         DB::table('ticketit_priorities')
             ->insert([
-               ['name' => 'Low', 'color' => '#009051'],
-               ['name' => 'Normal', 'color' => '#005493'],
-               ['name' => 'Critical', 'color' => '#ff9300'],
+                ['name' => 'Low', 'color' => '#009051'],
+                ['name' => 'Normal', 'color' => '#005493'],
+                ['name' => 'Critical', 'color' => '#ff9300'],
             ]);
 
         DB::table('ticketit_statuses')
             ->insert([
-               ['name' => 'Pending', 'color' => '#009051'],
-               ['name' => 'In Progress', 'color' => '#005493'],
-               ['name' => 'Complete', 'color' => '#ff9300'],
+                ['name' => 'Pending', 'color' => '#009051'],
+                ['name' => 'In Progress', 'color' => '#005493'],
+                ['name' => 'Complete', 'color' => '#ff9300'],
+            ]);
+
+        /** @var \App\User $serviceUser */
+        $serviceUser = \App\User::query()->where('name', 'cclark')->first();
+
+        /** @var \App\User $fulfillmentUser */
+        $fulfillmentUser = \App\User::query()->where('name', 'jdavies')->first();
+
+        DB::table('ticketit_categories_users')
+            ->insert([
+                'category_id' => 3,
+                'user_id' => $serviceUser->id,
+            ]);
+
+        DB::table('ticketit_categories_users')
+            ->insert([
+                'category_id' => 4,
+                'user_id' => $fulfillmentUser->id,
             ]);
 
 
