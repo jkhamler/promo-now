@@ -7,30 +7,33 @@
                     &nbsp;Dashboard <span class="sr-only">(current)</span>
                 </a>
             </li>
+
+            @hasanyrole('marketing|super-admin')
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('promotionIndex') }}">
                     <i class="fas fa-envelope-square"></i>
                     &nbsp;Promotions
                 </a>
             </li>
-            {{--@role('customer-service')--}}
+            @endrole
+
+            @hasanyrole('customer-service|super-admin')
             <li class="nav-item">
                 <a class="nav-link" href="/tickets">
                     <i class="fas fa-sms"></i>
                     &nbsp;Customer Services
                 </a>
             </li>
+            @endrole
 
-            {{--@endrole--}}
-
-            {{--@role('fulfillment')--}}
+            @hasanyrole('customer-service|super-admin')
             <li class="nav-item">
                 <a class="nav-link" href="/tickets">
                     <i class="fas fa-calendar-alt"></i>
                     &nbsp;Fulfillment
                 </a>
             </li>
-            {{--@endrole--}}
+            @endrole
 
             <li class="nav-item">
                 <a class="nav-link" href="/">

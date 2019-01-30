@@ -95,6 +95,8 @@ class EntrantController extends Controller
      */
     public function logSupportTicketAction(Request $request)
     {
+        $existingUser = Auth::user();
+
         $request->validate([
             'promotionId' => 'integer',
             'firstName' => 'string',
@@ -171,6 +173,12 @@ EOT;
 
         session()->flash('status', trans('ticketit::lang.the-ticket-has-been-created'));
 
+        Auth::logout();
+
+        if($existingUser){
+            Auth::login($existingUser);
+        }
+
         return redirect()->to(route('supportTicketLogged', [$person->id]));
     }
 
@@ -203,8 +211,20 @@ EOT;
         $urn = $request->input('urn');
         $urnModel = Urn::findByUrn($urn);
 
+        /** @var Mechanic $primaryMechanic */
+        $primaryMechanic = $promotion->mechanics->first();
+
+        if ($primaryMechanic->type == Mechanic::MECHANIC_TYPE_EVERYBODY_GETS
+            && $primaryMechanic->tier_item_id) {
+
+            /** @var TierItem $tierItem */
+            $tierItem = $primaryMechanic->tierItem;
+
+        }
+
         if ($promotion->urns()->contains($urnModel)) {
             return view('entrant.valid-urn', [
+                'tierItem' => $tierItem ?? null,
                 'urn' => $urnModel,
                 'promotion' => $promotion,
                 'countries' => Country::all(),
@@ -237,6 +257,8 @@ EOT;
             'postcode' => 'string',
             'countryId' => 'integer',
         ]);
+
+        $existingUser = Auth::user();
 
         /** @var Urn $urn */
         $urn = Urn::find($request->input('urnId'));
@@ -303,7 +325,62 @@ EOT;
                 $entrantTierItem->entrant_id = $entrant->id;
                 $entrantTierItem->tier_item_stock_id = $firstStockItem->id;
                 $entrantTierItem->save();
+
+                /** Create Fulfillment Ticket */
+                $fulfillmentCategory = DB::table('ticketit_categories AS tc')
+                    ->select('tc.id AS id')
+                    ->where('tc.name', 'Fulfilment')
+                    ->first();
+
+                $fulfillmentUserId = DB::table('ticketit_categories_users AS tcu')
+                    ->select('tcu.user_id AS user_id')
+                    ->where('tcu.category_id', $fulfillmentCategory->id)
+                    ->first();
+
+                $normalPriority = DB::table('ticketit_priorities AS tp')
+                    ->select('tp.id AS id')
+                    ->where('tp.name', 'Normal')
+                    ->first();
+
+                $ticketContent = <<<EOT
+Promotion: {$promotion->name}
+
+Entrant: {$person->name} - {$person->email_address}
+
+Tier Item: {$tierItem->short_description}
+
+Reference Number: {$firstStockItem->reference_number};
+        
+bar
+EOT;
             }
+
+            /** @var User $fulfillmentUser */
+            $fulfillmentUser = User::find($fulfillmentUserId->user_id);
+
+            Auth::logout();
+            Auth::login($fulfillmentUser);
+
+            $ticket = new Ticket();
+
+            $ticket->subject = 'New Order';
+            $ticket->setPurifiedContent($ticketContent);
+            $ticket->priority_id = $normalPriority->id;
+            $ticket->category_id = $fulfillmentCategory->id;
+
+            $ticket->status_id = Setting::grab('default_status_id');
+            $ticket->user_id = $fulfillmentUserId->user_id;
+
+            $ticket->autoSelectAgent();
+
+            $ticket->save();
+
+            session()->flash('status', trans('ticketit::lang.the-ticket-has-been-created'));
+
+            if($existingUser){
+                Auth::login($existingUser);
+            }
+
         }
 
         return view('entrant.entry-summary', [

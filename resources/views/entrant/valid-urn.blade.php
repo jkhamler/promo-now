@@ -22,6 +22,9 @@
         <p class="text-center">Congratulations! The entry code {{ $urn->urn }} is valid. Please enter your details below to claim your
             prize.</p>
 
+        <h4>Item won: {{ $tierItem->short_description }}</h4>
+
+        <hr/>
 
         <form method="POST" action="{{ route('submitValidatedURN') }}">
 

@@ -24,10 +24,6 @@ class UsersPermissionsSeeder extends Seeder
         Permission::create(['name' => 'can see promotions tab']);
         Permission::create(['name' => 'fulfill order']);
 
-        /** Create roles and assign created permissions */
-        $superAdminRole = Role::create(['name' => 'super-admin']);
-        $superAdminRole->givePermissionTo(Permission::all());
-
         $marketingRole = Role::create(['name' => 'marketing']);
         $marketingRole->givePermissionTo('comment on service ticket');
         $marketingRole->givePermissionTo('can see promotions tab');
@@ -37,6 +33,10 @@ class UsersPermissionsSeeder extends Seeder
 
         $fulfillmentRole = Role::create(['name' => 'fulfillment']);
         $fulfillmentRole->givePermissionTo('fulfill order');
+
+        /** Create roles and assign created permissions */
+        $superAdminRole = Role::create(['name' => 'super-admin']);
+        $superAdminRole->givePermissionTo(Permission::all());
 
 
         /** Users */
