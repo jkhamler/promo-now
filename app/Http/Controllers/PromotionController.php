@@ -59,6 +59,7 @@ class PromotionController extends Controller
 
         $request->validate([
             'promotionName' => 'required',
+            'reference' => 'required',
             'url' => 'required',
             'onlineDate' => 'required',
             'promoOpenDate' => 'required|date|after_or_equal:date:onlineDate',
@@ -69,6 +70,7 @@ class PromotionController extends Controller
         $promotion = new Promotion();
 
         $promotion->name = $data['promotionName'];
+        $promotion->reference = $data['reference'];
         $promotion->url = $data['url'];
         $promotion->description = $data['description'];
         $promotion->online_date = Carbon::parse($data['onlineDate']);
@@ -101,6 +103,7 @@ class PromotionController extends Controller
 
         $request->validate([
             'promotionName' => 'required',
+            'reference' => 'required',
             'url' => 'required',
             'onlineDate' => 'required',
             'promoOpenDate' => 'required|date|after_or_equal:date:onlineDate',
@@ -112,6 +115,7 @@ class PromotionController extends Controller
         $promotion = Promotion::find($promotionId);
 
         $promotion->name = $data['promotionName'];
+        $promotion->reference = $data['reference'];
         $promotion->url = $data['url'];
         $promotion->description = $data['description'];
         $promotion->online_date = Carbon::parse($data['onlineDate']);

@@ -24,8 +24,14 @@
             </div>
 
             <div class="form-group">
-                <label for="promotionUrl">URL</label>
-                <input type="text" class="form-control" id="promotionUrl" name="url"
+                <label for="reference">Reference</label>
+                <input type="text" class="form-control" id="reference" name="reference"
+                       placeholder="URL" required value="{{$promotion->reference}}">
+            </div>
+
+            <div class="form-group">
+                <label for="url">URL</label>
+                <input type="text" class="form-control" id="url" name="url"
                        placeholder="URL" required value="{{$promotion->url}}">
             </div>
 

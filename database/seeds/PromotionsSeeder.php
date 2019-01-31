@@ -14,6 +14,7 @@ class PromotionsSeeder extends Seeder
         $promotion = new \App\Models\Promotion();
 
         $promotion->name = 'Everybody Gets Test Promotion';
+        $promotion->reference = 'EGETS123';
         $promotion->url = 'testcomp.com';
         $promotion->description = 'Description 123';
         $promotion->online_date = new DateTime('2018-01-01');

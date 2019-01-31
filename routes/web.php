@@ -34,6 +34,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     /** Home */
     Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/request-services', 'HomeController@requestServicesAction')->name('requestServices');
+    Route::post('/request-services', 'HomeController@makeServiceRequestAction')->name('makeServiceRequest');
 
     /** Partners */
     Route::prefix('partners')->group(function () {

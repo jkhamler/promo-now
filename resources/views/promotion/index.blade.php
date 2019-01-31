@@ -46,8 +46,8 @@
             <thead>
             <tr>
                 <td>Name</td>
+                <td>Reference</td>
                 <td>URL</td>
-                <td>Description</td>
                 <td>Online Date</td>
                 <td>Promo Open Date</td>
                 <td>Promo Closed Date</td>
@@ -83,8 +83,8 @@
             @foreach ($promotions as $promotion)
                 <tr data-href="{{ route('promotionDetails', [$promotion->id]) }}">
                     <td>{{ $promotion->name }}</td>
+                    <td>{{ $promotion->reference }}</td>
                     <td>{{ $promotion->url }}</td>
-                    <td>{{ $promotion->description }}</td>
                     <td>{{ $promotion->online_date->format('Y-m-d') }}</td>
                     <td>{{ $promotion->promo_open_date->format('Y-m-d') }}</td>
                     <td>{{ $promotion->promo_closed_date->format('Y-m-d') }}</td>
@@ -136,8 +136,16 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="promotionUrl">URL</label>
-                            <input type="text" class="form-control" id="promotionUrl" name="url"
+                            <label for="reference">Reference</label>
+                            <input type="text" class="form-control" id="reference" name="reference"
+                                   placeholder="Reference" required>
+                            <small id="referenceHelp" class="form-text text-muted">E.g. WIN12345
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="url">URL</label>
+                            <input type="text" class="form-control" id="url" name="url"
                                    placeholder="URL" required>
                             <small id="nameHelp" class="form-text text-muted">E.g. winstuff.com/code
                             </small>

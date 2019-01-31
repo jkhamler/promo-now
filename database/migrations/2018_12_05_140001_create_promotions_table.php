@@ -16,6 +16,7 @@ class CreatePromotionsTable extends Migration
         Schema::create('promotions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('reference');
             $table->string('url');
             $table->longText('description')->nullable();
             $table->dateTime('online_date');

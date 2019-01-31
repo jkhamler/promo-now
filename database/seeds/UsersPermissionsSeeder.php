@@ -38,7 +38,6 @@ class UsersPermissionsSeeder extends Seeder
         $superAdminRole = Role::create(['name' => 'super-admin']);
         $superAdminRole->givePermissionTo(Permission::all());
 
-
         /** Users */
         $superAdminUser = new \App\User();
 

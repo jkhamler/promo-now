@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
  *
  * @property integer $id
  * @property string $name
+ * @property string $reference
  * @property string $url
  * @property string $description
  * @property \Carbon\Carbon $online_date
@@ -39,6 +40,7 @@ class Promotion extends Model
      */
     protected $fillable = [
         'name',
+        'reference',
         'url',
         'description',
         'online_date',

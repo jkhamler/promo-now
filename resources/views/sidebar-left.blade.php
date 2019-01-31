@@ -44,6 +44,15 @@
             </li>
             @endrole
 
+            @hasanyrole('marketing')
+            <li class="nav-item">
+                <a class="nav-link" href="/tickets">
+                    <i class="fas fa-calendar-alt"></i>
+                    My Tickets
+                </a>
+            </li>
+            @endrole
+
             <li class="nav-item">
                 <a class="nav-link" href="/">
                     <i class="fas fa-money-bill-alt"></i>
@@ -52,7 +61,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="{{ route('requestServices') }}">
                     <i class="fas fa-phone"></i>
                     &nbsp;Request Services
                 </a>
