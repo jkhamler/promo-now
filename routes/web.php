@@ -58,6 +58,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::prefix('/{promotionId}/partners')->group(function () {
                 Route::get('/{promotionPartnerId}', 'PromotionPartnerController@detailsAction')->name('promotionPartnerDetails');
                 Route::post('/', 'PromotionPartnerController@createAction')->name('createPromotionPartner');
+                Route::patch('/{promotionPartnerId}', 'PromotionPartnerController@updateAction')->name('updatePromotionPartner');
             });
 
             /** Entrants */
