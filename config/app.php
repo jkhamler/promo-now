@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Kordy\Ticketit\TicketitServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        OwenIt\Auditing\AuditingServiceProvider::class,
     ],
 
     /*

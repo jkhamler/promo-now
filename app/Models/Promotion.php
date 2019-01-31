@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * App\Models\Promotion
@@ -22,8 +23,10 @@ use Illuminate\Support\Facades\DB;
  * @property boolean $urns_required
  * @property integer $urns_issued
  */
-class Promotion extends Model
+class Promotion extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     protected $dates = [
         'created_at',
         'updated_at',
