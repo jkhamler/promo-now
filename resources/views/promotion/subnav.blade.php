@@ -4,6 +4,10 @@
            aria-controls="home" aria-selected="true">Campaign Basics</a>
     </li>
     <li class="nav-item">
+        <a class="nav-link" id="partners-tab" data-toggle="tab" href="#partners" role="tab"
+           aria-controls="home" aria-selected="true">Partners</a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" id="urns-tab" data-toggle="tab" href="#urns" role="tab" aria-controls="profile"
            aria-selected="false">URNs</a>
     </li>

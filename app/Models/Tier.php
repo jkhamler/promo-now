@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 
 /**
@@ -44,6 +45,48 @@ class Tier extends Model
     public function items()
     {
         return $this->hasMany('App\Models\TierItem');
+    }
+
+    /**
+     * @param $partnerId
+     * @param $shortDescription
+     * @param $longDescription
+     * @param $couponNumber
+     * @param $quantity
+     * @return TierItem
+     */
+    public function addItem($partnerId, $shortDescription, $longDescription, $couponNumber, $quantity)
+    {
+
+        $tierItem = new TierItem();
+
+        $tierItem->tier_id = $this->id;
+        $tierItem->partner_id = $partnerId;
+        $tierItem->short_description = $shortDescription;
+        $tierItem->long_description = $longDescription;
+        $tierItem->coupon_number = $couponNumber;
+        $tierItem->quantity = $quantity;
+
+        $tierItem->save();
+
+        /** Only add one Promotion Partner per Promotion/Partner (Fulfillment) */
+        if (!DB::table('promotion_partners')
+            ->where([
+                'promotion_id' => $this->promotion_id,
+                'partner_id' => $partnerId,
+                'purpose' => PromotionPartner::PURPOSE_FULFILLMENT_PARTNER,
+            ])
+            ->exists()) {
+
+            $promotionPartner = new PromotionPartner();
+            $promotionPartner->promotion_id = $this->promotion_id;
+            $promotionPartner->partner_id = $partnerId;
+            $promotionPartner->purpose = PromotionPartner::PURPOSE_FULFILLMENT_PARTNER;
+
+            $promotionPartner->save();
+        }
+
+        return $tierItem;
     }
 
 }

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Language;
 use App\Models\Mechanic;
+use App\Models\Partner;
 use App\Models\Promotion;
+use App\Models\PromotionPartner;
 use App\Models\UrnSpecification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -20,7 +22,7 @@ class PromotionController extends Controller
     public function indexAction()
     {
         $promotions = Promotion::all();
-
+        
         return view('promotion.index', ['promotions' => $promotions]);
     }
 
@@ -37,9 +39,11 @@ class PromotionController extends Controller
 
         return view('promotion.details', [
             'languages' => Language::all(),
+            'partners' => Partner::all(),
             'promotion' => $promotion,
             'mechanicTypes' => Mechanic::MECHANIC_TYPES,
             'urnSpecificationPurposes' => UrnSpecification::PURPOSES,
+            'promotionPartnerPurposes' => PromotionPartner::PURPOSES,
         ]);
     }
 

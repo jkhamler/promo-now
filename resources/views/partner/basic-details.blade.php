@@ -10,7 +10,7 @@
 
         <h4>Details</h4>
 
-        <form method="POST" action="{{ route('updatePartner', [$promotion->id, $partner->id]) }}">
+        <form method="POST" action="{{ route('updatePartner', [$partner->id]) }}">
 
             <div class="form-group">
                 @csrf

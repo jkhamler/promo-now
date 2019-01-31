@@ -30,7 +30,6 @@
                 </div>
             </div>
         @endif
-
     </div>
 
     <div class="container-fluid p-3">

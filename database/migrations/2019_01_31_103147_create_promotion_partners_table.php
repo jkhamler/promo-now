@@ -18,6 +18,7 @@ class CreatePromotionPartnersTable extends Migration
             $table->integer('promotion_id')->unsigned();
             $table->integer('partner_id')->unsigned();
             $table->string('purpose');
+            $table->longText('notes')->nullable();
             $table->timestamps();
         });
     }

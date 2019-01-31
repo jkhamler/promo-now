@@ -145,16 +145,11 @@ class TierController extends Controller
             'quantity' => 'required',
         ]);
 
-        $tierItem = new TierItem();
+        /** @var Tier $tier */
+        $tier = Tier::find($tierId);
 
-        $tierItem->tier_id = $data['tier_id'];
-        $tierItem->short_description = $data['shortDescription'];
-        $tierItem->long_description = $data['longDescription'];
-        $tierItem->coupon_number = $data['couponNumber'];
-        $tierItem->partner_id = $data['partnerId'];
-        $tierItem->quantity = $data['quantity'];
-
-        $tierItem->save();
+        $tierItem = $tier->addItem($data['partnerId'], $data['shortDescription'], $data['longDescription'],
+            $data['couponNumber'], $data['quantity']);
 
         return redirect()->to(route('tierItemDetails', [$promotionId, $tierId, $tierItem->id]));
     }

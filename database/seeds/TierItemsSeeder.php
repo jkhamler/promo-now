@@ -12,7 +12,7 @@ class TierItemsSeeder extends Seeder
     public function run()
     {
         /** @var \App\Models\Promotion $promotion */
-        $promotion = \App\Models\Promotion::where('name', 'Test Promotion')->first();
+        $promotion = \App\Models\Promotion::where('name', 'Everybody Gets Test Promotion')->first();
 
 
         $partner1 = new \App\Models\Partner();
@@ -66,16 +66,7 @@ class TierItemsSeeder extends Seeder
 
         $tier2Id = $tier2->id;
 
-        $item1 = new \App\Models\TierItem();
-
-        $item1->tier_id = $tier1Id;
-        $item1->partner_id = $partner1Id;
-        $item1->short_description = 'TV';
-        $item1->long_description = 'Television';
-        $item1->coupon_number = 'ABC12345';
-        $item1->quantity = 50;
-
-        $item1->save();
+        $item1 = $tier1->addItem($partner1Id, 'TV', 'Television', 'ABC12345', 50);
 
         for ($i = 0; $i < 50; $i++) {
             $tierItemStock = new \App\Models\TierItemStock();
@@ -84,16 +75,7 @@ class TierItemsSeeder extends Seeder
             $tierItemStock->save();
         }
 
-        $item1b = new \App\Models\TierItem();
-
-        $item1b->tier_id = $tier1Id;
-        $item1b->partner_id = $partner2Id;
-        $item1b->short_description = 'iPhone';
-        $item1b->long_description = 'iPhone 8';
-        $item1b->coupon_number = 'XYZ789';
-        $item1b->quantity = 100;
-
-        $item1b->save();
+        $item1b = $tier1->addItem($partner1Id, 'iPhone', 'iPhone 8', 'XYZ789', 100);
 
         for ($i = 0; $i < 100; $i++) {
             $tierItemStock = new \App\Models\TierItemStock();
@@ -102,16 +84,7 @@ class TierItemsSeeder extends Seeder
             $tierItemStock->save();
         }
 
-        $item2 = new \App\Models\TierItem();
-
-        $item2->tier_id = $tier2Id;
-        $item2->partner_id = $partner3Id;
-        $item2->short_description = 'Car';
-        $item2->long_description = 'A Free Car';
-        $item2->coupon_number = 'ABC789';
-        $item2->quantity = 250;
-
-        $item2->save();
+        $item2 = $tier2->addItem($partner3Id, 'Car', 'A Free Car', 'ABC789', 250);
 
         for ($i = 0; $i < 250; $i++) {
             $tierItemStock = new \App\Models\TierItemStock();

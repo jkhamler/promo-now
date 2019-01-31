@@ -37,6 +37,7 @@
             <div class="tab-content" id="myTabContent">
 
                 @include('promotion.campaign-basics')
+                @include('promotion.partners')
                 @include('promotion.urns')
                 @include('promotion.prizes-items')
                 @include('promotion.mechanics')
