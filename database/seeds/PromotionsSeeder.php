@@ -13,7 +13,7 @@ class PromotionsSeeder extends Seeder
     {
         $promotion = new \App\Models\Promotion();
 
-        $promotion->name = 'Test Promotion';
+        $promotion->name = 'Test Promo';
         $promotion->url = 'testcomp.com';
         $promotion->description = 'Description 123';
         $promotion->online_date = new DateTime('2018-01-01');

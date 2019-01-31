@@ -48,5 +48,13 @@ class Partner extends Model
         return $this->belongsToMany('App\Models\Address');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function promotionPartners()
+    {
+        return $this->hasMany('App\Models\PromotionPartner');
+    }
+
 
 }

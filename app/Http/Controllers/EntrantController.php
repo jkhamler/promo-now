@@ -351,7 +351,6 @@ Tier Item: {$tierItem->short_description}
 
 Reference Number: {$firstStockItem->reference_number};
         
-bar
 EOT;
             }
 

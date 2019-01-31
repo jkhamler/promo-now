@@ -17,7 +17,7 @@
             </li>
             @endrole
 
-            @hasanyrole('customer-service|super-admin')
+            @hasanyrole('customer-service')
             <li class="nav-item">
                 <a class="nav-link" href="/tickets">
                     <i class="fas fa-sms"></i>
@@ -26,7 +26,16 @@
             </li>
             @endrole
 
-            @hasanyrole('customer-service|super-admin')
+            @hasanyrole('super-admin')
+            <li class="nav-item">
+                <a class="nav-link" href="/tickets">
+                    <i class="fas fa-sms"></i>
+                    &nbsp;Support Tasks
+                </a>
+            </li>
+            @endrole
+
+            @hasanyrole('fulfillment')
             <li class="nav-item">
                 <a class="nav-link" href="/tickets">
                     <i class="fas fa-calendar-alt"></i>

@@ -111,6 +111,15 @@ class Promotion extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function promotionPartners()
+    {
+        return $this->hasMany('App\Models\PromotionPartner');
+    }
+
+
+    /**
      * @return int|null
      */
     public function getMostRecentPromoTermVersion()
