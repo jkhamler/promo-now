@@ -2,7 +2,7 @@
     /** @var $promotion \App\Models\Promotion */
 @endphp
 
-<div class="tab-pane fade show active" id="partners" role="tabpanel"
+<div class="tab-pane fade" id="partners" role="tabpanel"
      aria-labelledby="partners-tab">
 
     <div class="container-fluid">

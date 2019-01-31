@@ -164,7 +164,6 @@ class Promotion extends Model
      */
     public function getAllPossibleTierItems()
     {
-
         $tierItems = new Collection();
 
         /** @var Tier $tier */
@@ -179,17 +178,14 @@ class Promotion extends Model
     /**
      * @return Collection|Partner[]
      */
-    public function partners()
+    public function allPartners()
     {
         $partners = new Collection();
 
-        /** @var Tier $tier */
-        foreach ($this->tiers as $tier) {
-            /** @var TierItem $item */
-            foreach ($tier->items as $item) {
-                if (!$partners->contains($item->partner)) {
-                    $partners->add($item->partner);
-                }
+        /** @var PromotionPartner $promotionPartner */
+        foreach ($this->promotionPartners as $promotionPartner) {
+            if (!$partners->contains($promotionPartner->partner)) {
+                $partners->add($promotionPartner->partner);
             }
         }
         return $partners;
@@ -226,28 +222,39 @@ class Promotion extends Model
      */
     public function outstandingPrivacyTermsPartners()
     {
-        $allPartners = $this->partners();
-        /** @var Collection $existingPrivacyTerms */
-        $existingPrivacyTerms = $this->privacyTerms;
+        $allPartners = $this->allPartners();
 
-        if ($existingPrivacyTerms->isEmpty()) {
+        if ($this->privacyTerms->isEmpty()) {
             return $allPartners;
         }
 
+        $existingPrivacyTermsPartners = $this->existingPrivacyTermsPartners();
+
         $outstandingPartners = new Collection();
 
-        /** @var PrivacyTerm $existingPrivacyTerm */
-        foreach ($existingPrivacyTerms as $existingPrivacyTerm) {
-            foreach ($allPartners as $allPartner) {
-                if ($existingPrivacyTerm->partner_id !== $allPartner->id &&
-                    (!$outstandingPartners->contains($allPartner))) {
-                    $outstandingPartners->add($allPartner);
-                }
+        foreach ($allPartners as $allPartner) {
+            if(!$existingPrivacyTermsPartners->contains($allPartner)){
+                $outstandingPartners->add($allPartner);
             }
         }
 
         return $outstandingPartners;
+    }
 
+    /**
+     * @return Collection
+     */
+    public function existingPrivacyTermsPartners()
+    {
+        $existingPrivacyPartners = new Collection();
+
+        /** @var PrivacyTerm $privacyTerm */
+        foreach ($this->privacyTerms as $privacyTerm) {
+            if (!$existingPrivacyPartners->contains($privacyTerm->partner)) {
+                $existingPrivacyPartners->add($privacyTerm->partner);
+            }
+        }
+        return $existingPrivacyPartners;
     }
 
 
