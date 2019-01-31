@@ -8,7 +8,6 @@
         /** @var \App\Models\PrivacyTerm $privacyTerm */
     @endphp
 
-
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
@@ -118,8 +117,6 @@
         </form>
     </div>
 
-    <br/>
-
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -138,9 +135,25 @@
 
         @endif
 
-
     </script>
-
 
 @endsection
 
+@section('sidebar-right-gdpr')
+    @parent
+    <p>GDPR Info Privacy Term Overview
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+@stop
+
+@section('sidebar-right-useful-info')
+    @parent
+
+    <p>Useful Info Privacy Term Overview
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+@stop

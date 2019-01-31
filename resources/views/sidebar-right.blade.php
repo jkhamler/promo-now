@@ -7,11 +7,28 @@
                     &nbsp;Think GDPR!<span class="sr-only">(current)</span>
                 </a>
                 <div class="border p-2 m-2">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris quis tortor posuere, aliquam ex
-                        sed,
-                        cursus nisl. Cras sit amet ullamcorper arcu. Ut suscipit nec ex in consectetur.
-                    </p>
+
+                    @section('sidebar-right-gdpr')
+
+                        @if(Route::current()->getName() == 'tickets.index')
+
+                            <p>GDPR Info Ticket Dashboard
+
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua.
+                            </p>
+
+                        @elseif(Route::current()->getName() == 'tickets.show')
+
+                            <p>GDPR Info Ticket Overview
+
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua.
+                            </p>
+
+                        @endif
+
+                    @show
                 </div>
                 <a class="nav-link active" href="#">
                     <i class="fas fa-lightbulb"></i>
@@ -19,9 +36,29 @@
                 </a>
 
                 <div class="border p-2 m-2">
-                    <p> Fusce sodales lacus vitae varius feugiat. Ut ac vulputate leo. Integer posuere risus eu ornare convallis. Nulla
-                        efficitur nunc nulla, a consequat lorem gravida in.
-                    </p>
+
+                    @section('sidebar-right-useful-info')
+
+                        @if(Route::current()->getName() == 'tickets.index')
+
+                            <p>Useful Info Ticket Dashboard
+
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua.
+                            </p>
+
+                        @elseif(Route::current()->getName() == 'tickets.show')
+
+                            <p>Useful Info Ticket Overview
+
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua.
+                            </p>
+
+                        @endif
+
+                    @show
+
                 </div>
             </li>
         </ul>

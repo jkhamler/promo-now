@@ -103,8 +103,6 @@
         </form>
     </div>
 
-    <br/>
-
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -123,6 +121,23 @@
 
     </script>
 
-
 @endsection
 
+@section('sidebar-right-gdpr')
+    @parent
+    <p>GDPR Info Promo Term Overview
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+@stop
+
+@section('sidebar-right-useful-info')
+    @parent
+
+    <p>Useful Info Promo Term Overview
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+@stop

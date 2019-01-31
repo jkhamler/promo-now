@@ -152,5 +152,4 @@ EOT;
         $('#termsBodyText').summernote({});
     });
 
-
 </script>

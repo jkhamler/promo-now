@@ -66,13 +66,9 @@
             </div>
 
             <div class="col-2 border-left">
-                @section('sidebar-right')
-                    @include('sidebar-right')
+                @include('sidebar-right')
             </div>
-
-
         </div>
-
     </div>
 
     @yield('footer')

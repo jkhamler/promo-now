@@ -136,7 +136,23 @@
 
     </div>
 
-
-
 @endsection
 
+@section('sidebar-right-gdpr')
+    @parent
+    <p>GDPR Info Partners Index
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+@stop
+
+@section('sidebar-right-useful-info')
+    @parent
+
+    <p>Useful Info Partners Index
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+@stop

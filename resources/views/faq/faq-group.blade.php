@@ -5,12 +5,9 @@
 @section('content')
 
     @php
-
         /** @var \App\Models\FAQGroup $faqGroup */
         /** @var \App\Models\Partner[] $partners */
-
         $promotion = $faqGroup->promotion;
-
     @endphp
 
     <nav aria-label="breadcrumb">
@@ -56,3 +53,22 @@
     </div>
 
 @endsection
+
+@section('sidebar-right-gdpr')
+    @parent
+    <p>GDPR Info FAQ Group Overview
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+@stop
+
+@section('sidebar-right-useful-info')
+    @parent
+
+    <p>Useful Info FAQ Group Overview
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+@stop

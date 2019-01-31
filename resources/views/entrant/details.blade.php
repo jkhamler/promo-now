@@ -22,7 +22,6 @@
 
     @include('entrant.subnav')
 
-
     @if ($errors->any())
         <div class="row">
             <div class="col-6">
@@ -50,7 +49,23 @@
 
     </div>
 
-
-
 @endsection
 
+@section('sidebar-right-gdpr')
+    @parent
+    <p>GDPR Info Entrant Overview
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+@stop
+
+@section('sidebar-right-useful-info')
+    @parent
+
+    <p>Useful Info Entrant Overview
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+@stop
