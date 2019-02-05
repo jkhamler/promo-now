@@ -101,4 +101,52 @@ EOT;
         ]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function gdprQuizAction()
+    {
+        $questions =
+            [
+                'What would you do?' => [
+                    'Something 1',
+                    'Something 2',
+                    'Something 3',
+                    'Something 4',
+                ],
+                'What would you do 2?' => [
+                    'Something 5',
+                    'Something 6',
+                    'Something 7',
+                    'Something 8',
+                ],
+                'What would you do 3?' => [
+                    'Something 9',
+                    'Something 10',
+                    'Something 11',
+                    'Something 12',
+                ],
+                'What would you do 4?' => [
+                    'Something 13',
+                    'Something 14',
+                    'Something 15',
+                    'Something 16',
+                ],
+            ];
+
+        return view('gdpr-quiz', [
+            'questions' => $questions
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function submitGdprQuizAction(Request $request)
+    {
+        return view('service-request-made', [
+        ]);
+    }
+
 }

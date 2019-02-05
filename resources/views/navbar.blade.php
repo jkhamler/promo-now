@@ -27,7 +27,11 @@
                             $authenticatable=\Illuminate\Support\Facades\Auth::user();
                             if($authenticatable){echo $authenticatable->getFullName();}
                     @endphp
-                    <span class="caret"></span>
+                    @if($authenticatable->gdprCertified())
+                        <span>&nbsp;<i class="fas fa-shield-alt" style="color:darkgreen"></i></span>
+                    @else
+                        <span>&nbsp;<i class="fas fa-exclamation-triangle" style="color:darkred"></i></span>
+                    @endif
                 </button>
 
                 <ul class="dropdown-menu dropdown-menu-right mt-2">
@@ -41,6 +45,13 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
+                    </li>
+
+                    <li class="px-3 py-2">
+                        <a class="dropdown-item" href="{{ route('gdprQuiz') }}">
+                            GDPR Quiz
+                        </a>
+
                     </li>
                 </ul>
             </li>
