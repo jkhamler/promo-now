@@ -27,11 +27,22 @@
                             $authenticatable=\Illuminate\Support\Facades\Auth::user();
                             if($authenticatable){echo $authenticatable->getFullName();}
                     @endphp
-                    @if($authenticatable->gdprCertified())
+
+                    @switch($authenticatable->getGDPRCertificationStatus())
+                        @case(\App\User::GDPR_CERTIFIED)
                         <span>&nbsp;<i class="fas fa-shield-alt" style="color:darkgreen"></i></span>
-                    @else
+                        @break
+                        @case(\App\User::GDPR_NOT_CERTIFIED)
                         <span>&nbsp;<i class="fas fa-exclamation-triangle" style="color:darkred"></i></span>
-                    @endif
+                        @break
+                        @case(\App\User::GDPR_EXPIRES_SOON)
+                        <span>&nbsp;<i class="fas fa fa-hourglass" style="color:darkred"></i></span>
+                        @break
+                        @case(\App\User::GDPR_EXPIRED)
+                        <span>&nbsp;<i class="fas fa-history" style="color:darkred"></i></span>
+                        @break
+                    @endswitch
+
                 </button>
 
                 <ul class="dropdown-menu dropdown-menu-right mt-2">

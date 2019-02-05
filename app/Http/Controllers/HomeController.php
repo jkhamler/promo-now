@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Promotion;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -62,9 +63,9 @@ class HomeController extends Controller
         $promotion = Promotion::find($promotionId);
 
         /** Create Technical Ticket */
-        $technicalCategory = DB::table('ticketit_categories AS tc')
+        $techCategory = DB::table('ticketit_categories AS tc')
             ->select('tc.id AS id')
-            ->where('tc.name', 'Technical')
+            ->where('tc.name', 'Tech')
             ->first();
 
         $normalPriority = DB::table('ticketit_priorities AS tp')
@@ -86,7 +87,7 @@ EOT;
         $ticket->subject = $request->input('subject');
         $ticket->setPurifiedContent($ticketContent);
         $ticket->priority_id = $normalPriority->id;
-        $ticket->category_id = $technicalCategory->id;
+        $ticket->category_id = $techCategory->id;
 
         $ticket->status_id = Setting::grab('default_status_id');
         $ticket->user_id = Auth::id();
@@ -145,6 +146,69 @@ EOT;
      */
     public function submitGdprQuizAction(Request $request)
     {
+        $request->validate([
+            'question1' => 'string|nullable',
+            'question2' => 'string|nullable',
+            'question3' => 'string|nullable',
+            'question4' => 'string|nullable',
+            'textQuestion' => 'string|nullable',
+            'checkboxAnswer1' => 'string|nullable',
+            'checkboxAnswer2' => 'string|nullable',
+            'checkboxAnswer3' => 'string|nullable',
+        ]);
+
+        /** @var User $user */
+        $user = Auth::user();
+
+//        echo '<pre>';
+//        echo print_r($request->all(), true);
+//        echo '</pre>';
+//        exit();
+
+        /** Create Technical Ticket */
+        $gdprQuizCategory = DB::table('ticketit_categories AS tc')
+            ->select('tc.id AS id')
+            ->where('tc.name', 'GDPR Quiz')
+            ->first();
+
+        $normalPriority = DB::table('ticketit_priorities AS tp')
+            ->select('tp.id AS id')
+            ->where('tp.name', 'Normal')
+            ->first();
+
+        $ticketContent = <<<EOT
+        
+Quiz submission: {$user->getFullName()} (User ID {$user->id})<br/><br/>
+
+Please review the answers and update the gdpr_verified_at and gdpr_expires_at date/time values accordingly.
+<br/><br/>
+Question 1: {$request->input('question1')}<br/>
+Question 2: {$request->input('question2')}<br/>
+Question 3: {$request->input('question3')}<br/>
+Question 4: {$request->input('question4')}<br/>
+Text Question: {$request->input('textQuestion')}<br/>
+Checkbox Answer1: {$request->input('checkboxAnswer1')}<br/>
+Checkbox Answer2: {$request->input('checkboxAnswer2')}<br/>
+Checkbox Answer3: {$request->input('checkboxAnswer3')}<br/>
+
+EOT;
+
+        $ticket = new Ticket();
+
+        $ticket->subject = "GDPR Quiz Submission - {$user->getFullName()} (User ID {$user->id})";
+        $ticket->setPurifiedContent($ticketContent);
+        $ticket->priority_id = $normalPriority->id;
+        $ticket->category_id = $gdprQuizCategory->id;
+
+        $ticket->status_id = Setting::grab('default_status_id');
+        $ticket->user_id = Auth::id();
+
+        $ticket->autoSelectAgent();
+
+        $ticket->save();
+
+        session()->flash('status', trans('ticketit::lang.the-ticket-has-been-created'));
+
         return view('service-request-made', [
         ]);
     }

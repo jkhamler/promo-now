@@ -422,7 +422,7 @@ EOT;
                 /** Create Fulfillment Ticket */
                 $fulfillmentCategory = DB::table('ticketit_categories AS tc')
                     ->select('tc.id AS id')
-                    ->where('tc.name', 'Fulfilment')
+                    ->where('tc.name', 'F&H')
                     ->first();
 
                 $fulfillmentUserId = DB::table('ticketit_categories_users AS tcu')

@@ -34,8 +34,9 @@
             @foreach ($questions as $question => $answers)
 
                 <div class="form-group">
-                    <label for="type">{{$question}}</label>
-                    <select class="form-control" id="type" name="type">
+                    <label for="question{{ $loop->iteration }}">{{$question}}</label>
+                    <select class="form-control" id="question{{ $loop->iteration }}"
+                            name="question{{ $loop->iteration }}" required>
                         @foreach ($answers as  $answer)
                             <option value="{{ $answer }}">{{ $answer }}</option>
                         @endforeach
@@ -45,18 +46,17 @@
             @endforeach
 
             <div class="form-group">
-                <label for="acceptanceText">What would you do 5?</label>
-                <textarea class="form-control" id="question5" name="question5"
-                          placeholder="E.g. 'I would blah blah blah....'"></textarea>
+                <label for="textQuestion">What would you do 5?</label>
+                <textarea class="form-control" id="textQuestion" name="textQuestion"
+                          placeholder="E.g. 'I would blah blah blah....'" required></textarea>
             </div>
 
             <div class="form-group">
-                <label for="acceptanceText">Please check all that apply</label>
-
+                <label for="checkboxQuestion">Please check all that apply</label>
                 <br/>
-                <label class="checkbox-inline"><input type="checkbox" value="">Option 1 &nbsp;</label>
-                <label class="checkbox-inline"><input type="checkbox" value="">Option 2 &nbsp;</label>
-                <label class="checkbox-inline"><input type="checkbox" value="">Option 3 &nbsp;</label>
+                <label class="checkbox"><input type="checkbox" name="checkboxAnswer1">Option 1 &nbsp;</label>
+                <label class="checkbox"><input type="checkbox" name="checkboxAnswer2">Option 2 &nbsp;</label>
+                <label class="checkbox"><input type="checkbox" name="checkboxAnswer3">Option 3 &nbsp;</label>
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>

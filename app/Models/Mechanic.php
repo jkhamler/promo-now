@@ -56,7 +56,6 @@ class Mechanic extends Model implements Auditable
         'draw_entrants_deadline',
     ];
 
-
     /**
      * @var array
      */

@@ -41,6 +41,7 @@ class UsersPermissionsSeeder extends Seeder
         /** Users */
         $superAdminUser = new \App\User();
 
+        $superAdminUser->id = 1000;
         $superAdminUser->name = 'jkhamler';
         $superAdminUser->first_name = 'Jon';
         $superAdminUser->surname = 'Hamler';

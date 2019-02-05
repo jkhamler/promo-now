@@ -76,35 +76,40 @@ class User extends Authenticatable
     /**
      * @return bool
      */
-    public function isSuperAdmin(){
+    public function isSuperAdmin()
+    {
         return $this->hasRole('super-admin');
-    }
-
-    /**
-     * @return bool
-     */
-    public function gdprCertified(){
-        return true;
     }
 
     /**
      * @return mixed
      */
-    public function getGDPRCertificationStatus(){
+    public function getGDPRCertificationStatus()
+    {
         $now = new \DateTime();
 
         $threeMonthsFromNow = clone $now;
         $threeMonthsFromNow->modify('+3 Months');
 
-        if (!$this->gdpr_verified_at){
-            return self::GDPR_CERTIFICATION_STATUSES[self::GDPR_NOT_CERTIFIED];
-        }elseif($this->gdpr_expires_at < $now){
-            return self::GDPR_CERTIFICATION_STATUSES[self::GDPR_EXPIRED];
-        }elseif($this->gdpr_expires_at < $threeMonthsFromNow){
-            return self::GDPR_CERTIFICATION_STATUSES[self::GDPR_EXPIRES_SOON];
-        }else{
-            return self::GDPR_CERTIFICATION_STATUSES[self::GDPR_CERTIFIED];
+        if (!$this->gdpr_verified_at) {
+            return self::GDPR_NOT_CERTIFIED;
+        }
+
+        elseif (isset($this->gdpr_expires_at) && $this->gdpr_expires_at < $now) {
+            return self::GDPR_EXPIRED;
+        } elseif (isset($this->gdpr_expires_at) && $this->gdpr_expires_at < $threeMonthsFromNow) {
+            return self::GDPR_EXPIRES_SOON;
+        } else {
+            return self::GDPR_CERTIFIED;
         }
     }
 
+    /**
+     * @param $certificationStatus
+     * @return string
+     */
+    public function getGDPRCertificationStatusLabel($certificationStatus)
+    {
+        return self::GDPR_CERTIFICATION_STATUSES($certificationStatus) ?? '';
+    }
 }

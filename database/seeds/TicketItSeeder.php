@@ -20,6 +20,7 @@ class TicketItSeeder extends Seeder
                 ['id' => 3, 'name' => 'Helpdesk', 'color' => '#ff9300'],
                 ['id' => 4, 'name' => 'F&H', 'color' => '#ff7e79'],
                 ['id' => 5, 'name' => 'GDPR', 'color' => '#ff0000'],
+                ['id' => 6, 'name' => 'GDPR Quiz', 'color' => '#ff0000'],
             ]);
 
         DB::table('ticketit_priorities')
