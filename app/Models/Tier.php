@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use OwenIt\Auditing\Contracts\Auditable;
 
 
 /**
@@ -18,8 +19,10 @@ use Illuminate\Support\Facades\DB;
  * @property integer $quantity
  *
  */
-class Tier extends Model
+class Tier extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     /**
      * @var array
      */

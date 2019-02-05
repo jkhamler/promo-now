@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * Class TierItemStock
@@ -11,8 +12,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $reference_number
  * @property \DateTime $allocated_datetime
  */
-class TierItemStock extends Model
+class TierItemStock extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     protected $table = 'tier_item_stock';
 
     protected $dates = [

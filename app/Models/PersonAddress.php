@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * Class PersonAddress
@@ -11,7 +12,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $address_id
  * @property boolean $is_primary_address
  */
-class PersonAddress extends Model
+class PersonAddress extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     //
 }

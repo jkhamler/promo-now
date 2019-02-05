@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * Class Mechanic
@@ -28,8 +29,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $moment_duration_seconds
  * @property integer $moment_distribution_interval_seconds
  */
-class Mechanic extends Model
+class Mechanic extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     const MECHANIC_TYPE_WINNING_MOMENT = 'WINNING_MOMENT';
     const MECHANIC_TYPE_TIMED_DRAW = 'TIMED_DRAW';
     const MECHANIC_TYPE_EVERYBODY_GETS = 'EVERYBODY_GETS';

@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * Class UrnSpecification
@@ -24,8 +24,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property boolean $everyone_gets
  * @property boolean $allocated_by_tier
  */
-class UrnSpecification extends Model
+class UrnSpecification extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     const URN_PURPOSE_PRINTERS = 'URN_PURPOSE_PRINTERS';
     const URN_PURPOSE_CUSTOMER_SERVICE = 'URN_PURPOSE_CUSTOMER_SERVICE';
     const URN_PURPOSE_BRAND_TESTING = 'URN_PURPOSE_BRAND_TESTING';

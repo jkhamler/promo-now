@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
 
 /**
@@ -26,8 +27,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $created_by_user_id
  * @property integer $updated_by_user_id
  */
-class PrivacyTerm extends Model
+class PrivacyTerm extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     protected $dates = [
         'authorised_at',
         'created_at',

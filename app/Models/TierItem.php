@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * Class TierItem
@@ -16,8 +17,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $partner_id
  * @property integer $quantity
  */
-class TierItem extends Model
+class TierItem extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
     /**
      * @var array
      */

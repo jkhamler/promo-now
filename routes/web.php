@@ -37,6 +37,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/request-services', 'HomeController@requestServicesAction')->name('requestServices');
     Route::post('/request-services', 'HomeController@makeServiceRequestAction')->name('makeServiceRequest');
 
+    /** Audit */
+    Route::prefix('audit')->group(function () {
+        Route::get('/', 'auditController@indexAction')->name('auditIndex');
+//        Route::get('/{partnerId}', 'PartnerController@detailsAction')->name('partnerDetails');
+//        Route::post('/', 'PartnerController@createAction')->name('createPartner');
+//        Route::patch('/{partnerId}', 'PartnerController@updateAction')->name('updatePartner');
+    });
+
+
     /** Partners */
     Route::prefix('partners')->group(function () {
         Route::get('/', 'PartnerController@indexAction')->name('partnerIndex');

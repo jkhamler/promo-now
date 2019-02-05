@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
 
 /**
@@ -24,8 +25,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $created_by_user_id
  * @property integer $updated_by_user_id
  */
-class PromoTerm extends Model
+class PromoTerm extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     protected $dates = [
         'valid_from',
         'valid_until',

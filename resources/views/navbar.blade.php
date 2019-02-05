@@ -10,7 +10,7 @@
 
         <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
 
-            <li class="nav-item"><a href="/" class="nav-link">Audit</a></li>
+            <li class="nav-item"><a href="{{ route('auditIndex') }}" class="nav-link">Audit</a></li>
             <li class="nav-item"><a href="{{ route('partnerIndex') }}" class="nav-link">Partners</a></li>
             <li class="nav-item"><a href="/" class="nav-link">Brand Vault</a></li>
 

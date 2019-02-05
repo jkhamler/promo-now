@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * Class FAQ
@@ -13,8 +14,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $body_text
  * @property integer $order
  */
-class FAQ extends Model
+class FAQ extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     protected $table = 'faqs';
 
     /**

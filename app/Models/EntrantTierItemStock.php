@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use OwenIt\Auditing\Contracts\Auditable;
 
 
 /**
@@ -12,8 +13,9 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @property integer $entrant_id
  * @property integer $tier_item_stock_id
  */
-class EntrantTierItemStock extends Pivot
+class EntrantTierItemStock extends Pivot implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
     /**
      * The table associated with the model
      *

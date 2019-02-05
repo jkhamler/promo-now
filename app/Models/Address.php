@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * Class Address
@@ -15,8 +16,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $postcode
  * @property integer $country_id
  */
-class Address extends Model
+class Address extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     protected $dates = [
         'created_at',
         'updated_at',

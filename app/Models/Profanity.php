@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * Class Profanity
@@ -11,8 +12,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $language_id
  * @property string $profanity
  */
-class Profanity extends Model
+class Profanity extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     protected $dates = [
         'created_at',
         'updated_at',

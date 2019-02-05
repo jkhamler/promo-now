@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
 
 /**
@@ -15,8 +16,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property \DateTime $redeemed_at
  * @property
  */
-class Urn extends Model
+class Urn extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     protected $dates = [
         'created_at',
         'updated_at',

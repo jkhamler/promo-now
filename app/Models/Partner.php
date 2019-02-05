@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
 
 /**
@@ -15,8 +16,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $description
  * @property string $company_number
  */
-class Partner extends Model
+class Partner extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     /**
      * @var array
      */

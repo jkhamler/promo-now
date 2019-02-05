@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * Class UrnBatch
@@ -11,8 +12,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $urn_specification_id
  * @property string $batch_name
  */
-class UrnBatch extends Model
+class UrnBatch extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     protected $dates = [
         'created_at',
         'updated_at',

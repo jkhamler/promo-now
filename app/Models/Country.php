@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
 
 /**
@@ -11,8 +12,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property string $iso_code
  */
-class Country extends Model
+class Country extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     protected $dates = [
         'created_at',
         'updated_at',

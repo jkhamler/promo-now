@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
 
 /**
@@ -13,8 +14,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property string $description
  */
-class FAQGroup extends Model
+class FAQGroup extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     protected $table = 'faq_groups';
 
     /**

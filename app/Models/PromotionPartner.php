@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * Class PromotionPartner
@@ -12,8 +13,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $purpose
  * @property string $notes
  */
-class PromotionPartner extends Model
+class PromotionPartner extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     const PURPOSE_PROMOTER = 'PURPOSE_PROMOTER';
     const PURPOSE_CREATIVE_AGENCY = 'PURPOSE_CREATIVE_AGENCY';
     const PURPOSE_PARTNER_AGENCY = 'PURPOSE_PARTNER_AGENCY';
