@@ -36,6 +36,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     /** Home */
     Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/brand-vault', 'HomeController@brandVaultAction')->name('brandVault');
+    Route::get('/reports', 'HomeController@reportsAction')->name('reports');
     Route::get('/request-services', 'HomeController@requestServicesAction')->name('requestServices');
     Route::post('/request-services', 'HomeController@makeServiceRequestAction')->name('makeServiceRequest');
     Route::get('/gdpr-quiz', 'HomeController@gdprQuizAction')->name('gdprQuiz');

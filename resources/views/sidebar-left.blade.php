@@ -54,7 +54,7 @@
             @endrole
 
             <li class="nav-item">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="{{ route('reports') }}">
                     <i class="fas fa-money-bill-alt"></i>
                     &nbsp;Reports
                 </a>

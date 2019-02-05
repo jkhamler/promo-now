@@ -12,8 +12,7 @@
 
             <li class="nav-item"><a href="{{ route('auditIndex') }}" class="nav-link">Audit</a></li>
             <li class="nav-item"><a href="{{ route('partnerIndex') }}" class="nav-link">Partners</a></li>
-            <li class="nav-item"><a href="/" class="nav-link">Brand Vault</a></li>
-
+            <li class="nav-item"><a href="{{ route('brandVault') }}" class="nav-link">Brand Vault</a></li>
 
             <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i
                             class="fa fa-cog fa-fw fa-lg"></i></a></li>

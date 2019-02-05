@@ -34,6 +34,28 @@ class HomeController extends Controller
     }
 
     /**
+     * Show the brand vault dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function brandVaultAction()
+    {
+        return view('brand-vault', [
+        ]);
+    }
+
+    /**
+     * Show the reports dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function reportsAction()
+    {
+        return view('reports', [
+        ]);
+    }
+
+    /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
