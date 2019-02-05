@@ -12,6 +12,8 @@
                     Code</a></li>
             <li class="nav-item"><a href="{{ route('entrantSupportTicket') }}" class="nav-link">Support</a>
             </li>
+            <li class="nav-item"><a href="{{ route('gdprRequest') }}" class="nav-link">GDPR Request</a>
+            </li>
         </ul>
     </div>
 </nav>

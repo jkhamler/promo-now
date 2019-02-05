@@ -61,12 +61,26 @@
                         </td>
                         <td>
                             <table class="table">
+
+                                <!-- Anonymised for non super admin users -->
                                 @foreach($audit->new_values as $attribute => $value)
                                     <tr>
                                         <td><b>{{ $attribute }}</b></td>
-                                        <td>{{ $value }}</td>
+                                        @if(\Illuminate\Support\Facades\Auth::user()->isSuperAdmin())
+                                            <td>{{ $value }}</td>
+                                        @else
+                                            <td>{{ str_limit($value, 2, '***') }}</td>
+                                        @endif
                                     </tr>
                                 @endforeach
+
+                            <!-- Anonymised for Everybody -->
+                                {{--@foreach($audit->new_values as $attribute => $value)--}}
+                                {{--<tr>--}}
+                                {{--<td><b>{{ $attribute }}</b></td>--}}
+                                {{--<td>{{ str_limit($value, 2, '***') }}</td>--}}
+                                {{--</tr>--}}
+                                {{--@endforeach--}}
                             </table>
                         </td>
                     </tr>
@@ -81,7 +95,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#auditTable').DataTable({
-                "order" : [[3, "desc"]]
+                "order": [[3, "desc"]]
             });
         });
 

@@ -50,4 +50,12 @@ class User extends Authenticatable
     {
         return $this->first_name . ' ' . $this->surname;
     }
+
+    /**
+     * @return bool
+     */
+    public function isSuperAdmin(){
+        return $this->hasRole('super-admin');
+    }
+
 }

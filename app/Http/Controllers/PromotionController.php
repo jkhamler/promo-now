@@ -10,6 +10,7 @@ use App\Models\PromotionPartner;
 use App\Models\UrnSpecification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PromotionController extends Controller
 {

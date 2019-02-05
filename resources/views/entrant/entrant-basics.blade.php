@@ -11,8 +11,13 @@
         <h4>Entrant Details</h4>
 
         <ul>
-            <li>Entrant: {{ $entrant->person->getFullName() }}</li>
-            <li>Entrant Email: {{$entrant->person->email_address}}</li>
+            @if(\Illuminate\Support\Facades\Auth::user()->isSuperAdmin())
+                <li>Entrant: {{ $entrant->person->getFullName() }}</li>
+                <li>Entrant Email: {{$entrant->person->email_address}}</li>
+            @else
+                <li>Entrant: {{ str_limit($entrant->person->first_name, 2, '***') }} {{ str_limit($entrant->person->surname, 2, '***') }}</li>
+                <li>Entrant Email: {{$entrant->person->emailMasked()}}</li>
+            @endif
             <li>URN: {{ $entrant->urn->urn }}</li>
             <li>Entry date/time: {{ $entrant->created_at }}</li>
         </ul>

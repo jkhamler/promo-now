@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('test-promo')->group(function () {
     Route::get('/', 'EntrantController@enterPromoCodeAction')->name('enterPromoCode');
     Route::get('/support', 'EntrantController@supportTicketAction')->name('entrantSupportTicket');
+    Route::get('/gdpr-request', 'EntrantController@gdprRequestAction')->name('gdprRequest');
+    Route::post('/gdpr-request', 'EntrantController@logGdprRequestAction')->name('logGdprRequest');
     Route::get('/urn/{urnId}', 'EntrantController@validURNAction')->name('validURN');
     Route::get('/invalid-urn', 'EntrantController@invalidURNAction')->name('invalidURN');
     Route::post('/submit-urn', 'EntrantController@submitURNAction')->name('submitURN');

@@ -113,7 +113,7 @@ class EntrantController extends Controller
 
         $supportCategory = DB::table('ticketit_categories AS tc')
             ->select('tc.id AS id')
-            ->where('tc.name', 'Customer Services')
+            ->where('tc.name', 'Helpdesk')
             ->first();
 
         $supportUserId = DB::table('ticketit_categories_users AS tcu')
@@ -175,7 +175,7 @@ EOT;
 
         Auth::logout();
 
-        if($existingUser){
+        if ($existingUser) {
             Auth::login($existingUser);
         }
 
@@ -192,6 +192,99 @@ EOT;
         $person = Person::find($personId);
 
         return view('entrant.support-ticket-logged', ['person' => $person]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function gdprRequestAction()
+    {
+        return view('entrant.gdpr-request');
+    }
+
+    public function logGdprRequestAction(Request $request)
+
+    {
+        $existingUser = Auth::user();
+
+        $request->validate([
+            'firstName' => 'string',
+            'surname' => 'string',
+            'emailAddress' => 'string',
+            'subject' => 'string',
+        ]);
+
+        $criticalPriority = DB::table('ticketit_priorities AS tp')
+            ->select('tp.id AS id')
+            ->where('tp.name', 'Critical')
+            ->first();
+
+        $gdprCategory = DB::table('ticketit_categories AS tc')
+            ->select('tc.id AS id')
+            ->where('tc.name', 'GDPR')
+            ->first();
+
+        $superAdminUserId = DB::table('ticketit_categories_users AS tcu')
+            ->select('tcu.user_id AS user_id')
+            ->where('tcu.category_id', $gdprCategory->id)
+            ->first();
+
+        /** @var User $superAdminUser */
+        $superAdminUser = User::find($superAdminUserId->user_id);
+
+        Auth::login($superAdminUser);
+
+        $person = Person::findByEmailAddress($request->input('emailAddress'));
+
+        if (!$person) {
+
+            $person = new Person();
+            $person->first_name = $request->input('firstName');
+            $person->surname = $request->input('surname');
+            $person->email_address = $request->input('emailAddress');
+            $person->save();
+        }
+
+        $priorityId = $criticalPriority->id;
+        $categoryId = $gdprCategory->id;
+
+        $ticketContent = <<<EOT
+<h4>GDPR REQUEST!!</h4>
+
+Entrant: {$person->name} - {$person->email_address}
+
+Subject: GDPR Request
+
+Enquiry: {$request->enquiry}
+        
+bar
+EOT;
+        $ticket = new Ticket();
+
+        $ticket->subject = 'Urgent GDPR Request';
+
+        $ticket->setPurifiedContent($ticketContent);
+
+        $ticket->priority_id = $priorityId;
+        $ticket->category_id = $categoryId;
+
+        $ticket->status_id = Setting::grab('default_status_id');
+
+        $ticket->user_id = Auth::id();
+
+        $ticket->autoSelectAgent();
+
+        $ticket->save();
+
+        session()->flash('status', trans('ticketit::lang.the-ticket-has-been-created'));
+
+        Auth::logout();
+
+        if ($existingUser) {
+            Auth::login($existingUser);
+        }
+
+        return redirect()->to(route('supportTicketLogged', [$person->id]));
     }
 
     /**
@@ -376,7 +469,7 @@ EOT;
 
             session()->flash('status', trans('ticketit::lang.the-ticket-has-been-created'));
 
-            if($existingUser){
+            if ($existingUser) {
                 Auth::login($existingUser);
             }
 

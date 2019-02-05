@@ -15,10 +15,11 @@ class TicketItSeeder extends Seeder
 
         DB::table('ticketit_categories')
             ->insert([
-                ['id' => 1, 'name' => 'Technical', 'color' => '#009051'],
+                ['id' => 1, 'name' => 'Tech', 'color' => '#009051'],
                 ['id' => 2, 'name' => 'Billing', 'color' => '#005493'],
-                ['id' => 3, 'name' => 'Customer Services', 'color' => '#ff9300'],
-                ['id' => 4, 'name' => 'Fulfilment', 'color' => '#ff7e79'],
+                ['id' => 3, 'name' => 'Helpdesk', 'color' => '#ff9300'],
+                ['id' => 4, 'name' => 'F&H', 'color' => '#ff7e79'],
+                ['id' => 5, 'name' => 'GDPR', 'color' => '#ff0000'],
             ]);
 
         DB::table('ticketit_priorities')
@@ -41,18 +42,46 @@ class TicketItSeeder extends Seeder
         /** @var \App\User $fulfillmentUser */
         $fulfillmentUser = \App\User::query()->where('name', 'jdavies')->first();
 
-        DB::table('ticketit_categories_users')
-            ->insert([
-                'category_id' => 3,
-                'user_id' => $serviceUser->id,
-            ]);
+        /** @var \App\User $superAdminUser */
+        $superAdminUser = \App\User::query()->where('name', 'jkhamler')->first();
 
         DB::table('ticketit_categories_users')
-            ->insert([
-                'category_id' => 4,
-                'user_id' => $fulfillmentUser->id,
-            ]);
-
+            ->insert(
+                [
+                    [
+                        'category_id' => 3,
+                        'user_id' => $serviceUser->id,
+                    ],
+                    [
+                        'category_id' => 5,
+                        'user_id' => $serviceUser->id,
+                    ],
+                    [
+                        'category_id' => 4,
+                        'user_id' => $fulfillmentUser->id,
+                    ],
+                    [
+                        'category_id' => 1,
+                        'user_id' => $superAdminUser->id,
+                    ],
+                    [
+                        'category_id' => 2,
+                        'user_id' => $superAdminUser->id,
+                    ],
+                    [
+                        'category_id' => 3,
+                        'user_id' => $superAdminUser->id,
+                    ],
+                    [
+                        'category_id' => 4,
+                        'user_id' => $superAdminUser->id,
+                    ],
+                    [
+                        'category_id' => 5,
+                        'user_id' => $superAdminUser->id,
+                    ],
+                ]
+            );
 
     }
 }

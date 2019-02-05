@@ -48,8 +48,13 @@
                     @endphp
                     <tr data-href="{{ route('entrantDetails', [$promotion->id, $entrant->id]) }}">
                         <td>{{ $entrant->created_at->format('d/m/Y H:i:s') }}</td>
-                        <td>{{ $entrant->person->getFullName() }}</td>
-                        <td>{{ $entrant->person->emailMasked() }}</td>
+                        @if(\Illuminate\Support\Facades\Auth::user()->isSuperAdmin())
+                            <td>{{ $entrant->person->getFullName() }}</td>
+                            <td>{{ $entrant->person->email_address }}</td>
+                        @else
+                            <td>{{ str_limit($entrant->person->first_name, 2, '***') }} {{ str_limit($entrant->person->surname, 2, '***') }}</td>
+                            <td>{{ $entrant->person->emailMasked() }}</td>
+                        @endif
                         <td>{{ $tierItemStock->tierItem->short_description }}</td>
                         <td>{{ $tierItemStock->reference_number }}</td>
                     </tr>

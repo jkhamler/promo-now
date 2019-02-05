@@ -46,6 +46,7 @@ class UsersPermissionsSeeder extends Seeder
         $superAdminUser->surname = 'Hamler';
         $superAdminUser->email = 'jkhamler@gmail.com';
         $superAdminUser->password = Hash::make('123456');
+        $superAdminUser->ticketit_agent = 1;
         $superAdminUser->ticketit_admin = 1;
 
         $superAdminUser->assignRole('super-admin');
@@ -58,6 +59,8 @@ class UsersPermissionsSeeder extends Seeder
         $marketingUser->surname = 'Smith';
         $marketingUser->email = 'dsmith@email.com';
         $marketingUser->password = Hash::make('123456');
+        $marketingUser->ticketit_agent = 1;
+
 
         $marketingUser->assignRole('marketing');
         $marketingUser->save();
@@ -69,6 +72,7 @@ class UsersPermissionsSeeder extends Seeder
         $customerServiceUser->surname = 'Clark';
         $customerServiceUser->email = 'cclark@email.com';
         $customerServiceUser->password = Hash::make('123456');
+        $customerServiceUser->ticketit_agent = 1;
 
         $customerServiceUser->assignRole('customer-service');
         $customerServiceUser->save();
@@ -80,6 +84,7 @@ class UsersPermissionsSeeder extends Seeder
         $fulfillmentUser->surname = 'Davies';
         $fulfillmentUser->email = 'jdavies@email.com';
         $fulfillmentUser->password = Hash::make('123456');
+        $fulfillmentUser->ticketit_agent = 1;
 
         $fulfillmentUser->assignRole('fulfillment');
         $fulfillmentUser->save();

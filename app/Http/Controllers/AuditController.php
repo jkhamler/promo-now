@@ -13,7 +13,9 @@ class AuditController extends Controller
     {
         $audits = Audit::all()->sortByDesc("created_at");
 
-        return view('audit.index', ['audits' => $audits]);
+        return view('audit.index', [
+            'audits' => $audits,
+        ]);
     }
 
 
